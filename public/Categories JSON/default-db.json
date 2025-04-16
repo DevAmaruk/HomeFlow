@@ -8,32 +8,38 @@
 				{
 					"uuid": "5d638fba-0688-425b-8749-24ca8b2ae818",
 					"icon": "",
-					"description": "Nettoyer la vaisselle"
+					"description": "Nettoyer la vaisselle",
+					"score": 0
 				},
 				{
 					"uuid": "b247e67e-2bc1-4f1f-af7f-ceb95d49a279",
 					"icon": "",
-					"description": "Ranger la vaisselle"
+					"description": "Ranger la vaisselle",
+					"score": 0
 				},
 				{
 					"uuid": "b247e67e-2bc1-4f1f-af7f-ceb95d49a279",
 					"icon": "",
-					"description": "Vider le lave-vaisselle"
+					"description": "Vider le lave-vaisselle",
+					"score": 0
 				},
 				{
 					"uuid": "01ce4380-ff59-49a5-8fa4-0aea1159d7ea",
 					"icon": "",
-					"description": "Sortir les poubelles"
+					"description": "Sortir les poubelles",
+					"score": 0
 				},
 				{
 					"uuid": "2b02507c-832f-465a-92f7-f4eaaa424ceb",
 					"icon": "",
-					"description": "Ranger les courses"
+					"description": "Ranger les courses",
+					"score": 0
 				},
 				{
 					"uuid": "71c0a0dc-2685-4839-ba63-adc5fccd95b3",
 					"icon": "",
-					"description": "Retirer aliments périmés du frigo"
+					"description": "Retirer aliments périmés du frigo",
+					"score": 0
 				}
 			]
 		},
@@ -45,37 +51,44 @@
 				{
 					"uuid": "a1e2f3g4-h5i6-j7k8-l9m0-n1o2p3q4r5s6",
 					"icon": "",
-					"description": "Nettoyer la baignoire"
+					"description": "Nettoyer la baignoire",
+					"score": 0
 				},
 				{
 					"uuid": "b2c3d4e5-f6g7-h8i9-j0k1-l2m3n4o5p6q7",
 					"icon": "",
-					"description": "Nettoyer le lavabo"
+					"description": "Nettoyer le lavabo",
+					"score": 0
 				},
 				{
 					"uuid": "c3d4e5f6-g7h8-i9j0-k1l2-m3n4o5p6q7r8",
 					"icon": "",
-					"description": "Récurer les toilettes"
+					"description": "Récurer les toilettes",
+					"score": 0
 				},
 				{
 					"uuid": "d4e5f6g7-h8i9-j0k1-l2m3-n4o5p6q7r8s9",
 					"icon": "",
-					"description": "Changer le tapis"
+					"description": "Changer le tapis",
+					"score": 0
 				},
 				{
 					"uuid": "e5f6g7h8-i9j0-k1l2-m3n4-o5p6q7r8s9t0",
 					"icon": "",
-					"description": "Nettoyer le rebord de douche"
+					"description": "Nettoyer le rebord de douche",
+					"score": 0
 				},
 				{
 					"uuid": "f6g7h8i9-j0k1-l2m3-n4o5-p6q7r8s9t0u1",
 					"icon": "",
-					"description": "Passer l'aspirateur"
+					"description": "Passer l'aspirateur",
+					"score": 0
 				},
 				{
 					"uuid": "g7h8i9j0-k1l2-m3n4-o5p6-q7r8s9t0u1v2",
 					"icon": "",
-					"description": "Panosser le sol"
+					"description": "Panosser le sol",
+					"score": 0
 				}
 			]
 		},
@@ -87,37 +100,44 @@
 				{
 					"uuid": "h1i2j3k4-l5m6-n7o8-p9q0-r1s2t3u4v5w6",
 					"icon": "",
-					"description": "Changer le drap"
+					"description": "Changer le drap",
+					"score": 0
 				},
 				{
 					"uuid": "i2j3k4l5-m6n7-o8p9-q0r1-s2t3u4v5w6x7",
 					"icon": "",
-					"description": "Changer la taille d'oreiller"
+					"description": "Changer la taille d'oreiller",
+					"score": 0
 				},
 				{
 					"uuid": "j3k4l5m6-n7o8-p9q0-r1s2-t3u4v5w6x7y8",
 					"icon": "",
-					"description": "Changer la couverture"
+					"description": "Changer la couverture",
+					"score": 0
 				},
 				{
 					"uuid": "k4l5m6n7-o8p9-q0r1-s2t3-u4v5w6x7y8z9",
 					"icon": "",
-					"description": "Changer le protège-matelas"
+					"description": "Changer le protège-matelas",
+					"score": 0
 				},
 				{
 					"uuid": "l5m6n7o8-p9q0-r1s2-t3u4-v5w6x7y8z9a0",
 					"icon": "",
-					"description": "Ranger les vêtements"
+					"description": "Ranger les vêtements",
+					"score": 0
 				},
 				{
 					"uuid": "m6n7o8p9-q0r1-s2t3-u4v5-w6x7y8z9a0b1",
 					"icon": "",
-					"description": "Passer l'aspirateur"
+					"description": "Passer l'aspirateur",
+					"score": 0
 				},
 				{
 					"uuid": "n7o8p9q0-r1s2-t3u4-v5w6-x7y8z9a0b1c2",
 					"icon": "",
-					"description": "Panosser le sol"
+					"description": "Panosser le sol",
+					"score": 0
 				}
 			]
 		},
@@ -129,37 +149,235 @@
 				{
 					"uuid": "f2g3h4i5-j6k7-l8m9-n0o1-p2q3r4s5t6u7",
 					"icon": "",
-					"description": "Panosser le sol"
+					"description": "Panosser le sol",
+					"score": 0
 				},
 				{
 					"uuid": "g3h4i5j6-k7l8-m9n0-o1p2-q3r4s5t6u7v8",
 					"icon": "",
-					"description": "Passer l'aspirateur"
+					"description": "Passer l'aspirateur",
+					"score": 0
 				},
 				{
 					"uuid": "h4i5j6k7-l8m9-n0o1-p2q3-r4s5t6u7v8w9",
 					"icon": "",
-					"description": "Nettoyer le canapé"
+					"description": "Nettoyer le canapé",
+					"score": 0
 				},
 				{
 					"uuid": "i5j6k7l8-m9n0-o1p2-q3r4-s5t6u7v8w9x0",
 					"icon": "",
-					"description": "Nettoyer la table"
+					"description": "Nettoyer la table",
+					"score": 0
 				},
 				{
 					"uuid": "j6k7l8m9-n0o1-p2q3-r4s5-t6u7v8w9x0y1",
 					"icon": "",
-					"description": "Nettoyer la table basse"
+					"description": "Nettoyer la table basse",
+					"score": 0
 				},
 				{
 					"uuid": "k7l8m9n0-o1p2-q3r4-s5t6-u7v8w9x0y1z2",
 					"icon": "",
-					"description": "Nettoyer la TV"
+					"description": "Nettoyer la TV",
+					"score": 0
 				},
 				{
 					"uuid": "l8m9n0o1-p2q3-r4s5-t6u7-v8w9x0y1z2a3",
 					"icon": "",
-					"description": "Nettoyer la commode"
+					"description": "Nettoyer la commode",
+					"score": 0
+				}
+			]
+		},
+		{
+			"uuid": "a1b2c3d4-e5f6-7g8h-9i0j-k1l2m3n4o5p6",
+			"title": "Animaux",
+			"icon": "",
+			"tasks": [
+				{
+					"uuid": "b2c3d4e5-f6g7-h8i9-j0k1-l2m3n4o5p6q7",
+					"icon": "",
+					"description": "Nettoyer litière",
+					"score": 0
+				},
+				{
+					"uuid": "c3d4e5f6-g7h8-i9j0-k1l2-m3n4o5p6q7r8",
+					"icon": "",
+					"description": "Remplacer filtre à eau",
+					"score": 0
+				},
+				{
+					"uuid": "d4e5f6g7-h8i9-j0k1-l2m3-n4o5p6q7r8s9",
+					"icon": "",
+					"description": "Renouveller eau fontaine",
+					"score": 0
+				},
+				{
+					"uuid": "e5f6g7h8-i9j0-k1l2-m3n4-o5p6q7r8s9t0",
+					"icon": "",
+					"description": "Remplir caisse paté",
+					"score": 0
+				},
+				{
+					"uuid": "f6g7h8i9-j0k1-l2m3-n4o5-p6q7r8s9t0u1",
+					"icon": "",
+					"description": "Remplir distributeur croquette",
+					"score": 0
+				},
+				{
+					"uuid": "g7h8i9j0-k1l2-m3n4-o5p6-q7r8s9t0u1v2",
+					"icon": "",
+					"description": "Remplacer filtre distributeur",
+					"score": 0
+				},
+				{
+					"uuid": "h8i9j0k1-l2m3-n4o5-p6q7-r8s9t0u1v2w3",
+					"icon": "",
+					"description": "Nettoyer fontaine",
+					"score": 0
+				}
+			]
+		},
+		{
+			"uuid": "z1y2x3w4-v5u6-t7s8-r9q0-p1o2n3m4l5k6",
+			"title": "Buanderie",
+			"icon": "",
+			"tasks": [
+				{
+					"uuid": "y2x3w4v5-u6t7-s8r9-q0p1-o2n3m4l5k6j7",
+					"icon": "",
+					"description": "Sortir le linge",
+					"score": 0
+				},
+				{
+					"uuid": "x3w4v5u6-t7s8-r9q0-p1o2-n3m4l5k6j7i8",
+					"icon": "",
+					"description": "Remplir machine à laver",
+					"score": 0
+				},
+				{
+					"uuid": "w4v5u6t7-s8r9-q0p1-o2n3-m4l5k6j7i8h9",
+					"icon": "",
+					"description": "Nettoyer machine à laver",
+					"score": 0
+				},
+				{
+					"uuid": "v5u6t7s8-r9q0-p1o2-n3m4-l5k6j7i8h9g0",
+					"icon": "",
+					"description": "Suspendre linge",
+					"score": 0
+				},
+				{
+					"uuid": "u6t7s8r9-q0p1-o2n3-m4l5-k6j7i8h9g0f1",
+					"icon": "",
+					"description": "Repasser linge",
+					"score": 0
+				},
+				{
+					"uuid": "t7s8r9q0-p1o2-n3m4-l5k6-j7i8h9g0f1e2",
+					"icon": "",
+					"description": "Ranger vêtements",
+					"score": 0
+				}
+			]
+		},
+		{
+			"uuid": "q1w2e3r4-t5y6-u7i8-o9p0-a1s2d3f4g5h6",
+			"title": "Bureau",
+			"icon": "",
+			"tasks": [
+				{
+					"uuid": "r2t3y4u5-i6o7-p8a9-s0d1-f2g3h4j5k6l7",
+					"icon": "",
+					"description": "Nettoyer écran PC",
+					"score": 0
+				},
+				{
+					"uuid": "t3y4u5i6-o7p8-a9s0-d1f2-g3h4j5k6l7m8",
+					"icon": "",
+					"description": "Enlever poussière bureau",
+					"score": 0
+				},
+				{
+					"uuid": "y4u5i6o7-p8a9-s0d1-f2g3-h4j5k6l7m8n9",
+					"icon": "",
+					"description": "Nettoyer PC",
+					"score": 0
+				},
+				{
+					"uuid": "u5i6o7p8-a9s0-d1f2-g3h4-j5k6l7m8n9o0",
+					"icon": "",
+					"description": "Ranger documents",
+					"score": 0
+				}
+			]
+		},
+		{
+			"uuid": "p1l2a3n4-t5e6-s7u8-o9p0-a1s2d3f4g5h6",
+			"title": "Plantes",
+			"icon": "",
+			"tasks": [
+				{
+					"uuid": "a2r3r4o5-s6e7-p8l9-a0n1-t2s3u4v5w6x7",
+					"icon": "",
+					"description": "Arroser plantes",
+					"score": 0
+				},
+				{
+					"uuid": "r3e4t5i6-r7f8-l9o0-w1e2-r3f4l5o6w7n8",
+					"icon": "",
+					"description": "Retirer fleur fânée",
+					"score": 0
+				},
+				{
+					"uuid": "c4h5a6n7-g8e9-p0o1-t2p3-l4a5n6t7s8u9",
+					"icon": "",
+					"description": "Changer pot",
+					"score": 0
+				}
+			]
+		},
+		{
+			"uuid": "t1e2r3r4-a5s6-s7e8-o9p0-t1e2r3r4a5s6",
+			"title": "Terrasse",
+			"icon": "",
+			"tasks": [
+				{
+					"uuid": "b1a2l3a4-y5e6-r7s8-s9o0-l1b2a3l4y5e6",
+					"icon": "",
+					"description": "Balayer sol",
+					"score": 0
+				},
+				{
+					"uuid": "j1e2t3e4-r5c6-a7r8-t9o0-n1s2v3i4d5e6",
+					"icon": "",
+					"description": "Jeter cartons vide",
+					"score": 0
+				},
+				{
+					"uuid": "j1e2t3e4-r5v6-e7r8-r9e0-n1v2e3r4r5e6",
+					"icon": "",
+					"description": "Jeter verre",
+					"score": 0
+				},
+				{
+					"uuid": "j1e2t3e4-p5r6-o7d8-u9i0-t1s2m3e4n5a6",
+					"icon": "",
+					"description": "Jeter produits ménager",
+					"score": 0
+				},
+				{
+					"uuid": "j1e2t3e4-f5e6-r7b8-l9a0-n1c2o3n4t5a6",
+					"icon": "",
+					"description": "Jeter fer blanc",
+					"score": 0
+				},
+				{
+					"uuid": "j1e2t3e4-p5e6-t7b8-o9t0-l1p2e3t4b5o6",
+					"icon": "",
+					"description": "Jeter pet",
+					"score": 0
 				}
 			]
 		}

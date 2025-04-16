@@ -9,4 +9,5 @@ export interface Task {
 	uuid: string;
 	icon: string;
 	description: string;
+	score: number;
 }
