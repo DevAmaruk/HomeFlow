@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { Category, Task } from '../../interfaces/categories';
 
 /*
@@ -13,23 +13,42 @@ allowing me to store each title of each category in a variable and loop through 
 	providedIn: 'root',
 })
 export class ChoreCategoryService {
+	//We created two Observables. One is for the categories and the other one is for the tasks.
+	private _categoriesSubject$: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
+
+	public categories$ = this._categoriesSubject$.asObservable();
+
 	// First we need to inject in the constructor the HttpClient to use it in the service
 	constructor(private readonly _http: HttpClient) {}
 
 	// We need an async method to fetch the data from the JSON and return a response from it.
+	// It returns a promise of an array of categories.
 	async getChoreCategories(): Promise<Category[]> {
-		const URL = './CategoriesDB/default-database.json';
+		const URL = './CategoriesDB/default-database-fr.json';
 		const REQUEST = this._http.get<Category[]>(URL);
 		const RESPONSE = await firstValueFrom(REQUEST);
+		this._categoriesSubject$.next(RESPONSE);
 		return RESPONSE;
 	}
 
-	async getTasksByCategory(categoryId: string): Promise<Task[]> {
+	async getCategoryById(categoryId: string): Promise<Category | undefined> {
 		const categories = await this.getChoreCategories();
-		const task = categories.find(category => category.uuid === categoryId);
-		if (task) {
-			return task.tasks;
+		if (categories) {
+			const selectedCategory = categories.find(cat => cat.uuid === categoryId);
+			return selectedCategory;
+		} else {
+			return undefined;
 		}
-		return [];
+	}
+
+	// This method is used to get the tasks by category ID.
+	async getTasksByCategoryId(categoryId: string): Promise<Task[]> {
+		const categories = await this.getChoreCategories();
+		const selectedCategory = categories.find(cat => cat.uuid === categoryId);
+		if (selectedCategory) {
+			return selectedCategory.tasks;
+		} else {
+			return [];
+		}
 	}
 }
