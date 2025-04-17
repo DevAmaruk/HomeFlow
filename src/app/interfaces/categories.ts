@@ -1,4 +1,4 @@
-export interface Categories {
+export interface Category {
 	uuid: string;
 	title: string;
 	icon: string;
