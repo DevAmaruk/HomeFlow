@@ -1,7 +1,11 @@
-@if(_taskSeletionService.taskArray.controls.length){
-<ul>
-	<li *ngFor="let taskControl of _taskSeletionService.taskArray.controls">
-		{{ taskControl.value.description }}
-	</li>
-</ul>
+@if(selectedTasks.length > 0){ @for(task of selectedTasks; track task.uuid){
+<p>{{ task.description }}</p>
+} }
+
+<a [routerLink]="['/category']">Go to Chore Category</a>
+
+<!-- <p>{{ tasks$ | async | json }}</p> -->
+
+@for(description of taskDescription$ | async; track description){
+<p>{{ description }}</p>
 }
