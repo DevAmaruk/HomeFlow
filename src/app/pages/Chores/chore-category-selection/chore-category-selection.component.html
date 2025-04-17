@@ -1,1 +1,3 @@
-<p>chore-category-selection works!</p>
+@if(categories){ @for(cat of categories; track cat.uuid){
+<h3 (click)="onCategorySelected(cat.uuid)">{{ cat.title }}</h3>
+} }

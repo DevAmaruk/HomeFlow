@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ChoreCategoryService } from '../../../services/chores/chore-category.service';
+import { Category } from '../../../interfaces/categories';
+import { Router } from '@angular/router';
 
 /* 
 This component is responsible for selecting a chore category. 
@@ -18,4 +21,28 @@ At the bottom there will be a menu with the following :
 	templateUrl: './chore-category-selection.component.html',
 	styleUrl: './chore-category-selection.component.scss',
 })
-export class ChoreCategorySelectionComponent {}
+export class ChoreCategorySelectionComponent implements OnInit {
+	/*
+	First we need to inject the service in the constructor to use the method getChoreCategories() from the service
+
+	We inject as well the Router to navigate to the tasks page when the user selects a category.
+	*/
+	constructor(private readonly _choreCatService: ChoreCategoryService, private readonly _route: Router) {}
+
+	// We create a variable to store the categories
+	public categories?: Category[];
+
+	async ngOnInit() {
+		this.getCategories();
+	}
+
+	// We create a method to assign the categories to the variable
+	async getCategories() {
+		this.categories = await this._choreCatService.getChoreCategories();
+	}
+
+	// This method allows to navigate to the tasks page when the user selects a category.
+	async onCategorySelected(categoryId: string) {
+		this._route.navigate(['/tasks', categoryId]);
+	}
+}
