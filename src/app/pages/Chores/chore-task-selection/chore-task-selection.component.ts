@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChoreCategoryService } from '../../../services/chores/chore-category.service';
 import { Category, Task } from '../../../interfaces/categories';
+import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 
 /*
 This component is responsible for selecting a chore task based on the selected category.
@@ -24,7 +25,11 @@ export class ChoreTaskSelectionComponent implements OnInit {
   First we need to inject the ActivatedRoute to get the categoryId from the URL.
   Then we can use this categoryId to get the tasks of that category.
   */
-	constructor(private readonly _activeRoute: ActivatedRoute, private readonly _choreCatService: ChoreCategoryService) {}
+	constructor(
+		private readonly _activeRoute: ActivatedRoute,
+		private readonly _choreCatService: ChoreCategoryService,
+		private readonly _taskSelectionService: TaskSelectionService,
+	) {}
 
 	async ngOnInit() {
 		this.getTasks();
@@ -41,5 +46,11 @@ export class ChoreTaskSelectionComponent implements OnInit {
 			const selectedCategory: Category | undefined = categories.find(cat => cat.uuid === categoryId);
 			this.tasks = selectedCategory!.tasks;
 		}
+	}
+
+	async selectTask(task: Task) {
+		this._taskSelectionService.addTask(task);
+		console.log('Task selected:', task);
+		console.log('Current task array:', this._taskSelectionService.taskArray.value);
 	}
 }

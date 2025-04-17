@@ -1,1 +1,7 @@
-<p>chore-list-homepage works!</p>
+@if(_taskSeletionService.taskArray.controls.length){
+<ul>
+	<li *ngFor="let taskControl of _taskSeletionService.taskArray.controls">
+		{{ taskControl.value.description }}
+	</li>
+</ul>
+}
