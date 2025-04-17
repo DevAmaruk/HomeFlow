@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { Task } from '../../interfaces/categories';
-import { AbstractControl, FormArray, FormControl } from '@angular/forms';
+import { addDoc, collection, collectionData, Firestore, query } from '@angular/fire/firestore';
+import { map, Observable } from 'rxjs';
 
 /*
 This service will create a FormArray with the tasks selected by the user.
@@ -12,14 +12,23 @@ It will be injected in the homepage.
 	providedIn: 'root',
 })
 export class TaskSelectionService {
-	// We create a FormArray with no values at the beginning
-	public taskArray = new FormArray([] as any);
+	public selectedTasks: Task[] = [];
 
-	addTask(task: Task) {
-		this.taskArray.push(task);
+	public taskDescription$?: Observable<string[]>;
+
+	constructor(private readonly _firestore: Firestore) {
+		this.getTasksDescription();
 	}
 
-	getTasks(): Task[] {
-		return this.taskArray.value;
+	async addTask(task: Task) {
+		const tasksCollectionRef = collection(this._firestore, 'default-db');
+		await addDoc(tasksCollectionRef, task);
+	}
+
+	async getTasksDescription() {
+		const tasksCollectionRef = collection(this._firestore, 'default-db');
+		const q = query(tasksCollectionRef);
+
+		this.taskDescription$ = collectionData(q).pipe(map((tasks: any[]) => tasks.map(task => task.description)));
 	}
 }
