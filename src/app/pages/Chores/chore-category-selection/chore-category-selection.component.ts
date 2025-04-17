@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChoreCategoryService } from '../../../services/chores/chore-category.service';
-import { Category } from '../../../interfaces/categories';
+import { Category, Task } from '../../../interfaces/categories';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 /* 
 This component is responsible for selecting a chore category. 
@@ -22,21 +23,26 @@ At the bottom there will be a menu with the following :
 	styleUrl: './chore-category-selection.component.scss',
 })
 export class ChoreCategorySelectionComponent implements OnInit {
+	public readonly categories$?: Observable<Category[]>;
+
+	// We create a variable to store the categories
+	public categories?: Category[];
+
 	/*
 	First we need to inject the service in the constructor to use the method getChoreCategories() from the service
 
 	We inject as well the Router to navigate to the tasks page when the user selects a category.
 	*/
-	constructor(private readonly _choreCatService: ChoreCategoryService, private readonly _route: Router) {}
-
-	// We create a variable to store the categories
-	public categories?: Category[] | undefined;
+	constructor(private readonly _choreCatService: ChoreCategoryService, private readonly _route: Router) {
+		this.categories$ = this._choreCatService.categories$;
+	}
 
 	async ngOnInit() {
 		this.getCategories();
 	}
 
-	// We create a method to assign the categories to the variable
+	// Assign the return of getChoreCategories() to the categories
+	// categories is an array of Category objects
 	async getCategories() {
 		this.categories = await this._choreCatService.getChoreCategories();
 	}
