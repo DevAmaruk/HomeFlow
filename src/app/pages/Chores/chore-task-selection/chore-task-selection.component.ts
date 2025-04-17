@@ -30,6 +30,10 @@ export class ChoreTaskSelectionComponent implements OnInit {
 		this.getTasks();
 	}
 
+	// This method takes first the categoryId from the URL, then if the categoryId is not null, we can get the categories from the service.
+	// Then we can find the selected category by comparing the uuid of the category with the categoryId from the URL.
+	// Finally we can assign the tasks of the selected category to the tasks variable.
+	// We display it on the HTML page using a loop @for
 	async getTasks() {
 		const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
 		if (categoryId) {

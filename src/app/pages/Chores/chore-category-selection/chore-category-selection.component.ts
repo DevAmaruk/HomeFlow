@@ -30,7 +30,7 @@ export class ChoreCategorySelectionComponent implements OnInit {
 	constructor(private readonly _choreCatService: ChoreCategoryService, private readonly _route: Router) {}
 
 	// We create a variable to store the categories
-	public categories?: Category[];
+	public categories?: Category[] | undefined;
 
 	async ngOnInit() {
 		this.getCategories();
