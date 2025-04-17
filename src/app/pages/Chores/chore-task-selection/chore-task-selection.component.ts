@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ChoreCategoryService } from '../../../services/chores/chore-category.service';
 import { Category, Task } from '../../../interfaces/categories';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 
 /*
@@ -13,13 +14,18 @@ So we need to push the selected task to the chore-list array, which will be disp
 
 @Component({
 	selector: 'app-chore-task-selection',
-	imports: [],
+	imports: [ReactiveFormsModule, RouterLink],
 	templateUrl: './chore-task-selection.component.html',
 	styleUrl: './chore-task-selection.component.scss',
 })
 export class ChoreTaskSelectionComponent implements OnInit {
 	// Variable to store the task from a specific category
 	public tasks?: Task[] | undefined;
+	public selectedCategory?: Category | undefined;
+
+	public taskGroup = new FormGroup({
+		tasks: new FormArray<any>([]),
+	});
 
 	/*
   First we need to inject the ActivatedRoute to get the categoryId from the URL.
@@ -33,6 +39,7 @@ export class ChoreTaskSelectionComponent implements OnInit {
 
 	async ngOnInit() {
 		this.getTasks();
+		this.getCategory();
 	}
 
 	// This method takes first the categoryId from the URL, then if the categoryId is not null, we can get the categories from the service.
@@ -42,15 +49,22 @@ export class ChoreTaskSelectionComponent implements OnInit {
 	async getTasks() {
 		const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
 		if (categoryId) {
-			const categories: Category[] = await this._choreCatService.getChoreCategories();
-			const selectedCategory: Category | undefined = categories.find(cat => cat.uuid === categoryId);
-			this.tasks = selectedCategory!.tasks;
+			this.tasks = await this._choreCatService.getTasksByCategoryId(categoryId);
 		}
 	}
 
-	async selectTask(task: Task) {
-		this._taskSelectionService.addTask(task);
-		console.log('Task selected:', task);
-		console.log('Current task array:', this._taskSelectionService.taskArray.value);
+	async getCategory() {
+		const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
+		if (categoryId) {
+			this.selectedCategory = await this._choreCatService.getCategoryById(categoryId);
+		}
+	}
+
+	async addTask(task: Task) {
+		const tasksArray = this.taskGroup.get('tasks') as FormArray;
+		tasksArray.push(new FormControl(task));
+		this._taskSelectionService.selectedTasks.push(task);
+		await this._taskSelectionService.addTask(task);
+		console.log(tasksArray);
 	}
 }
