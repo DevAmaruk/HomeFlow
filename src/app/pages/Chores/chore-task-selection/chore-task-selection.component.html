@@ -1,1 +1,3 @@
-<p>chore-task-selection works!</p>
+@if(tasks){ @for(task of tasks; track task.uuid){
+<h3>{{ task.description }}</h3>
+} }
