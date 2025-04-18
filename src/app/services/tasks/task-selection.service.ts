@@ -16,17 +16,29 @@ export class TaskSelectionService {
 
 	public taskDescription$?: Observable<string[]>;
 
+	private famillyGroupCollectionName?: string;
+
 	constructor(private readonly _firestore: Firestore) {
 		this.getTasksDescription();
 	}
 
+	async setFamillyGroup(famillyName: string) {
+		this.famillyGroupCollectionName = famillyName;
+	}
+
 	async addTask(task: Task) {
-		const tasksCollectionRef = collection(this._firestore, 'default-db');
+		if (!this.famillyGroupCollectionName) {
+			throw new Error('Familly group collection name is not set. Please set it before adding tasks.');
+		}
+		const tasksCollectionRef = collection(this._firestore, this.famillyGroupCollectionName);
 		await addDoc(tasksCollectionRef, task);
 	}
 
 	async getTasksDescription() {
-		const tasksCollectionRef = collection(this._firestore, 'default-db');
+		if (!this.famillyGroupCollectionName) {
+			throw new Error('Familly group collection name is not set. Please set it before getting tasks.');
+		}
+		const tasksCollectionRef = collection(this._firestore, this.famillyGroupCollectionName);
 		const q = query(tasksCollectionRef);
 
 		this.taskDescription$ = collectionData(q).pipe(map((tasks: any[]) => tasks.map(task => task.description)));
