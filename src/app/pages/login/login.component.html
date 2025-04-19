@@ -1,0 +1,14 @@
+<input
+	type="text"
+	#usernameInput
+	placeholder="Enter a username" /><br /><br />
+<input
+	type="password"
+	#passwordInput
+	placeholder="Enter a password" /><br /><br />
+
+<button (click)="signUpUser(usernameInput.value, passwordInput.value)">Login</button>
+
+<pre>
+    {{ user | json }}
+</pre>
