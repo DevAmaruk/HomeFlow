@@ -1,14 +1,24 @@
-<input
-	type="text"
-	#usernameInput
-	placeholder="Enter a username" /><br /><br />
-<input
-	type="password"
-	#passwordInput
-	placeholder="Enter a password" /><br /><br />
+<div [formGroup]="signUpForm">
+	<label for="email">Email</label>
+	<input
+		type="email"
+		id="email"
+		formControlName="email"
+		placeholder="Enter your email" />
+	<label for="password">Password</label>
+	<input
+		type="password"
+		id="password"
+		formControlName="password"
+		placeholder="Enter your password" />
+</div>
 
-<button (click)="signUpUser(usernameInput.value, passwordInput.value)">Login</button>
+<button (click)="onSignUp()">Sign up</button>
+<button (click)="onSignIn()">Sign In</button>
+<button (click)="onSignOut()">Sign Out</button>
 
-<pre>
-    {{ user | json }}
-</pre>
+<div>
+	@if(currentUser){
+	<p>Welcome, {{ currentUser.email }}</p>
+	}
+</div>

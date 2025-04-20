@@ -1,22 +1,65 @@
 import { Component } from '@angular/core';
-import { SignInService } from '../../services/sign-in/sign-in.service';
 import { CommonModule } from '@angular/common';
-import { User, UserCredential } from '@angular/fire/auth';
+import { AuthService } from '../../services/auth/auth.service';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { User } from '@angular/fire/auth';
 
 @Component({
 	selector: 'app-login',
-	imports: [CommonModule],
+	imports: [CommonModule, ReactiveFormsModule],
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-	public user: any;
+	public signUpForm: FormGroup;
 
-	constructor(private readonly _signInService: SignInService) {
-		this.user = this._signInService.user;
+	public currentUser?: User | null;
+
+	constructor(private readonly _authService: AuthService) {
+		this.signUpForm = new FormGroup({
+			email: new FormControl(''),
+			password: new FormControl(''),
+		});
+
+		this._authService
+			.anonymousSignIn()
+			.then(userCredential => {
+				console.log('User signed in anonymously:', userCredential);
+			})
+			.catch(error => {
+				console.error('Error signing in anonymously:', error);
+			});
+
+		this.currentUser = this._authService.user;
 	}
 
-	async signUpUser(email: string, password: string) {
-		this._signInService.signUpWithEmailAndPassword(email, password);
+	async onSignUp() {
+		const { email, password } = this.signUpForm.value;
+
+		try {
+			const userCredential = await this._authService.signUp(email, password);
+			console.log('User signed up successfully:', userCredential);
+		} catch (error) {
+			console.error('Error signing up:', error);
+		}
+	}
+
+	async onSignIn() {
+		const { email, password } = this.signUpForm.value;
+		try {
+			const userCredential = await this._authService.signIn(email, password);
+			console.log('User signed in successfully:', userCredential.user);
+		} catch (error) {
+			console.error('Error signing in:', error);
+		}
+	}
+
+	async onSignOut() {
+		try {
+			await this._authService.signOut();
+			console.log('User signed out successfully');
+		} catch (error) {
+			console.error('Error signing out:', error);
+		}
 	}
 }
