@@ -1,11 +1,14 @@
-@if(selectedTasks.length > 0){ @for(task of selectedTasks; track task.uuid){
+<!-- @if(selectedTasks.length > 0){ @for(task of selectedTasks; track task.uuid){
 <p>{{ task.description }}</p>
+} } -->
+
+<a [routerLink]="['/category']">Go to Chore Category</a><br /><br />
+<input
+	type="text"
+	#memberId
+	placeholder="Enter member email" />
+<button (click)="addMemberToFamilly(memberId.value)">Add Member</button>
+
+@if(taskDescription$ | async; as taskDescription){ @for(task of taskDescription; track $index){
+<p>{{ task }}</p>
 } }
-
-<a [routerLink]="['/category']">Go to Chore Category</a>
-
-<!-- <p>{{ tasks$ | async | json }}</p> -->
-
-@for(description of taskDescription$ | async; track description){
-<p>{{ description }}</p>
-}
