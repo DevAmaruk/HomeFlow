@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { TaskSelectionService } from '../../services/tasks/task-selection.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
+import { FamillyService } from '../../services/famillyService/familly.service';
 
 /*
 This component will ask the user to create a family group.
@@ -9,19 +9,15 @@ The input value will be used to create the collection for the user.
 
 @Component({
 	selector: 'app-familly',
-	imports: [RouterLink],
+	imports: [],
 	templateUrl: './familly.component.html',
 	styleUrl: './familly.component.scss',
 })
 export class FamillyComponent {
-	constructor(private readonly _taskSelectionService: TaskSelectionService, private readonly _router: Router) {}
+	constructor(private readonly _router: Router, private readonly _famillyService: FamillyService) {}
 
-	public familyName: string = '';
-
-	public createFamily(inputValue: string) {
-		this.familyName = inputValue;
-		this._taskSelectionService.setFamillyGroup(this.familyName);
+	public async createFamilly(famillyInputName: string) {
+		await this._famillyService.createFamillyGroup(famillyInputName); // Call the service to create the family group
 		this._router.navigate(['/chore-homepage']);
-		console.log('Family name:', this.familyName);
 	}
 }
