@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
 	Auth,
+	AuthErrorCodes,
 	createUserWithEmailAndPassword,
-	getAuth,
 	onAuthStateChanged,
 	signInAnonymously,
 	signInWithEmailAndPassword,
@@ -20,13 +20,31 @@ It will use the firebase authentication module to authenticate the user.
 	providedIn: 'root',
 })
 export class AuthService {
-	public user?: User | null;
+	public user?: User;
 
 	constructor(private readonly _auth: Auth) {
 		onAuthStateChanged(this._auth, user => {
-			this.user = user;
-			console.log('User state changed:', user);
+			if (user) {
+				this.user = user;
+				console.log('User state changed:', user);
+			}
 		});
+	}
+
+	public getUserId() {
+		if (this.user) {
+			return this.user.uid;
+		} else {
+			return 'No user ID found';
+		}
+	}
+
+	public getUserEmail() {
+		if (this.user) {
+			return this.user.email;
+		} else {
+			return 'No user email found';
+		}
 	}
 
 	public anonymousSignIn() {
@@ -34,36 +52,11 @@ export class AuthService {
 	}
 
 	public signUp(email: string, password: string) {
-		try {
-			return createUserWithEmailAndPassword(this._auth, email, password);
-		} catch (error: any) {
-			switch (error.code) {
-				case 'auth/email-already-in-use':
-					console.error('Email already in use. Please use a different email address.');
-					break;
-				default:
-					console.error('An unknown error occurred. Please try again later.');
-			}
-			throw error;
-		}
+		return createUserWithEmailAndPassword(this._auth, email, password);
 	}
 
 	public signIn(email: string, password: string) {
-		try {
-			return signInWithEmailAndPassword(this._auth, email, password);
-		} catch (error: any) {
-			switch (error.code) {
-				case 'auth/invalid-email':
-					console.error('Invalid email address. Please enter a valid email address.');
-					break;
-				case 'auth/wrong-password':
-					console.error('Wrong password. Please enter the correct password.');
-					break;
-				default:
-					console.error('An unknown error occurred. Please try again later.');
-			}
-			throw error;
-		}
+		return signInWithEmailAndPassword(this._auth, email, password);
 	}
 
 	public signOut() {
