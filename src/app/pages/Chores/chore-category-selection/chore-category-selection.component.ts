@@ -3,6 +3,7 @@ import { ChoreCategoryService } from '../../../services/chores/chore-category.se
 import { Category, Task } from '../../../interfaces/categories';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { FamillyComponent } from '../../familly/familly.component';
 
 /* 
 This component is responsible for selecting a chore category. 
