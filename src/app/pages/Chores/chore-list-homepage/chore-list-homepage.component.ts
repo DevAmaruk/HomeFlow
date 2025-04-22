@@ -3,8 +3,10 @@ import { TaskSelectionService } from '../../../services/tasks/task-selection.ser
 import { Task } from '../../../interfaces/categories';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
+import { first, firstValueFrom, Observable } from 'rxjs';
 import { FamillyService } from '../../../services/famillyService/familly.service';
+import { User } from '@angular/fire/auth';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
 	selector: 'app-chore-list-homepage',
@@ -13,34 +15,29 @@ import { FamillyService } from '../../../services/famillyService/familly.service
 	styleUrl: './chore-list-homepage.component.scss',
 })
 export class ChoreListHomepageComponent implements OnInit {
-	public selectedTasks: Task[] = [];
-
 	public taskDescription$?: Observable<string[]>;
+	public taskDescriptions: string[] = [];
 
-	constructor(private readonly _taskSelectionService: TaskSelectionService, private readonly _famillyService: FamillyService) {}
+	public userObs: Observable<User | null>;
+	public user?: User | null;
 
-	async ngOnInit() {
-		await this.displayTasksOfFamillyGroup();
+	constructor(
+		private readonly _taskSelectionService: TaskSelectionService,
+		private readonly _famillyService: FamillyService,
+		private readonly _authService: AuthService,
+	) {
+		this.userObs = this._authService.user$;
+		this.taskDescription$ = this._taskSelectionService.taskDescription$;
 	}
 
-	private async displayTasksOfFamillyGroup() {
-		try {
-			const famillyGroupName = await this._famillyService.getFamillyGroupName();
-			if (!famillyGroupName) {
-				throw new Error('No familly group found for the current user.');
-			}
-
-			this.taskDescription$ = this._taskSelectionService.taskDescription$;
-			this._taskSelectionService.getTasksForFamilly(famillyGroupName);
-		} catch (error) {
-			console.error('Error fetching tasks:', error);
-		}
+	async ngOnInit() {
+		this.taskDescriptions = await this._taskSelectionService.getTasksFromFamillyGroup();
 	}
 
 	public async addMemberToFamilly(memberId: string) {
 		try {
 			await this._famillyService.addMemberToFamillyGroup(memberId);
-			console.log('Member added to family group successfully!');
+			// console.log('Member added to family group successfully!');
 		} catch (error) {
 			console.error('Error adding member to family group:', error);
 		}
