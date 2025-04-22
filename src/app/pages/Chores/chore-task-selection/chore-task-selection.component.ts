@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ChoreCategoryService } from '../../../services/chores/chore-category.service';
 import { Category, Task } from '../../../interfaces/categories';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 import { AuthService } from '../../../services/auth/auth.service';
-import { collection, collectionData, doc, Firestore, getDoc, getDocs, query, where } from '@angular/fire/firestore';
-import { map } from 'rxjs';
-import { user } from '@angular/fire/auth';
+import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 
 /*
 This component is responsible for selecting a chore task based on the selected category.
@@ -82,7 +80,7 @@ export class ChoreTaskSelectionComponent implements OnInit {
 	async addTask(task: Task) {
 		//We need to search for the uid field of the Users collection of a specific user.
 		//If we have more than one user, we need to get the uid of the user that is currently logged in.
-		const userId = this._authService.getUserId();
+		const userId = this._authService.getCurrentUser();
 		console.log('userId:', userId);
 
 		//We create a variale to store the id of the document of the Familly group the user is linked to.
