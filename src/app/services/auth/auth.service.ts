@@ -9,6 +9,7 @@ import {
 	signOut,
 	User,
 } from '@angular/fire/auth';
+import { BehaviorSubject } from 'rxjs';
 
 /*
 This service will handle the authentication of the user.
@@ -20,26 +21,16 @@ It will use the firebase authentication module to authenticate the user.
 	providedIn: 'root',
 })
 export class AuthService {
-	public user: User | undefined;
+	public user?: User | null;
+
+	public _user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+	public user$ = this._user$.asObservable();
 
 	constructor(private readonly _auth: Auth) {
 		onAuthStateChanged(this._auth, user => {
-			if (user) {
-				this.user = user;
-			} else {
-				this.user = undefined;
-			}
-		});
-	}
-
-	public getCurrentUser() {
-		const user = this._auth.currentUser;
-		if (user) {
 			this.user = user;
-			return user;
-		} else {
-			return null;
-		}
+			this._user$.next(user);
+		});
 	}
 
 	// public anonymousSignIn() {
@@ -50,6 +41,7 @@ export class AuthService {
 		try {
 			const userCredential = await createUserWithEmailAndPassword(this._auth, email, password);
 			this.user = userCredential.user;
+			this._user$.next(this.user);
 			return this.user;
 		} catch (error) {
 			if (error instanceof FirebaseError) {
@@ -72,6 +64,7 @@ export class AuthService {
 		try {
 			const userCredential = await signInWithEmailAndPassword(this._auth, email, password);
 			this.user = userCredential.user;
+			this._user$.next(this.user);
 			return this.user;
 		} catch (error) {
 			if (error instanceof FirebaseError) {
@@ -95,7 +88,8 @@ export class AuthService {
 
 	public async signOut() {
 		await signOut(this._auth);
-		this.user = undefined;
+		this.user = null;
+		this._user$.next(this.user);
 		console.log('User signed out successfully');
 	}
 }
