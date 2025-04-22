@@ -20,10 +20,18 @@ export class ChoreListHomepageComponent implements OnInit {
 	constructor(private readonly _taskSelectionService: TaskSelectionService, private readonly _famillyService: FamillyService) {}
 
 	async ngOnInit() {
-		try {
-			this.taskDescription$ = this._taskSelectionService.taskDescription$;
+		await this.displayTasksOfFamillyGroup();
+	}
 
-			await this._taskSelectionService.getTasksForFamilly('Ma famille');
+	private async displayTasksOfFamillyGroup() {
+		try {
+			const famillyGroupName = await this._famillyService.getFamillyGroupName();
+			if (!famillyGroupName) {
+				throw new Error('No familly group found for the current user.');
+			}
+
+			this.taskDescription$ = this._taskSelectionService.taskDescription$;
+			this._taskSelectionService.getTasksForFamilly(famillyGroupName);
 		} catch (error) {
 			console.error('Error fetching tasks:', error);
 		}
