@@ -14,4 +14,8 @@
 </div>
 
 <button (click)="onSignUp()">Sign up</button>
-<button (click)="onSignIn()">Sign In</button>
+<button
+	[hidden]="isSignInHidden"
+	(click)="onSignIn()">
+	Sign In
+</button>
