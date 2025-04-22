@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
+import { FirebaseError } from '@angular/fire/app';
 import {
 	Auth,
 	AuthErrorCodes,
 	createUserWithEmailAndPassword,
 	onAuthStateChanged,
-	signInAnonymously,
 	signInWithEmailAndPassword,
 	signOut,
 	User,
@@ -20,46 +20,82 @@ It will use the firebase authentication module to authenticate the user.
 	providedIn: 'root',
 })
 export class AuthService {
-	public user?: User;
+	public user: User | undefined;
 
 	constructor(private readonly _auth: Auth) {
 		onAuthStateChanged(this._auth, user => {
 			if (user) {
 				this.user = user;
-				console.log('User state changed:', user);
+			} else {
+				this.user = undefined;
 			}
 		});
 	}
 
-	public getUserId() {
-		if (this.user) {
-			return this.user.uid;
+	public getCurrentUser() {
+		const user = this._auth.currentUser;
+		if (user) {
+			this.user = user;
+			return user;
 		} else {
-			return 'No user ID found';
+			return null;
 		}
 	}
 
-	public getUserEmail() {
-		if (this.user) {
-			return this.user.email;
-		} else {
-			return 'No user email found';
+	// public anonymousSignIn() {
+	// 	return signInAnonymously(this._auth);
+	// }
+
+	public async signUp(email: string, password: string): Promise<User> {
+		try {
+			const userCredential = await createUserWithEmailAndPassword(this._auth, email, password);
+			this.user = userCredential.user;
+			return this.user;
+		} catch (error) {
+			if (error instanceof FirebaseError) {
+				switch (error.code) {
+					case AuthErrorCodes.EMAIL_EXISTS:
+						console.error('Email exists already in the system.');
+						break;
+					case AuthErrorCodes.INVALID_PASSWORD:
+						console.error('Invalid password. Please provide a valid password.');
+						break;
+					default:
+						console.error('An unexpected error occurred:', error.message);
+				}
+			}
+			throw error;
 		}
 	}
 
-	public anonymousSignIn() {
-		return signInAnonymously(this._auth);
+	public async signIn(email: string, password: string): Promise<User> {
+		try {
+			const userCredential = await signInWithEmailAndPassword(this._auth, email, password);
+			this.user = userCredential.user;
+			return this.user;
+		} catch (error) {
+			if (error instanceof FirebaseError) {
+				switch (error.code) {
+					case AuthErrorCodes.INVALID_PASSWORD:
+						console.error('Password is invalid. Please check your password.');
+						break;
+					case AuthErrorCodes.INVALID_EMAIL:
+						console.error('Email is invalid. Please check your email');
+						break;
+					case AuthErrorCodes.CREDENTIAL_MISMATCH:
+						console.error('Your credentials do not match. Please check your email and password.');
+						break;
+					default:
+						console.error('An unexpected error occurred:', error.message);
+				}
+			}
+			throw error;
+		}
 	}
 
-	public signUp(email: string, password: string) {
-		return createUserWithEmailAndPassword(this._auth, email, password);
-	}
-
-	public signIn(email: string, password: string) {
-		return signInWithEmailAndPassword(this._auth, email, password);
-	}
-
-	public signOut() {
-		return signOut(this._auth);
+	public async signOut() {
+		await signOut(this._auth);
+		this.user = undefined;
+		console.log('User signed out successfully');
 	}
 }
