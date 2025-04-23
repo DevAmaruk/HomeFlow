@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../../interfaces/categories';
-import { addDoc, collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, Firestore, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FamillyService } from '../famillyService/familly.service';
 
@@ -42,8 +42,53 @@ export class TaskSelectionService {
 		}
 	}
 
+	public async removeTask(task: Task) {
+		const famillyGroupName = await this._famillyService.getFamillyGroupName();
+		if (!famillyGroupName) {
+			throw new Error('Familly group name is not set. Please set it before adding tasks.');
+		}
+
+		try {
+			const taskColRef = collection(this._firestore, 'Familly', famillyGroupName, 'Tasks');
+			const taskQuery = query(taskColRef, where('uuid', '==', task.uuid));
+			const taskSnapshot = await getDocs(taskQuery);
+			if (!taskSnapshot.empty) {
+				taskSnapshot.forEach(doc => {
+					deleteDoc(doc.ref);
+				});
+			}
+		} catch (error) {
+			console.error('Error removing task:', error);
+			throw new Error('Failed to remove task. Please try again later.');
+		}
+	}
+
+	public async validateTask(task: Task) {
+		try {
+			task.validated = !task.validated;
+
+			const famillyGroupName = await this._famillyService.getFamillyGroupName();
+			if (!famillyGroupName) {
+				throw new Error('Familly group name is not set.');
+			}
+
+			const taskColRef = collection(this._firestore, 'Familly', famillyGroupName, 'Tasks');
+			const taskQuery = query(taskColRef, where('uuid', '==', task.uuid));
+			const taskSnapshot = await getDocs(taskQuery);
+
+			if (!taskSnapshot.empty) {
+				taskSnapshot.forEach(async doc => {
+					await updateDoc(doc.ref, { validated: task.validated });
+				});
+			}
+		} catch (error) {
+			console.error('Error validating task:', error);
+			throw new Error('Failed to validate task. Please try again later.');
+		}
+	}
+
 	//This method is used to get the tasks from the familly group.
-	public async getTasksFromFamillyGroup(): Promise<string[]> {
+	public async getTasksFromFamillyGroup(): Promise<Task[]> {
 		const famillyGroupName = await this._famillyService.getFamillyGroupName();
 		console.log('Familly group name:', famillyGroupName);
 
@@ -53,25 +98,17 @@ export class TaskSelectionService {
 
 		try {
 			const taskColRef = collection(this._firestore, 'Familly', famillyGroupName, 'Tasks');
-			const taskQuery = query(taskColRef, where('uuid', '!=', null));
-			const taskSnapshot = await getDocs(taskQuery);
+			const taskSnapshot = await getDocs(taskColRef);
 
-			const taskDescriptions: string[] = taskSnapshot.docs.map(doc => doc.get('description'));
-			this._taskDescription$.next(taskDescriptions);
-			console.log('Tasks fetched successfully:', taskDescriptions);
-			return taskDescriptions;
+			const tasks: Task[] = taskSnapshot.docs.map(doc => ({
+				...doc.data(),
+				dueDate: doc.get('dueDate') || null,
+			})) as Task[];
+
+			return tasks;
 		} catch (error) {
 			console.error('Error fetching tasks:', error);
 			throw new Error('Failed to fetch tasks. Please try again later.');
 		}
 	}
-
-	// async getTasksForFamilly(famillyGroupName: string) {
-	// 	const tasksColRef = collection(this._firestore, 'Familly', famillyGroupName, 'Tasks');
-	// 	const taskQuery = query(tasksColRef, where('uuid', '!=', null));
-	// 	const taskSnapshot = await getDocs(taskQuery);
-
-	// 	const taskDescriptions: string[] = taskSnapshot.docs.map(doc => doc.get('description'));
-	// 	this._taskDescription$.next(taskDescriptions);
-	// }
 }
