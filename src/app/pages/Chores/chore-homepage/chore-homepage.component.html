@@ -1,1 +1,10 @@
-<p>chore-homepage works!</p>
+<a [routerLink]="['/category']">Go to Chore Category</a><br /><br />
+<input
+	type="text"
+	#memberId
+	placeholder="Enter member email" />
+<button (click)="addMemberToFamilly(memberId.value)">Add Member</button>
+
+@if(taskDescription$ | async; as taskDescription){ @for(task of taskDescription; track $index){
+<p>{{ task }}</p>
+} }
