@@ -31,7 +31,7 @@ export class ChoreListHomepageComponent implements OnInit {
 	}
 
 	async ngOnInit() {
-		this.taskDescriptions = await this._taskSelectionService.getTasksFromFamillyGroup();
+		// this.taskDescriptions = await this._taskSelectionService.getTasksFromFamillyGroup();
 	}
 
 	public async addMemberToFamilly(memberId: string) {

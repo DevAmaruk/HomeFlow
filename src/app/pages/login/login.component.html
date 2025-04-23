@@ -1,21 +1,19 @@
 <div [formGroup]="signUpForm">
-	<label for="email">Email</label>
+	<label for="signUpEmail">Email</label>
 	<input
 		type="email"
-		id="email"
+		id="signUpEmail"
 		formControlName="email"
 		placeholder="Enter your email" />
-	<label for="password">Password</label>
+	<label for="signUpPassword">Password</label>
 	<input
 		type="password"
-		id="password"
+		id="signUpPassword"
 		formControlName="password"
 		placeholder="Enter your password" />
 </div>
 
 <button (click)="onSignUp()">Sign up</button>
-<button
-	[hidden]="isSignInHidden"
-	(click)="onSignIn()">
-	Sign In
-</button>
+
+<p>Have already an account?</p>
+<a [routerLink]="['/sign-in']">Go to login page</a>
