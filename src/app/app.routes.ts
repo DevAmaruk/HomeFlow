@@ -12,8 +12,7 @@ export const routes: Routes = [
 	},
 	{
 		path: 'chore-homepage',
-		loadComponent: () =>
-			import('./pages/Chores/chore-list-homepage/chore-list-homepage.component').then(c => c.ChoreListHomepageComponent),
+		loadComponent: () => import('./pages/Chores/chore-homepage/chore-homepage.component').then(c => c.ChoreHomepageComponent),
 	},
 	{
 		path: 'category',
@@ -26,6 +25,10 @@ export const routes: Routes = [
 		path: 'tasks/:categoryId',
 		loadComponent: () =>
 			import('./pages/Chores/chore-task-selection/chore-task-selection.component').then(c => c.ChoreTaskSelectionComponent),
+	},
+	{
+		path: 'chore-edition/:taskId',
+		loadComponent: () => import('./pages/Chores/chore-edition/chore-edition.component').then(c => c.ChoreEditionComponent),
 	},
 	{
 		path: '',
