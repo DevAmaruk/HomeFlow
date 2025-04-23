@@ -1,3 +1,7 @@
 @if(categories){ @for(cat of categories; track cat.uuid){
 <h1 (click)="onCategorySelected(cat.uuid)">{{ cat.title }}</h1>
 } }
+
+<div>
+	<button (click)="backToHome()">Back to Home</button>
+</div>
