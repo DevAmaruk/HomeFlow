@@ -1,0 +1,11 @@
+<div>
+	<h1>
+		{{ taskDescription }}
+	</h1>
+
+	@if(task){
+	<button (click)="addTask(task)">Add task</button>
+	}
+
+	<button (click)="backToCat()">Back to categories</button>
+</div>
