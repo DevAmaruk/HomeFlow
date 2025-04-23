@@ -2,7 +2,33 @@
 	<h1>
 		{{ taskDescription }}
 	</h1>
+</div>
 
+<div>
+	<p>Rappel :</p>
+
+	<label for="frequency">Fréquence :</label><br />
+	@if(task){
+	<select
+		id="frequency"
+		[(ngModel)]="task.frequency"
+		name="frequency">
+		<option value="none">Aucun</option>
+		<option value="daily">Quotidien</option>
+		<option value="weekly">Hebdomadaire</option>
+		<option value="monthly">Mensuel</option>
+		<option value="yearly">Annuel</option>
+	</select>
+	}<br />
+
+	<label for="dueDate">Date d'exécution :</label><br />
+	@if(task){
+	<input
+		type="date"
+		[(ngModel)]="task.dueDate" />
+	}
+</div>
+<div>
 	@if(task){
 	<button (click)="addTask(task)">Add task</button>
 	}
