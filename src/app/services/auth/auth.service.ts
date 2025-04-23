@@ -8,6 +8,7 @@ import {
 	signInWithEmailAndPassword,
 	signOut,
 	User,
+	sendPasswordResetEmail,
 } from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs';
 
@@ -91,5 +92,9 @@ export class AuthService {
 		this.user = null;
 		this._user$.next(this.user);
 		console.log('User signed out successfully');
+	}
+
+	public sendPasswordResetEmail(email: string) {
+		return sendPasswordResetEmail(this._auth, email);
 	}
 }
