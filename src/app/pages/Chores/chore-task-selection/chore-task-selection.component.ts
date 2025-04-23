@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ChoreCategoryService } from '../../../services/chores/chore-category.service';
 import { Category, Task } from '../../../interfaces/categories';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -43,10 +43,10 @@ export class ChoreTaskSelectionComponent implements OnInit {
   */
 	constructor(
 		private readonly _activeRoute: ActivatedRoute,
+		private readonly _router: Router,
 		private readonly _choreCatService: ChoreCategoryService,
 		private readonly _taskSelectionService: TaskSelectionService,
 		private readonly _authService: AuthService,
-		private readonly _firestore: Firestore,
 	) {
 		this.userObs = this._authService.user$;
 	}
@@ -74,7 +74,9 @@ export class ChoreTaskSelectionComponent implements OnInit {
 		}
 	}
 
-	async addTask(task: Task) {
-		await this._taskSelectionService.addTask(task);
+	public async onTaskSelected(task: Task) {
+		if (task) {
+			this._router.navigate(['/chore-edition', task.uuid]);
+		}
 	}
 }

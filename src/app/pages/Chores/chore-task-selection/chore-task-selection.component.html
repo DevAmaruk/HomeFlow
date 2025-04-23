@@ -2,7 +2,7 @@
 	@if(selectedCategory){
 	<h1>{{ selectedCategory.title }}</h1>
 	} @if(tasks){ @for(task of tasks; track task.uuid){
-	<h3 (click)="addTask(task)">
+	<h3 (click)="onTaskSelected(task)">
 		{{ task.description }}
 	</h3>
 	}}
