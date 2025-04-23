@@ -1,0 +1,21 @@
+<full-calendar [options]="calendarOptions"></full-calendar>
+
+<div>
+	@if(selectedDate){
+	<h3>Tasks for {{ selectedDate }}:</h3>
+	@if(tasksForSelectedDate.length > 0){
+	<ul>
+		@for(task of tasksForSelectedDate; track task.uuid){
+		<li>
+			{{ task.description }}
+		</li>
+		}
+	</ul>
+	}@else {
+	<p>No tasks for this date.</p>
+	} }
+</div>
+
+<div>
+	<button (click)="backToHome()">Back to home</button>
+</div>
