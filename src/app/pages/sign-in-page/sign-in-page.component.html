@@ -1,0 +1,31 @@
+<div [formGroup]="signInForm">
+	<label for="signInEmail">Email</label>
+	<input
+		type="email"
+		id="signInEmail"
+		formControlName="email"
+		placeholder="Enter your email" />
+	<label for="signInPassword">Password</label>
+	<input
+		type="password"
+		id="signInPassword"
+		formControlName="password"
+		placeholder="Enter your password" />
+</div>
+
+<div>
+	<button (click)="onSignIn()">Sign In</button>
+</div>
+
+<form
+	[formGroup]="passwordResetForm"
+	(ngSubmit)="onPasswordReset()">
+	<label for="resetEmail">Enter your email to reset password:</label>
+
+	<input
+		id="resetEmail"
+		formControlName="email"
+		type="email"
+		placeholder="Email" />
+	<button type="submit">Send Reset Email</button>
+</form>
