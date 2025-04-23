@@ -10,4 +10,8 @@ export interface Task {
 	icon: string;
 	description: string;
 	score: number;
+	dueDate: string;
+	frequency: string;
+	assignee: string;
+	validated: boolean;
 }
