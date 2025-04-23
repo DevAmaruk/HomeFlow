@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 import { Category, Task } from '../../interfaces/categories';
+import { DatabaseService } from '../databaseService/database.service';
 
 /*
 This service is responsible to fetch the data from the default database JSON file.
@@ -19,20 +20,20 @@ export class ChoreCategoryService {
 	public categories$ = this._categoriesSubject$.asObservable();
 
 	// First we need to inject in the constructor the HttpClient to use it in the service
-	constructor(private readonly _http: HttpClient) {}
+	constructor(private readonly _databaseService: DatabaseService) {}
 
-	// We need an async method to fetch the data from the JSON and return a response from it.
-	// It returns a promise of an array of categories.
-	async getChoreCategories(): Promise<Category[]> {
-		const URL = './CategoriesDB/default-database-fr.json';
-		const REQUEST = this._http.get<Category[]>(URL);
-		const RESPONSE = await firstValueFrom(REQUEST);
-		this._categoriesSubject$.next(RESPONSE);
-		return RESPONSE;
-	}
+	// // We need an async method to fetch the data from the JSON and return a response from it.
+	// // It returns a promise of an array of categories.
+	// async getChoreCategories(): Promise<Category[]> {
+	// 	const URL = './CategoriesDB/default-database-fr.json';
+	// 	const REQUEST = this._http.get<Category[]>(URL);
+	// 	const RESPONSE = await firstValueFrom(REQUEST);
+	// 	this._categoriesSubject$.next(RESPONSE);
+	// 	return RESPONSE;
+	// }
 
 	async getCategoryById(categoryId: string): Promise<Category | undefined> {
-		const categories = await this.getChoreCategories();
+		const categories = await this._databaseService.getCategoriesDatabase();
 		if (categories) {
 			const selectedCategory = categories.find(cat => cat.uuid === categoryId);
 			return selectedCategory;
@@ -43,7 +44,7 @@ export class ChoreCategoryService {
 
 	// This method is used to get the tasks by category ID.
 	async getTasksByCategoryId(categoryId: string): Promise<Task[]> {
-		const categories = await this.getChoreCategories();
+		const categories = await this._databaseService.getCategoriesDatabase();
 		const selectedCategory = categories.find(cat => cat.uuid === categoryId);
 		if (selectedCategory) {
 			return selectedCategory.tasks;
