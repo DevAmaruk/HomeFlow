@@ -5,6 +5,17 @@
 	placeholder="Enter member email" />
 <button (click)="addMemberToFamilly(memberId.value)">Add Member</button>
 
-@if(taskDescription$ | async; as taskDescription){ @for(task of taskDescription; track $index){
+<!-- @if(taskDescription$ | async; as taskDescription){ @for(task of taskDescription; track $index){
 <p>{{ task }}</p>
+} } -->
+
+@if(todayTasks.length > 0){ @for(task of todayTasks; track task.uuid){
+<ul>
+	<li (click)="validateTask(task)">
+		<p [ngStyle]="{ color: task.validated ? 'green' : 'black' }">{{ task.description }}</p>
+	</li>
+</ul>
 } }
+
+<button (click)="goToCalendar()">Go to Calendar</button>
+<button (click)="onSignOut()">Sign out</button>
