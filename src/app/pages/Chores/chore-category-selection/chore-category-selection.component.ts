@@ -3,7 +3,7 @@ import { ChoreCategoryService } from '../../../services/chores/chore-category.se
 import { Category, Task } from '../../../interfaces/categories';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { FamillyComponent } from '../../familly/familly.component';
+import { DatabaseService } from '../../../services/databaseService/database.service';
 
 /* 
 This component is responsible for selecting a chore category. 
@@ -34,7 +34,11 @@ export class ChoreCategorySelectionComponent implements OnInit {
 
 	We inject as well the Router to navigate to the tasks page when the user selects a category.
 	*/
-	constructor(private readonly _choreCatService: ChoreCategoryService, private readonly _route: Router) {
+	constructor(
+		private readonly _choreCatService: ChoreCategoryService,
+		private readonly _route: Router,
+		private readonly _databaseService: DatabaseService,
+	) {
 		this.categories$ = this._choreCatService.categories$;
 	}
 
@@ -45,11 +49,15 @@ export class ChoreCategorySelectionComponent implements OnInit {
 	// Assign the return of getChoreCategories() to the categories
 	// categories is an array of Category objects
 	async getCategories() {
-		this.categories = await this._choreCatService.getChoreCategories();
+		this.categories = await this._databaseService.getCategoriesDatabase();
 	}
 
 	// This method allows to navigate to the tasks page when the user selects a category.
 	async onCategorySelected(categoryId: string) {
 		this._route.navigate(['/tasks', categoryId]);
+	}
+
+	public backToHome() {
+		this._route.navigate(['/chore-homepage']);
 	}
 }
