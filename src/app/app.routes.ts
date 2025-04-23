@@ -7,6 +7,10 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/login/login.component').then(c => c.LoginComponent),
 	},
 	{
+		path: 'sign-in',
+		loadComponent: () => import('./pages/sign-in-page/sign-in-page.component').then(c => c.SignInPageComponent),
+	},
+	{
 		path: 'family',
 		loadComponent: () => import('./pages/familly/familly.component').then(c => c.FamillyComponent),
 	},
@@ -29,6 +33,10 @@ export const routes: Routes = [
 	{
 		path: 'chore-edition/:taskId',
 		loadComponent: () => import('./pages/Chores/chore-edition/chore-edition.component').then(c => c.ChoreEditionComponent),
+	},
+	{
+		path: 'calendar',
+		loadComponent: () => import('./pages/Chores/calendar/calendar.component').then(c => c.CalendarComponent),
 	},
 	{
 		path: '',
