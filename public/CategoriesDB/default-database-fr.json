@@ -8,73 +8,121 @@
 				"uuid": "b3d31c1e-5874-4356-a90b-af6439345d13",
 				"icon": "",
 				"description": "Faire la lessive",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "99054993-6804-42ec-91d3-65b01fb9d9ed",
 				"icon": "",
 				"description": "Nettoyer machine à laver",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "1e786697-d03d-4586-b12e-0cc2d8f40ae5",
 				"icon": "",
 				"description": "Repasser",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "8361d387-a436-4c06-994b-0d16741b36ca",
 				"icon": "",
 				"description": "Ranger vêtements",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "10f6fb31-b8b0-4752-84ab-d5e5dee3ebef",
 				"icon": "",
 				"description": "Passer l'aspirateur",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "625802ce-cff7-406c-af90-bbfcd33b2281",
 				"icon": "",
 				"description": "Panosser le sol",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "77ac48d3-2b6e-4844-899d-81a8b90910ba",
 				"icon": "",
 				"description": "Arroser plantes",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "8d6f5c6c-d90e-402e-9a47-3abbb28f07f2",
 				"icon": "",
 				"description": "Jeter cartons vide",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "bd9889c4-a1eb-4d78-a8d1-f957f99aec3f",
 				"icon": "",
 				"description": "Jeter verre",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "9434f5bd-237f-4c8e-bf23-a545e283b6f5",
 				"icon": "",
 				"description": "Jeter produits ménager",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "11bbc811-bbcb-4ba3-acab-1075f997106f",
 				"icon": "",
 				"description": "Jeter fer blanc",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "91cf1938-bf3f-4fd7-9f1a-eadcedc44bc2",
 				"icon": "",
 				"description": "Jeter pet",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	},
@@ -87,73 +135,121 @@
 				"uuid": "b720ced2-6ba1-43ee-bb0f-9fe2468f11d4",
 				"icon": "null",
 				"description": "Nettoyer la vaisselle",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "5475d57f-c92e-4449-8b00-720301b0c4ce",
 				"icon": "",
 				"description": "Ranger la vaisselle",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "d8d82abd-31c5-4356-b093-091a04ed38da",
 				"icon": "",
 				"description": "Vider le lave-vaisselle",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "520898ba-9958-481d-8053-4c458e0f320f",
 				"icon": "",
 				"description": "Sortir les poubelles",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "37c3a10f-a335-4ea2-8abc-36e3cf5a178e",
 				"icon": "",
 				"description": "Ranger les courses",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "24476344-1e59-4585-8722-1cd9b16d43e0",
 				"icon": "",
 				"description": "Retirer aliments périmés du frigo",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "7a7d8604-f146-47d7-a2eb-03d214009504",
 				"icon": "",
 				"description": "Nettoyer le Frigo",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "0ce96f3e-5498-478a-9915-8f761abdadd5",
 				"icon": "",
 				"description": "Nettoyer l'évier",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "3bad57ef-2b1d-4331-8a8f-12395ac58609",
 				"icon": "",
 				"description": "Nettoyer la cuisinière",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "90c40c99-654c-438c-b02d-944af3957561",
 				"icon": "",
 				"description": "Nettoyer le four",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "d300f40e-bc13-4e52-9b88-f233bff6b18f",
 				"icon": "",
 				"description": "Nettoyer le micro-ondes",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "215262b2-dffa-44e1-aaac-72c74935df27",
 				"icon": "",
 				"description": "Changer linge cuisine",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	},
@@ -166,61 +262,101 @@
 				"uuid": "131548df-0083-4f77-8466-bcbf4a97e9d7",
 				"icon": "",
 				"description": "Nettoyer la baignoire",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "08fe810a-52ab-402a-af3b-1fe5f707290f",
 				"icon": "",
 				"description": "Nettoyer le lavabo",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "c4548ce2-846f-4cf9-a103-03845d5a6457",
 				"icon": "",
 				"description": "Récurer les toilettes",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "20b8e63a-57ca-47d6-a789-0831f7e7f01f",
 				"icon": "",
 				"description": "Changer le tapis",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "e32c9d43-f52a-4f02-a6df-719bb914be8d",
 				"icon": "",
 				"description": "Nettoyer la douche",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "dc35b460-bbec-4aff-a555-280b2fe8bfb4",
 				"icon": "",
 				"description": "Passer l'aspirateur",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "dd8e0fa0-d021-4ac4-9338-1934fe5acb98",
 				"icon": "",
 				"description": "Panosser le sol",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "3334cac5-c32a-48c9-a2ec-ace97f4854e9",
 				"icon": "",
 				"description": "Vider la poubelle",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "b0b7ba66-e56f-4e59-b083-21e4872452c8",
 				"icon": "",
 				"description": "Changer les brosses à dents",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "cf0a2824-191b-46fc-918e-051c39968288",
 				"icon": "",
 				"description": "Changer les linges",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	},
@@ -233,43 +369,71 @@
 				"uuid": "835b547e-22d3-47c7-bfff-d65dda864158",
 				"icon": "",
 				"description": "Changer les draps",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "16e41e44-5e8d-4509-9157-843b8cc5d5a3",
 				"icon": "",
 				"description": "Changer le protège-matelas",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "f552205c-fcfd-4da6-bc5f-3b51c29c3b74",
 				"icon": "",
 				"description": "Ranger les vêtements",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "250cfeef-a8f0-4ba8-9b11-0dfb1be15038",
 				"icon": "",
 				"description": "Passer l'aspirateur",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "95e61762-6254-41f0-9c98-9f0f61aa4861",
 				"icon": "",
 				"description": "Panosser le sol",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "5f21ab12-2490-41e8-9748-1cf3c3fa42fc",
 				"icon": "",
 				"description": "Nettoyer cpap",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "039da3bb-73b7-4414-bf68-6f268d3c5168",
 				"icon": "",
 				"description": "Changer filtre cpap",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	},
@@ -282,55 +446,91 @@
 				"uuid": "233e4a0f-bbf9-4a18-a8c5-0431c97b1e33",
 				"icon": "",
 				"description": "Panosser le sol",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "1598b752-5b61-45f1-9d8a-336588b4b891",
 				"icon": "",
 				"description": "Passer l'aspirateur",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "a81f2383-29db-407c-b7de-2be74f802c7c",
 				"icon": "",
 				"description": "Nettoyer le canapé",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "fdce8a4e-2af6-498a-86bf-90b3f7e655a6",
 				"icon": "",
 				"description": "Nettoyer sous le canapé",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "eb1e6ff3-3331-4950-a27e-d2a68303a764",
 				"icon": "",
 				"description": "Nettoyer la table",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "d4e5b8d9-698d-492d-9b2f-fc37259d939c",
 				"icon": "",
 				"description": "Nettoyer la table basse",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "ea4f06f4-14d9-4e81-8523-6331af029433",
 				"icon": "",
 				"description": "Nettoyer la TV",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "0df9e6fa-92a1-4454-83aa-8d04ec21330f",
 				"icon": "",
 				"description": "Nettoyer meuble TV",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "d911a6cc-5818-4620-aa45-4b8f0d3ec9aa",
 				"icon": "",
 				"description": "Nettoyer la commode",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	},
@@ -343,61 +543,101 @@
 				"uuid": "b489216c-df22-4082-b59e-fb9f26e93cc5",
 				"icon": "",
 				"description": "Nettoyer litière",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "4185a7df-03e4-40a9-8a0e-dfb54a743622",
 				"icon": "",
 				"description": "Remplacer filtre à eau",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "2fe6de0c-6eba-4698-8c64-2e19ae724fa7",
 				"icon": "",
 				"description": "Changer eau",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "9d9beed9-7297-438e-b84d-e762445fd5f6",
 				"icon": "",
 				"description": "Remplir caisse paté",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "cbc09587-e7ac-42ba-8227-8141d8f2080b",
 				"icon": "",
 				"description": "Remplir distributeur croquette",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "5c499b44-7279-41f9-b1c2-8151d874f2a2",
 				"icon": "",
 				"description": "Remplacer filtre distributeur",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "c0fa5d68-37d8-4919-89b5-e6beaf2849a0",
 				"icon": "",
 				"description": "Nettoyer fontaine",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "5db506fc-f910-4c86-8397-6001d20467f1",
 				"icon": "",
 				"description": "Changer gamelle",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "0a205d98-e0c7-419c-a06b-fb869fc2cf47",
 				"icon": "",
 				"description": "Changer litière",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "06c06e56-e21a-4e58-9080-87a44ae396e5",
 				"icon": "",
 				"description": "Brosser chats",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	},
@@ -410,25 +650,41 @@
 				"uuid": "b50e1e2c-a0ed-48b5-a427-3454563e7da6",
 				"icon": "",
 				"description": "Nettoyer écran PC",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "9ecf5795-3801-4a28-af15-6bc3a757a350",
 				"icon": "",
 				"description": "Enlever poussière bureau",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "5a69a3f2-671c-408e-97c4-da0de9b7565b",
 				"icon": "",
 				"description": "Nettoyer PC",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "3624f731-ccc1-4ac8-b8aa-25719369167d",
 				"icon": "",
 				"description": "Ranger documents",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	},
@@ -441,19 +697,31 @@
 				"uuid": "a4945d6e-cf74-4498-92f3-5f54f1e5c221",
 				"icon": "",
 				"description": "Arroser plantes",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "58ecec3a-3a63-4bd5-aab5-6e6e29b2fe45",
 				"icon": "",
 				"description": "Retirer fleur fânée",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			},
 			{
 				"uuid": "92626050-4fa4-4d3d-b602-98b0228d5860",
 				"icon": "",
 				"description": "Changer pot",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	},
@@ -466,7 +734,11 @@
 				"uuid": "efa14904-4ab4-4a86-a074-afbe5efc75f8",
 				"icon": "",
 				"description": "Balayer sol",
-				"score": 0
+				"score": 0,
+				"dueDate": "",
+				"frequency": "",
+				"assignee": "",
+				"validated": false
 			}
 		]
 	}
