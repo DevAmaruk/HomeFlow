@@ -4,8 +4,10 @@ import { TaskSelectionService } from '../../../services/tasks/task-selection.ser
 import { AuthService } from '../../../services/auth/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Task } from '../../../interfaces/categories';
+import { collection, deleteDoc, Firestore, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
 
 /*
 This component is used to display the hompage of the chores section.
@@ -21,15 +23,20 @@ It allows to add a new member to the familly group.
 })
 export class ChoreHomepageComponent {
 	public taskDescription$?: Observable<string[]>;
-	public taskDescriptions: string[] = [];
+	public taskDescriptions: Task[] = [];
 
 	public userObs: Observable<User | null>;
 	public user?: User | null;
+
+	public todayTasks: Task[] = [];
+
+	public validatedTask: boolean = false;
 
 	constructor(
 		private readonly _taskSelectionService: TaskSelectionService,
 		private readonly _famillyService: FamillyService,
 		private readonly _authService: AuthService,
+		private readonly _router: Router,
 	) {
 		this.userObs = this._authService.user$;
 		this.taskDescription$ = this._taskSelectionService.taskDescription$;
@@ -37,6 +44,10 @@ export class ChoreHomepageComponent {
 
 	async ngOnInit() {
 		this.taskDescriptions = await this._taskSelectionService.getTasksFromFamillyGroup();
+
+		const currentDate = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+		this.todayTasks = this.taskDescriptions.filter(task => task.dueDate === currentDate);
 	}
 
 	public async addMemberToFamilly(memberId: string) {
@@ -46,5 +57,19 @@ export class ChoreHomepageComponent {
 		} catch (error) {
 			console.error('Error adding member to family group:', error);
 		}
+	}
+
+	public goToCalendar() {
+		this._router.navigate(['calendar']);
+	}
+
+	public async onSignOut() {
+		await this._authService.signOut();
+		this._famillyService.clearFamillyGroupName();
+		this._router.navigate(['/login']);
+	}
+
+	public async validateTask(task: Task) {
+		this._taskSelectionService.validateTask(task);
 	}
 }
