@@ -5,10 +5,9 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate, registerLocaleData } from '@angular/common';
 import { Task } from '../../../interfaces/categories';
-import { collection, deleteDoc, Firestore, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
-
+import localeFr from '@angular/common/locales/fr';
 /*
 This component is used to display the hompage of the chores section.
 It will list all the chores that are added to the familly group as active chores.
@@ -29,6 +28,7 @@ export class ChoreHomepageComponent {
 	public user?: User | null;
 
 	public todayTasks: Task[] = [];
+	public selectedDate: Date = new Date();
 
 	public validatedTask: boolean = false;
 
@@ -38,6 +38,7 @@ export class ChoreHomepageComponent {
 		private readonly _authService: AuthService,
 		private readonly _router: Router,
 	) {
+		registerLocaleData(localeFr);
 		this.userObs = this._authService.user$;
 		this.taskDescription$ = this._taskSelectionService.taskDescription$;
 	}
@@ -48,6 +49,22 @@ export class ChoreHomepageComponent {
 		const currentDate = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
 		this.todayTasks = this.taskDescriptions.filter(task => task.dueDate === currentDate);
+	}
+
+	// Update tasks based on the selected date
+	private updateTasksForSelectedDate() {
+		const formattedDate = formatDate(this.selectedDate, 'yyyy-MM-dd', 'fr-FR');
+		this.todayTasks = this.taskDescriptions.filter(task => task.dueDate === formattedDate);
+	}
+
+	public previousDay() {
+		this.selectedDate = new Date(this.selectedDate.getTime() - 24 * 60 * 60 * 1000);
+		this.updateTasksForSelectedDate();
+	}
+
+	public nextDay() {
+		this.selectedDate = new Date(this.selectedDate.getTime() + 24 * 60 * 60 * 1000);
+		this.updateTasksForSelectedDate();
 	}
 
 	public async addMemberToFamilly(memberId: string) {
@@ -65,7 +82,6 @@ export class ChoreHomepageComponent {
 
 	public async onSignOut() {
 		await this._authService.signOut();
-		this._famillyService.clearFamillyGroupName();
 		this._router.navigate(['/login']);
 	}
 
