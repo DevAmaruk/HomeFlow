@@ -1,0 +1,54 @@
+<h2>Create a Custom Task</h2>
+
+<form (ngSubmit)="addCustomTask()">
+	<label for="description">Task Description:</label>
+	<input
+		id="description"
+		type="text"
+		[(ngModel)]="newTask.description"
+		name="description"
+		placeholder="Enter task description"
+		required />
+
+	<label for="icon">Task Icon:</label>
+	<input
+		id="icon"
+		type="text"
+		[(ngModel)]="newTask.icon"
+		name="icon"
+		placeholder="Enter icon URL or name" />
+
+	<label for="score">Task Score:</label>
+	<input
+		id="score"
+		type="number"
+		[(ngModel)]="newTask.score"
+		name="score"
+		placeholder="Enter task score"
+		min="0" />
+
+	<button type="submit">Create Task</button>
+</form>
+
+<h2>Create a New Category</h2>
+
+<form (ngSubmit)="addCustomCategory()">
+	<label for="title">Category Title:</label>
+	<input
+		id="title"
+		type="text"
+		[(ngModel)]="newCategory.title"
+		name="title"
+		placeholder="Enter category title"
+		required />
+
+	<label for="icon">Category Icon:</label>
+	<input
+		id="icon"
+		type="text"
+		[(ngModel)]="newCategory.icon"
+		name="icon"
+		placeholder="Enter icon URL or name" />
+
+	<button type="submit">Create Category</button>
+</form>
