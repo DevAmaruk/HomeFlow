@@ -9,6 +9,8 @@ import {
 	signOut,
 	User,
 	sendPasswordResetEmail,
+	authState,
+	sendEmailVerification,
 } from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs';
 
@@ -25,13 +27,9 @@ export class AuthService {
 	public user?: User | null;
 
 	public _user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
-	public user$ = this._user$.asObservable();
-
+	public user$;
 	constructor(private readonly _auth: Auth) {
-		onAuthStateChanged(this._auth, user => {
-			this.user = user;
-			this._user$.next(user);
-		});
+		this.user$ = authState(this._auth);
 	}
 
 	// public anonymousSignIn() {
