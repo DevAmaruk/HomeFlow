@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
@@ -37,7 +37,7 @@ export class SignInPageComponent implements OnInit {
 
 	public createPasswordResetForm() {
 		this.passwordResetForm = new FormGroup({
-			email: new FormControl(''),
+			email: new FormControl('', Validators.compose([Validators.email])),
 		});
 	}
 
