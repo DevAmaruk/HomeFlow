@@ -7,7 +7,7 @@
 	<ul>
 		@for(task of tasksForSelectedDate; track task.uuid){
 		<li>
-			{{ task.description }}
+			<p [ngStyle]="{ color: task.validated ? 'green' : 'black' }">{{ task.description }}</p>
 		</li>
 		}
 	</ul>
