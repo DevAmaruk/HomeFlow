@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+	arrayRemove,
 	arrayUnion,
 	collection,
 	CollectionReference,
@@ -11,6 +12,7 @@ import {
 	setDoc,
 	updateDoc,
 	where,
+	writeBatch,
 } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
 import { User } from '@angular/fire/auth';
@@ -28,31 +30,14 @@ export class FamillyService {
 	public famillyGroupName: string | null = null;
 
 	//Variable for the userId of the user currently connected.
-	public user?: User | null;
+	public user: User | null = null;
 
-	//Variable for the document id of the familly group.
-	public famillyGroupDocId: string | undefined;
-
+	//Observable for the userId of the user currently connected.
 	public userObs: Observable<User | null>;
 
 	constructor(private readonly _firestore: Firestore, private readonly _authService: AuthService) {
 		this.userObs = this._authService.user$;
-
-		// const storedGroupName = localStorage.getItem('famillyGroupName');
-		// if (storedGroupName) {
-		// 	this.famillyGroupName = storedGroupName;
-		// }
 	}
-
-	// public setFamillyGroupName(groupName: string) {
-	// 	this.famillyGroupName = groupName;
-	// 	localStorage.setItem('famillyGroupName', groupName); // Save to local storage
-	// }
-
-	// public clearFamillyGroupName(): void {
-	// 	this.famillyGroupName = null;
-	// 	localStorage.removeItem('famillyGroupName'); // Remove from local storage
-	// }
 
 	public async addDefaultTask(tasksColRef: CollectionReference) {
 		const defaultTaskDocRef = doc(tasksColRef);
@@ -61,11 +46,11 @@ export class FamillyService {
 		});
 	}
 
-	public async clearTasksSubcollection(tasksColRef: CollectionReference) {
+	private async clearTasksSubcollection(tasksColRef: CollectionReference, batch: any) {
 		const tasksSnapshot = await getDocs(tasksColRef);
-		for (const taskDoc of tasksSnapshot.docs) {
-			await deleteDoc(taskDoc.ref);
-		}
+		tasksSnapshot.docs.forEach(doc => {
+			batch.delete(doc.ref); // Delete each task document in the sub-collection
+		});
 	}
 
 	//Method to get the current familly group name the user is logged in to.
@@ -77,20 +62,18 @@ export class FamillyService {
 			throw new Error('User does not exist.');
 		}
 
-		if (this.famillyGroupName) {
-			return this.famillyGroupName;
-		}
-
 		const famillyColRef = collection(this._firestore, 'Familly');
 		const famillyQuery = query(famillyColRef, where('members', 'array-contains', this.user.uid));
 		const famillyQuerySnapshot = await getDocs(famillyQuery);
 
-		for (const doc of famillyQuerySnapshot.docs) {
-			this.famillyGroupDocId = doc.id; // Set the familly group name to the document id
-			return this.famillyGroupDocId;
+		if (famillyQuerySnapshot.empty) {
+			console.log('No familly group found for the current user.');
+			return null;
 		}
 
-		return null;
+		const famillyGroupId = famillyQuerySnapshot.docs[0].id; // Get the document ID of the familly group
+		console.log('Familly group name: ', famillyGroupId);
+		return famillyGroupId;
 	}
 
 	// Method to add a member to the familly group.
@@ -106,35 +89,42 @@ export class FamillyService {
 		const usersQuery = query(usersColRef, where('email', '==', memberEmail));
 		const usersQuerySnapshot = await getDocs(usersQuery);
 
-		let memberId: string | undefined;
-
-		usersQuerySnapshot.forEach(doc => {
-			memberId = doc.get('uid');
-		});
-
-		console.log('Member ID:', memberId);
-
-		if (!memberId) {
+		if (usersQuerySnapshot.empty) {
 			throw new Error('User with the provided email does not exist.');
 		}
 
-		const famillyColRef = collection(this._firestore, 'Familly');
+		const memberId = usersQuerySnapshot.docs[0].get('uid'); // Get the document ID of the user with the provided email
+		console.log('Member ID:', memberId);
+
 		const famillyDocRef = doc(this._firestore, 'Familly', this.famillyGroupName);
 
 		// We update the document to add the new member to the members array
 		await updateDoc(famillyDocRef, { members: arrayUnion(memberId) });
 
+		const famillyColRef = collection(this._firestore, 'Familly');
 		const addedMemberQuery = query(famillyColRef, where('members', 'array-contains', memberId));
 		const addedMemberQuerySnapshot = await getDocs(addedMemberQuery);
 
+		const batch = writeBatch(this._firestore);
+
 		for (const doc of addedMemberQuerySnapshot.docs) {
 			if (doc.id !== this.famillyGroupName) {
-				await updateDoc(doc.ref, { members: [] });
+				batch.update(doc.ref, { members: arrayRemove(memberId) }); // Remove the member from the members array of the other familly groups
+
+				const remainingMembers = doc.get('members') as string[];
+				if (remainingMembers.length > 1) {
+					console.log(`Skipping task deletion for familly group ${doc.id} as it still has other members.`);
+					continue;
+				}
 
 				const taskColRef = collection(doc.ref, 'Tasks');
-				await this.clearTasksSubcollection(taskColRef);
+				this.clearTasksSubcollection(taskColRef, batch);
 			}
 		}
+
+		await batch.commit();
+
+		console.log('Batch operations committed successfully.');
 	}
 
 	// Method to create a familly group based on the input value from the user.
@@ -146,28 +136,33 @@ export class FamillyService {
 			throw new Error('User does not exist.');
 		}
 
-		this.famillyGroupName = famillyInputName; // Set the familly group name to the input value
-
-		// We create a reference to the 'Familly' collection in Firestore
-		const famillyDocRef = doc(collection(this._firestore, 'Familly'));
-
 		const famillyColRef = collection(this._firestore, 'Familly');
 		const famillyQuery = query(
 			famillyColRef,
-			where('name', '==', this.famillyGroupName),
+			where('name', '==', famillyInputName),
 			where('members', 'array-contains', this.user.uid),
 		);
 		const famillyQuerySnapshot = await getDocs(famillyQuery);
 
 		if (!famillyQuerySnapshot.empty) {
-			throw new Error('You already have a family group with this name. Please choose a different name.');
+			throw new Error('A family group with this name already exists. Please choose a different name.');
 		}
 
-		// We set the document with the familly group name and the userId as a member of the group
-		await setDoc(famillyDocRef, { name: this.famillyGroupName, members: [this.user.uid] });
+		const famillyDocRef = doc(famillyColRef);
+		await setDoc(famillyDocRef, {
+			name: famillyInputName,
+			members: [this.user.uid],
+			createdAt: new Date(),
+		});
 
-		// We create a reference to the 'Tasks' sub-collection within the familly group document
+		console.log(`Family group '${famillyInputName}' created successfully.`);
+
 		const tasksColRef = collection(famillyDocRef, 'Tasks');
 		await this.addDefaultTask(tasksColRef);
+
+		const userDatabaseRef = collection(famillyDocRef, 'UserDatabase');
+		await this.addDefaultTask(userDatabaseRef);
+
+		console.log('Default task added to the new family group.');
 	}
 }
