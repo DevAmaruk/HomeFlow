@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { passwordStrengthValidator } from '../../validators/passwordStrengthValidators';
 
 @Component({
 	selector: 'app-login',
@@ -29,8 +30,8 @@ export class LoginComponent implements OnInit {
 
 	public createSignUpForm() {
 		this.signUpForm = new FormGroup({
-			email: new FormControl(''),
-			password: new FormControl(''),
+			email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+			password: new FormControl('', Validators.compose([Validators.required, Validators.min(6), passwordStrengthValidator()])),
 		});
 	}
 

@@ -12,6 +12,11 @@
 		formControlName="password"
 		placeholder="Enter your password" />
 </div>
+@if(signUpForm.get('password')?.hasError('passwordStrength') && signUpForm.get('password')?.touched) {
+<div>
+	<p class="error">Password must contain letters, numbers and symbols</p>
+</div>
+}
 
 <button (click)="onSignUp()">Sign up</button>
 
