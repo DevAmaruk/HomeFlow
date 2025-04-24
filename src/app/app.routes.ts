@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ChoreListHomepageComponent } from './pages/Chores/chore-list-homepage/chore-list-homepage.component';
 
 export const routes: Routes = [
 	{
