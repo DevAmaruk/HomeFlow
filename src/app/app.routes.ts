@@ -38,6 +38,11 @@ export const routes: Routes = [
 		loadComponent: () => import('./pages/Chores/calendar/calendar.component').then(c => c.CalendarComponent),
 	},
 	{
+		path: 'custom-task-creation',
+		loadComponent: () =>
+			import('./pages/Chores/custom-task-creation/custom-task-creation.component').then(c => c.CustomTaskCreationComponent),
+	},
+	{
 		path: '',
 		redirectTo: 'login',
 		pathMatch: 'full',
