@@ -5,8 +5,7 @@ import { Category, Task } from '../../../interfaces/categories';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 import { AuthService } from '../../../services/auth/auth.service';
-import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
-import { firstValueFrom, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
 
 /*
