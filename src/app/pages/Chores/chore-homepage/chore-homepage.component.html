@@ -9,6 +9,12 @@
 <p>{{ task }}</p>
 } } -->
 
+<div class="date-selector">
+	<button (click)="previousDay()">&#8249;</button>
+	<span>{{ selectedDate | date : 'fullDate' : '' : 'fr-FR' }}</span>
+	<button (click)="nextDay()">&#8250;</button>
+</div>
+
 @if(todayTasks.length > 0){ @for(task of todayTasks; track task.uuid){
 <ul>
 	<li (click)="validateTask(task)">
