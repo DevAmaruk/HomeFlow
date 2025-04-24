@@ -60,4 +60,8 @@ export class ChoreCategorySelectionComponent implements OnInit {
 	public backToHome() {
 		this._route.navigate(['/chore-homepage']);
 	}
+
+	public goToCustomTask() {
+		this._route.navigate(['/custom-task-creation']);
+	}
 }
