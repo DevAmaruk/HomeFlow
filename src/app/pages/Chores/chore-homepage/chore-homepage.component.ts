@@ -86,6 +86,15 @@ export class ChoreHomepageComponent {
 	}
 
 	public async validateTask(task: Task) {
-		this._taskSelectionService.validateTask(task);
+		try {
+			await this._taskSelectionService.validateTask(task);
+
+			const taskIndex = this.todayTasks.findIndex(t => t.uuid === task.uuid);
+			if (taskIndex !== -1) {
+				this.todayTasks[taskIndex].validated = !this.todayTasks[taskIndex].validated;
+			}
+		} catch (error) {
+			console.error('Error validating task:', error);
+		}
 	}
 }
