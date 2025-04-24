@@ -14,7 +14,7 @@ import {
 } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
 import { User } from '@angular/fire/auth';
-import { firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom, Observable, tap } from 'rxjs';
 
 /*
 This service will handle the logic with Firestore and the creation of a familly group
@@ -38,21 +38,21 @@ export class FamillyService {
 	constructor(private readonly _firestore: Firestore, private readonly _authService: AuthService) {
 		this.userObs = this._authService.user$;
 
-		const storedGroupName = localStorage.getItem('famillyGroupName');
-		if (storedGroupName) {
-			this.famillyGroupName = storedGroupName;
-		}
+		// const storedGroupName = localStorage.getItem('famillyGroupName');
+		// if (storedGroupName) {
+		// 	this.famillyGroupName = storedGroupName;
+		// }
 	}
 
-	public setFamillyGroupName(groupName: string) {
-		this.famillyGroupName = groupName;
-		localStorage.setItem('famillyGroupName', groupName); // Save to local storage
-	}
+	// public setFamillyGroupName(groupName: string) {
+	// 	this.famillyGroupName = groupName;
+	// 	localStorage.setItem('famillyGroupName', groupName); // Save to local storage
+	// }
 
-	public clearFamillyGroupName(): void {
-		this.famillyGroupName = null;
-		localStorage.removeItem('famillyGroupName'); // Remove from local storage
-	}
+	// public clearFamillyGroupName(): void {
+	// 	this.famillyGroupName = null;
+	// 	localStorage.removeItem('famillyGroupName'); // Remove from local storage
+	// }
 
 	public async addDefaultTask(tasksColRef: CollectionReference) {
 		const defaultTaskDocRef = doc(tasksColRef);
@@ -70,10 +70,6 @@ export class FamillyService {
 
 	//Method to get the current familly group name the user is logged in to.
 	public async getFamillyGroupName(): Promise<string | null> {
-		if (this.famillyGroupName) {
-			return this.famillyGroupName;
-		}
-
 		// We convert the Observable to a Promise to get the current user
 		this.user = await firstValueFrom(this.userObs);
 
@@ -81,13 +77,17 @@ export class FamillyService {
 			throw new Error('User does not exist.');
 		}
 
+		if (this.famillyGroupName) {
+			return this.famillyGroupName;
+		}
+
 		const famillyColRef = collection(this._firestore, 'Familly');
 		const famillyQuery = query(famillyColRef, where('members', 'array-contains', this.user.uid));
 		const famillyQuerySnapshot = await getDocs(famillyQuery);
 
 		for (const doc of famillyQuerySnapshot.docs) {
-			this.setFamillyGroupName(doc.id); // Set the familly group name to the document id
-			return doc.id;
+			this.famillyGroupDocId = doc.id; // Set the familly group name to the document id
+			return this.famillyGroupDocId;
 		}
 
 		return null;
@@ -149,19 +149,18 @@ export class FamillyService {
 		this.famillyGroupName = famillyInputName; // Set the familly group name to the input value
 
 		// We create a reference to the 'Familly' collection in Firestore
-		const famillyDocRef = doc(this._firestore, 'Familly', this.famillyGroupName);
+		const famillyDocRef = doc(collection(this._firestore, 'Familly'));
 
 		const famillyColRef = collection(this._firestore, 'Familly');
-		const famillyQuery = query(famillyColRef, where('name', '==', this.famillyGroupName));
+		const famillyQuery = query(
+			famillyColRef,
+			where('name', '==', this.famillyGroupName),
+			where('members', 'array-contains', this.user.uid),
+		);
 		const famillyQuerySnapshot = await getDocs(famillyQuery);
 
 		if (!famillyQuerySnapshot.empty) {
-			const existingFamillyDoc = famillyQuerySnapshot.docs[0];
-			const existingMembers = existingFamillyDoc.get('members') as string[];
-
-			if (existingMembers && existingMembers.length > 0) {
-				throw new Error('Familly group name already exists. Please choose a different name.');
-			}
+			throw new Error('You already have a family group with this name. Please choose a different name.');
 		}
 
 		// We set the document with the familly group name and the userId as a member of the group
