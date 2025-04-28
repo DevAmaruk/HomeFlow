@@ -1,4 +1,13 @@
+@if(tasks){
 <div>
+	@for(task of tasks; track task.uuid){
+	<h3 (click)="onTaskSelected(task)">{{ task.description }}</h3>
+
+	}
+</div>
+}
+
+<!-- <div>
 	@if(selectedCategory){
 	<h1>{{ selectedCategory.title }}</h1>
 	} @if(tasks){ @for(task of tasks; track task.uuid){
@@ -6,6 +15,6 @@
 		{{ task.description }}
 	</h3>
 	}}
-</div>
+</div> -->
 
 <a [routerLink]="['/chore-homepage']">Go to Homepage</a>

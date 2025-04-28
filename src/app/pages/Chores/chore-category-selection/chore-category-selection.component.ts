@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ChoreCategoryService } from '../../../services/chores/chore-category.service';
-import { Category, Task } from '../../../interfaces/categories';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DatabaseService } from '../../../services/databaseService/database.service';
+import { Categories } from '../../../interfaces/category';
+import { FamillyService } from '../../../services/famillyService/familly.service';
 
 /* 
 This component is responsible for selecting a chore category. 
@@ -24,10 +25,10 @@ At the bottom there will be a menu with the following :
 	styleUrl: './chore-category-selection.component.scss',
 })
 export class ChoreCategorySelectionComponent implements OnInit {
-	public readonly categories$?: Observable<Category[]>;
+	public readonly categories$?: Observable<Categories[]>;
 
 	// We create a variable to store the categories
-	public categories?: Category[];
+	public categories?: Categories[];
 
 	/*
 	First we need to inject the service in the constructor to use the method getChoreCategories() from the service
@@ -38,6 +39,7 @@ export class ChoreCategorySelectionComponent implements OnInit {
 		private readonly _choreCatService: ChoreCategoryService,
 		private readonly _route: Router,
 		private readonly _databaseService: DatabaseService,
+		private readonly _famillyService: FamillyService,
 	) {
 		this.categories$ = this._choreCatService.categories$;
 	}
@@ -49,7 +51,19 @@ export class ChoreCategorySelectionComponent implements OnInit {
 	// Assign the return of getChoreCategories() to the categories
 	// categories is an array of Category objects
 	async getCategories() {
-		this.categories = await this._databaseService.getCategoriesDatabase();
+		try {
+			const famillyGroupName = await this._famillyService.getFamillyGroupName();
+			if (!famillyGroupName) {
+				throw new Error('Familly group name not found');
+			}
+
+			this.categories = await this._databaseService.getAllCategories(famillyGroupName);
+			console.log('Combined categories:', this.categories); // Debugging
+		} catch (error) {
+			console.error('Error fetching categories:', error);
+		}
+		// this.categories = await this._databaseService.getCategoriesDatabase();
+		// console.log('Fetched categories:', this.categories); // Debugging
 	}
 
 	// This method allows to navigate to the tasks page when the user selects a category.

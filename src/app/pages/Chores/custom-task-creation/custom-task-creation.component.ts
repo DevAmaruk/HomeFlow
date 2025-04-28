@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { Category, Task } from '../../../interfaces/categories';
+import { Component, OnInit } from '@angular/core';
 import { CustomTaskCreationService } from '../../../services/tasks/custom-task-creation.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Categories, Tasks } from '../../../interfaces/category';
+import { Router } from '@angular/router';
 
 /*
 This component is used to create a custom task that will be sent to Firestore as new custom task.
@@ -14,19 +15,35 @@ This component is used to create a custom task that will be sent to Firestore as
 	templateUrl: './custom-task-creation.component.html',
 	styleUrl: './custom-task-creation.component.scss',
 })
-export class CustomTaskCreationComponent {
-	public newTask: Partial<Task> = {
+export class CustomTaskCreationComponent implements OnInit {
+	public newTask: Partial<Tasks> = {
 		description: '',
 		icon: '',
 		score: 0,
+		categoryUuid: '',
 	};
 
-	public newCategory: Partial<Category> = {
+	public newCategory: Partial<Categories> = {
 		title: '',
 		icon: '',
 	};
 
-	constructor(private readonly _customTaskCreationService: CustomTaskCreationService) {}
+	public categories: Categories[] = [];
+
+	async ngOnInit() {
+		await this.loadCategories();
+	}
+
+	constructor(private readonly _customTaskCreationService: CustomTaskCreationService, private readonly _router: Router) {}
+
+	private async loadCategories() {
+		try {
+			this.categories = await this._customTaskCreationService.getAllCategories();
+			console.log('Fetched categories:', this.categories); // Debugging
+		} catch (error) {
+			console.error('Error fetching categories:', error);
+		}
+	}
 
 	public async addCustomCategory() {
 		// Ensure required fields are filled
@@ -60,7 +77,12 @@ export class CustomTaskCreationComponent {
 			return;
 		}
 
-		const newTask: Task = {
+		if (!this.newTask.categoryUuid) {
+			alert('Please select a category.');
+			return;
+		}
+
+		const newTask: Tasks = {
 			uuid: crypto.randomUUID(),
 			icon: this.newTask.icon || '',
 			description: this.newTask.description || '',
@@ -69,6 +91,7 @@ export class CustomTaskCreationComponent {
 			frequency: '',
 			assignee: '',
 			validated: false,
+			categoryUuid: this.newTask.categoryUuid || '', // Ensure categoryUuid is set
 		};
 
 		await this._customTaskCreationService.addCustomTaskToUserDatabase(newTask);
@@ -79,6 +102,10 @@ export class CustomTaskCreationComponent {
 
 	private resetForm() {
 		// Reset the form fields
-		this.newTask = { description: '', icon: '', score: 0 };
+		this.newTask = { description: '', icon: '', score: 0, categoryUuid: '' };
+	}
+
+	public backToCat() {
+		this._router.navigate(['/category']);
 	}
 }

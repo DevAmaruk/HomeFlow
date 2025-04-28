@@ -6,8 +6,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
 import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 import { Router } from '@angular/router';
-import { Task } from '../../../interfaces/categories';
 import { CommonModule } from '@angular/common';
+import { Tasks } from '../../../interfaces/category';
 
 /*
 This page is used to display the calendar for the chores. 
@@ -23,7 +23,7 @@ When the user clicks on a date, it will show below the chores for that date.
 export class CalendarComponent {
 	constructor(private readonly _taskSelectionService: TaskSelectionService, private readonly _router: Router) {}
 
-	public tasksForSelectedDate: Task[] = []; // Store tasks for the selected date
+	public tasksForSelectedDate: Tasks[] = []; // Store tasks for the selected date
 	public selectedDate: string | null = null; // Store the selected date
 
 	public calendarOptions: CalendarOptions = {

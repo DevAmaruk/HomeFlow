@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule, formatDate, registerLocaleData } from '@angular/common';
-import { Task } from '../../../interfaces/categories';
 import localeFr from '@angular/common/locales/fr';
+import { Tasks } from '../../../interfaces/category';
 /*
 This component is used to display the hompage of the chores section.
 It will list all the chores that are added to the familly group as active chores.
@@ -22,12 +22,12 @@ It allows to add a new member to the familly group.
 })
 export class ChoreHomepageComponent {
 	public taskDescription$?: Observable<string[]>;
-	public taskDescriptions: Task[] = [];
+	public taskDescriptions: Tasks[] = [];
 
 	public userObs: Observable<User | null>;
 	public user?: User | null;
 
-	public todayTasks: Task[] = [];
+	public todayTasks: Tasks[] = [];
 	public selectedDate: Date = new Date();
 
 	public validatedTask: boolean = false;
@@ -85,7 +85,7 @@ export class ChoreHomepageComponent {
 		this._router.navigate(['/login']);
 	}
 
-	public async validateTask(task: Task) {
+	public async validateTask(task: Tasks) {
 		try {
 			await this._taskSelectionService.validateTask(task);
 

@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
-import { Category, Task } from '../../interfaces/categories';
 import { DatabaseService } from '../databaseService/database.service';
+import { Categories, Tasks } from '../../interfaces/category';
+import { BehaviorSubject } from 'rxjs';
 
 /*
 This service is responsible to fetch the data from the default database JSON file.
@@ -15,7 +14,7 @@ allowing me to store each title of each category in a variable and loop through 
 })
 export class ChoreCategoryService {
 	//We created two Observables. One is for the categories and the other one is for the tasks.
-	private _categoriesSubject$: BehaviorSubject<Category[]> = new BehaviorSubject<Category[]>([]);
+	private _categoriesSubject$: BehaviorSubject<Categories[]> = new BehaviorSubject<Categories[]>([]);
 
 	public categories$ = this._categoriesSubject$.asObservable();
 
@@ -32,7 +31,7 @@ export class ChoreCategoryService {
 	// 	return RESPONSE;
 	// }
 
-	async getCategoryById(categoryId: string): Promise<Category | undefined> {
+	async getCategoryById(categoryId: string): Promise<Categories | undefined> {
 		const categories = await this._databaseService.getCategoriesDatabase();
 		if (categories) {
 			const selectedCategory = categories.find(cat => cat.uuid === categoryId);
@@ -43,13 +42,15 @@ export class ChoreCategoryService {
 	}
 
 	// This method is used to get the tasks by category ID.
-	async getTasksByCategoryId(categoryId: string): Promise<Task[]> {
-		const categories = await this._databaseService.getCategoriesDatabase();
-		const selectedCategory = categories.find(cat => cat.uuid === categoryId);
-		if (selectedCategory) {
-			return selectedCategory.tasks;
-		} else {
-			return [];
-		}
+	async getTasksByCategoryId(categoryId: string): Promise<Tasks[]> {
+		const tasks = await this._databaseService.getTasksDatabase();
+		return tasks.filter(task => task.categoryUuid === categoryId);
+		// const categories = await this._databaseService.getCategoriesDatabase();
+		// const selectedCategory = categories.find(cat => cat.uuid === categoryId);
+		// if (selectedCategory) {
+		// 	return selectedCategory.tasks;
+		// } else {
+		// 	return [];
+		// }
 	}
 }

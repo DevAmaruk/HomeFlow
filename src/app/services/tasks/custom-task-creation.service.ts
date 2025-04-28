@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { addDoc, collection, CollectionReference, doc, Firestore, getDocs, query, setDoc, where } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
-import { firstValueFrom, Observable } from 'rxjs';
+import { first, firstValueFrom, Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
 import { FamillyService } from '../famillyService/familly.service';
-import { Task } from '../../interfaces/categories';
+import { Categories, Tasks } from '../../interfaces/category';
+import { DatabaseService } from '../databaseService/database.service';
 
 /*
 This service is used to add a custom task to the user database.
@@ -21,6 +22,7 @@ export class CustomTaskCreationService {
 		private readonly _firestore: Firestore,
 		private readonly _authService: AuthService,
 		private readonly _famillyService: FamillyService,
+		private readonly _databaseService: DatabaseService,
 	) {
 		this.userObs = this._authService.user$;
 	}
@@ -33,7 +35,7 @@ export class CustomTaskCreationService {
 	}
 
 	//This method is used to add a custom task to the user database collection in Firestore.
-	public async addCustomTaskToUserDatabase(task: Task) {
+	public async addCustomTaskToUserDatabase(task: Tasks) {
 		try {
 			const famillyGroupName = await this._famillyService.getFamillyGroupName();
 
@@ -62,6 +64,27 @@ export class CustomTaskCreationService {
 		} catch (error) {
 			console.error('Error adding category to database:', error);
 			throw new Error('Failed to add category. Please try again later.');
+		}
+	}
+
+	public async getAllCategories() {
+		try {
+			const famillyGroupName = await this._famillyService.getFamillyGroupName();
+
+			if (!famillyGroupName) {
+				throw new Error('Familly group name is not set. Please set it before adding tasks.');
+			}
+
+			const categoriesColRef = collection(this._firestore, 'Familly', famillyGroupName, 'Categories');
+			const customCategoriesSnapshot = await getDocs(categoriesColRef);
+			const customCategories: Categories[] = customCategoriesSnapshot.docs.map(doc => doc.data() as Categories);
+
+			const defaultCategories = await this._databaseService.getCategoriesDatabase();
+
+			return [...defaultCategories, ...customCategories];
+		} catch (error) {
+			console.error('Error getting categories:', error);
+			throw new Error('Failed to get categories. Please try again later.');
 		}
 	}
 }

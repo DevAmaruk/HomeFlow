@@ -1,4 +1,43 @@
-<h2>Create a Custom Task</h2>
+<div>
+	<label for="category">Select Category:</label>
+	<select
+		id="category"
+		[(ngModel)]="newTask.categoryUuid">
+		<option
+			*ngFor="let category of categories"
+			[value]="category.uuid">
+			{{ category.title }}
+		</option>
+	</select>
+</div>
+
+<div>
+	<label for="description">Task Description:</label>
+	<input
+		id="description"
+		type="text"
+		[(ngModel)]="newTask.description" />
+
+	<label for="icon">Task Icon:</label>
+	<input
+		id="icon"
+		type="text"
+		[(ngModel)]="newTask.icon" />
+
+	<label for="score">Task Score:</label>
+	<input
+		id="score"
+		type="number"
+		[(ngModel)]="newTask.score" />
+
+	<button (click)="addCustomTask()">Create Task</button>
+</div>
+
+<div>
+	<button (click)="backToCat()">Go to Categories</button>
+</div>
+
+<!-- <h2>Create a Custom Task</h2>
 
 <form (ngSubmit)="addCustomTask()">
 	<label for="description">Task Description:</label>
@@ -51,4 +90,4 @@
 		placeholder="Enter icon URL or name" />
 
 	<button type="submit">Create Category</button>
-</form>
+</form> -->

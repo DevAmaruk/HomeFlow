@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ChoreCategoryService } from '../../../services/chores/chore-category.service';
-import { Category, Task } from '../../../interfaces/categories';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
+import { Categories, Tasks } from '../../../interfaces/category';
+import { FamillyService } from '../../../services/famillyService/familly.service';
+import { DatabaseService } from '../../../services/databaseService/database.service';
 
 /*
 This component is responsible for selecting a chore task based on the selected category.
@@ -23,8 +24,8 @@ So we need to push the selected task to the chore-list array, which will be disp
 })
 export class ChoreTaskSelectionComponent implements OnInit {
 	// Variable to store the task from a specific category
-	public tasks?: Task[] | undefined;
-	public selectedCategory?: Category | undefined;
+	public tasks: Tasks[] | undefined;
+	public selectedCategory?: Categories | undefined;
 
 	public userObs: Observable<User | null>;
 	public user?: User | null;
@@ -44,8 +45,9 @@ export class ChoreTaskSelectionComponent implements OnInit {
 		private readonly _activeRoute: ActivatedRoute,
 		private readonly _router: Router,
 		private readonly _choreCatService: ChoreCategoryService,
-		private readonly _taskSelectionService: TaskSelectionService,
 		private readonly _authService: AuthService,
+		private readonly _famillyService: FamillyService,
+		private readonly _databaseService: DatabaseService,
 	) {
 		this.userObs = this._authService.user$;
 	}
@@ -60,9 +62,21 @@ export class ChoreTaskSelectionComponent implements OnInit {
 	// Finally we can assign the tasks of the selected category to the tasks variable.
 	// We display it on the HTML page using a loop @for
 	async getTasks() {
-		const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
-		if (categoryId) {
-			this.tasks = await this._choreCatService.getTasksByCategoryId(categoryId);
+		try {
+			const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
+			if (!categoryId) {
+				throw new Error('Category ID is not provided.');
+			}
+
+			const famillyGroupName = await this._famillyService.getFamillyGroupName();
+			if (!famillyGroupName) {
+				throw new Error('Familly group name is not set.');
+			}
+
+			this.tasks = await this._databaseService.getAllTasksByCategory(categoryId, famillyGroupName);
+			console.log('Combined tasks:', this.tasks); // Debugging
+		} catch (error) {
+			console.error('Error fetching tasks:', error);
 		}
 	}
 
@@ -73,7 +87,7 @@ export class ChoreTaskSelectionComponent implements OnInit {
 		}
 	}
 
-	public async onTaskSelected(task: Task) {
+	public async onTaskSelected(task: Tasks) {
 		if (task) {
 			this._router.navigate(['/chore-edition', task.uuid]);
 		}
