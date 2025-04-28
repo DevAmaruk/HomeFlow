@@ -1,11 +1,10 @@
-export interface Category {
+export interface Categories {
 	uuid: string;
 	title: string;
 	icon: string;
-	tasks: Task[];
 }
 
-export interface Task {
+export interface Tasks {
 	uuid: string;
 	icon: string;
 	description: string;
@@ -14,4 +13,5 @@ export interface Task {
 	frequency: string;
 	assignee: string;
 	validated: boolean;
+	categoryUuid: string;
 }
