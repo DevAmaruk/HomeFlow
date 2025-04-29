@@ -5,6 +5,23 @@ import { Observable } from 'rxjs';
 import { DatabaseService } from '../../../services/databaseService/database.service';
 import { Categories } from '../../../interfaces/category';
 import { FamillyService } from '../../../services/famillyService/familly.service';
+import {
+	IonCard,
+	IonCardContent,
+	IonCol,
+	IonContent,
+	IonFab,
+	IonFabButton,
+	IonFooter,
+	IonGrid,
+	IonHeader,
+	IonIcon,
+	IonImg,
+	IonList,
+	IonRow,
+	IonText,
+	IonToolbar,
+} from '@ionic/angular/standalone';
 
 /* 
 This component is responsible for selecting a chore category. 
@@ -18,9 +35,25 @@ At the bottom there will be a menu with the following :
 - Settings: Open the settings modal (TO THINK MORE ABOUT THIS ONE)
 */
 
+const ionicElements = [
+	IonContent,
+	IonGrid,
+	IonCol,
+	IonRow,
+	IonCard,
+	IonCardContent,
+	IonHeader,
+	IonToolbar,
+	IonText,
+	IonImg,
+	IonList,
+	IonFab,
+	IonFabButton,
+];
+
 @Component({
 	selector: 'app-chore-category-selection',
-	imports: [],
+	imports: [...ionicElements],
 	templateUrl: './chore-category-selection.component.html',
 	styleUrl: './chore-category-selection.component.scss',
 })
@@ -57,7 +90,9 @@ export class ChoreCategorySelectionComponent implements OnInit {
 				throw new Error('Familly group name not found');
 			}
 
-			this.categories = await this._databaseService.getAllCategories(famillyGroupName);
+			this.categories = await this._databaseService.getAllCategories(
+				famillyGroupName,
+			);
 			console.log('Combined categories:', this.categories); // Debugging
 		} catch (error) {
 			console.error('Error fetching categories:', error);
@@ -72,7 +107,7 @@ export class ChoreCategorySelectionComponent implements OnInit {
 	}
 
 	public backToHome() {
-		this._route.navigate(['/chore-homepage']);
+		this._route.navigate(['/chore-menu-homepage/chore-homepage']);
 	}
 
 	public goToCustomTask() {
