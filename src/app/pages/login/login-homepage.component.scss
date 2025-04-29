@@ -1,0 +1,33 @@
+ion-content {
+	--background: linear-gradient(#8cc3ec 0%, #fdfbf4 100%);
+}
+
+ion-col {
+	&.illustrationCol {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+ion-img {
+	&.houseIllustration {
+		width: 310.2px;
+		height: 231.5px;
+	}
+}
+
+ion-text {
+	&.appTitle {
+		font-size: 2.5rem;
+	}
+}
+
+div {
+	&.loginContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
+}
