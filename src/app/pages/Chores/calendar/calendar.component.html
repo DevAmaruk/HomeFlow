@@ -1,4 +1,30 @@
-<full-calendar [options]="calendarOptions"></full-calendar>
+<ion-content>
+	<ion-grid class="ion-padding">
+		<ion-row class="ion-justify-content-center ion-align-items-center">
+			<ion-col sizeLg="6" class="ion-no-padding">
+				<div class="calendar-container ion-padding">
+					<full-calendar [options]="calendarOptions"></full-calendar>
+				</div>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				@if(selectedDate){
+				<p>Tasks for {{ selectedDate }}</p>
+				: @if(tasksForSelectedDate.length > 0){ @for(task of
+				tasksForSelectedDate; track task.uuid){
+				<ion-card>
+					<ion-card-content>
+						{{ task.description }}
+					</ion-card-content>
+				</ion-card>
+				}}}
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+
+<!-- <full-calendar [options]="calendarOptions"></full-calendar>
 
 <div>
 	@if(selectedDate){
@@ -7,7 +33,9 @@
 	<ul>
 		@for(task of tasksForSelectedDate; track task.uuid){
 		<li>
-			<p [ngStyle]="{ color: task.validated ? 'green' : 'black' }">{{ task.description }}</p>
+			<p [ngStyle]="{ color: task.validated ? 'green' : 'black' }">
+				{{ task.description }}
+			</p>
 		</li>
 		}
 	</ul>
@@ -18,4 +46,4 @@
 
 <div>
 	<button (click)="backToHome()">Back to home</button>
-</div>
+</div> -->
