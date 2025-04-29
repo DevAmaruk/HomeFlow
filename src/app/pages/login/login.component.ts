@@ -1,18 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+	FormControl,
+	FormGroup,
+	ReactiveFormsModule,
+	Validators,
+} from '@angular/forms';
 import { User } from '@angular/fire/auth';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { passwordStrengthValidator } from '../../validators/passwordStrengthValidators';
-import { IonButton, IonCol, IonContent, IonGrid, IonImg, IonInput, IonRow, IonText } from '@ionic/angular/standalone';
+import {
+	IonButton,
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonImg,
+	IonInput,
+	IonRow,
+	IonText,
+} from '@ionic/angular/standalone';
 
-const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonText, IonInput];
+const ionicElements = [
+	IonContent,
+	IonGrid,
+	IonRow,
+	IonCol,
+	IonImg,
+	IonButton,
+	IonInput,
+	IonText,
+];
 
 @Component({
 	selector: 'app-login',
-	imports: [CommonModule, ReactiveFormsModule, RouterLink, ...ionicElements],
+	imports: [CommonModule, ...ionicElements, ReactiveFormsModule],
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.scss',
 })
@@ -33,8 +56,18 @@ export class LoginComponent implements OnInit {
 
 	public createSignUpForm() {
 		this.signUpForm = new FormGroup({
-			email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
-			password: new FormControl('', Validators.compose([Validators.required, Validators.min(6), passwordStrengthValidator()])),
+			email: new FormControl(
+				'',
+				Validators.compose([Validators.required, Validators.email]),
+			),
+			password: new FormControl(
+				'',
+				Validators.compose([
+					Validators.required,
+					Validators.min(6),
+					passwordStrengthValidator(),
+				]),
+			),
 		});
 	}
 
@@ -62,7 +95,7 @@ export class LoginComponent implements OnInit {
 			// To prevent any theft, we reset the form.
 			this.signUpForm.reset();
 
-			this._route.navigate(['/family']);
+			this._route.navigate(['/familly']);
 			console.log('User signed up successfully:', this.user.email);
 		} catch (error) {
 			console.error('Error signing up:', error);

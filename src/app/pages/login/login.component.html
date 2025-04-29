@@ -1,77 +1,83 @@
-<ion-content class="linear-gradient-background">
-	<div
-		[formGroup]="signUpForm"
-		class="signUpContainer ion-padding">
-		<ion-grid class="ion-padding contentGrid">
-			<ion-row class="ion-justify-content-center illustrationRow">
-				<ion-col class="ion-no-padding">
-					<ion-img
-						src="./Illustrations/Clouds/clouds_login_illustration.png"
-						alt="clouds_sun"></ion-img>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-				<ion-col>
-					<ion-input
-						fill="solid"
-						placeholder="Email"
-						type="email"
-						id="signUpEmail"
-						formControlName="email"></ion-input>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-				<ion-col>
-					<ion-input
-						fill="solid"
-						type="password"
-						id="signUpPassword"
-						placeholder="Mot de passe"
-						formControlName="password"></ion-input>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-				<ion-col>
-					<ion-button expand="full">Créer un compte</ion-button>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</div>
-	<ion-grid>
-		<div class="illustrationContainer">
-			<ion-row>
-				<ion-col class="ion-no-padding">
-					<ion-img
-						class="houseIllustration"
-						src="/Illustrations/House/house_login_illustration_no_clouds.png"
-						alt="house_illustration"></ion-img>
-				</ion-col>
-			</ion-row>
+<ion-content>
+	<div>
+		<div class="topContainer ion-padding">
+			<ion-grid class="loginHomepageGrid ion-no-padding">
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col sizeLg="5">
+						<ion-img src="./Illustrations/Clouds/sky_clouds.webp"></ion-img>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
 		</div>
-	</ion-grid>
+		<div class="emailInputContainer ion-padding" [formGroup]="signUpForm">
+			<ion-grid>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col class="ion-padding" sizeLg="5">
+						<ion-input
+							fill="outline"
+							shape="round"
+							type="email"
+							id="signUpEmail"
+							labelPlacement="floating"
+							[clearInput]="true"
+							formControlName="email"
+							class="input">
+							<div slot="label">
+								Email <ion-text color="danger">(Requis)</ion-text>
+							</div></ion-input
+						>
+					</ion-col>
+				</ion-row>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col class="ion-padding" sizeLg="5">
+						<ion-input
+							fill="outline"
+							shape="round"
+							type="password"
+							id="signUpPassword"
+							labelPlacement="floating"
+							[clearInput]="true"
+							formControlName="password"
+							class="input"
+							><div slot="label">
+								Mot de passe <ion-text color="danger">(Requis)</ion-text>
+							</div></ion-input
+						>
+					</ion-col>
+				</ion-row>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col size="auto" class="ion-text-center">
+						<ion-button (click)="onSignUp()" expand="block"
+							>Créer un compte</ion-button
+						>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+		<div class="bottomContainer ion-padding">
+			<ion-grid class="illustrationHouseGrid ion-no-padding">
+				<ion-row
+					class="ion-justify-content-center ion-align-items-center illustrationRow">
+					<ion-col
+						sizeXs="9"
+						sizeSm="5"
+						sizeMd="5"
+						sizeLg="5"
+						sizeXl="5"
+						class="illustrationCol">
+						<ion-img
+							src="./Illustrations/House/house.webp"
+							alt="house_illustration"
+							class="houseIllustration"></ion-img>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+	</div>
 </ion-content>
 
-<!-- <div [formGroup]="signUpForm">
-	<label for="signUpEmail">Email</label>
-	<input
-		type="email"
-		id="signUpEmail"
-		formControlName="email"
-		placeholder="Enter your email" />
-	<label for="signUpPassword">Password</label>
-	<input
-		type="password"
-		id="signUpPassword"
-		formControlName="password"
-		placeholder="Enter your password" />
-</div>
-@if(signUpForm.get('password')?.hasError('passwordStrength') && signUpForm.get('password')?.touched) {
+<!-- @if(signUpForm.get('password')?.hasError('passwordStrength') && signUpForm.get('password')?.touched) {
 <div>
 	<p class="error">Password must contain letters, numbers and symbols</p>
 </div>
-}
-
-<button (click)="onSignUp()">Sign up</button>
-
-<p>Have already an account?</p>
-<a [routerLink]="['/sign-in']">Go to login page</a> -->
+} -->
