@@ -1,4 +1,75 @@
-<div>
+<ion-header>
+	<ion-toolbar class="ion-text-center headerToolbar">
+		<ion-text class="headerTitle">
+			{{ taskDescription }}
+		</ion-text>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div class="editionContainer">
+		<ion-grid class="ion-padding">
+			<ion-row class="ion-justify-content-center ion-align-items-center">
+				<ion-col
+					sizeXs="10"
+					sizeSm="8"
+					sizeMd="6"
+					sizeLg="4"
+					class="ion-padding">
+					@if(task){
+					<ion-label>Fréquence :</ion-label>
+					<ion-select
+						aria-label="frequency"
+						id="frequency"
+						name="frequency"
+						interface="popover"
+						placeholder="Choisir une fréquence"
+						[(ngModel)]="task.frequency">
+						<ion-select-option value="none">Aucun</ion-select-option>
+						<ion-select-option value="daily">Quotidien</ion-select-option>
+						<ion-select-option value="weekly">Hebdomadaire</ion-select-option>
+						<ion-select-option value="monthly">Mensuel</ion-select-option>
+						<ion-select-option value="yearly">Annuel</ion-select-option>
+					</ion-select>
+					}
+				</ion-col>
+			</ion-row>
+			<ion-row class="ion-justify-content-center ion-align-items-center">
+				<ion-col
+					sizeXs="10"
+					sizeSm="8"
+					sizeMd="6"
+					sizeLg="4"
+					class="ion-padding">
+					@if(task){
+					<ion-label> Date d'exécution :</ion-label>
+					<ion-datetime
+						aria-label="dueDate"
+						id="dueDate"
+						name="dueDate"
+						locale="fr-FR"
+						presentation="date"
+						[(ngModel)]="task.dueDate">
+					</ion-datetime>
+					}
+				</ion-col>
+			</ion-row>
+			<ion-row class="ion-justify-content-center ion-align-items-center">
+				@if(task){
+				<ion-button (click)="addTask(task)">Ajouter la tâche</ion-button>
+				}
+			</ion-row>
+		</ion-grid>
+
+		<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+			<ion-fab-button (click)="backToCat()">
+				<ion-img src="./Illustrations/Menu/chore_home_menu_icon.webp"></ion-img>
+			</ion-fab-button>
+		</ion-fab>
+	</div>
+</ion-content>
+
+<!-- <div>
 	<h1>
 		{{ taskDescription }}
 	</h1>
@@ -34,4 +105,4 @@
 	}
 
 	<button (click)="backToCat()">Back to categories</button>
-</div>
+</div> -->

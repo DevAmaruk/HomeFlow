@@ -1,21 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
+import {
+	collection,
+	Firestore,
+	getDocs,
+	query,
+	where,
+} from '@angular/fire/firestore';
 import { FamillyService } from '../../../services/famillyService/familly.service';
 import { CommonModule } from '@angular/common';
 import { DatabaseService } from '../../../services/databaseService/database.service';
 import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Tasks } from '../../../interfaces/category';
+import {
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonHeader,
+	IonRow,
+	IonSelect,
+	IonSelectOption,
+	IonText,
+	IonToolbar,
+	IonLabel,
+	IonDatetime,
+	IonButton,
+	IonFab,
+	IonFabButton,
+	IonImg,
+} from '@ionic/angular/standalone';
 
 /*
 This class is used when a user wants to edit a chore.
 It is called just after selecting the chore the user wants to add to the list.
 */
 
+const ionicElements = [
+	IonContent,
+	IonGrid,
+	IonCol,
+	IonRow,
+	IonHeader,
+	IonToolbar,
+	IonText,
+	IonSelect,
+	IonSelectOption,
+	IonLabel,
+	IonDatetime,
+	IonButton,
+	IonFab,
+	IonFabButton,
+	IonImg,
+];
+
 @Component({
 	selector: 'app-chore-edition',
-	imports: [CommonModule, ReactiveFormsModule, FormsModule],
+	imports: [CommonModule, ReactiveFormsModule, FormsModule, ...ionicElements],
 	templateUrl: './chore-edition.component.html',
 	styleUrl: './chore-edition.component.scss',
 })
@@ -49,7 +90,12 @@ export class ChoreEditionComponent implements OnInit {
 					throw new Error('Familly group not found');
 				}
 
-				const taskColRef = collection(this._firestore, 'Familly', this.famillyGroupName, 'Tasks');
+				const taskColRef = collection(
+					this._firestore,
+					'Familly',
+					this.famillyGroupName,
+					'Tasks',
+				);
 				const taskQuery = query(taskColRef, where('uuid', '==', taskId));
 				const taskSnapshot = await getDocs(taskQuery);
 
@@ -59,8 +105,13 @@ export class ChoreEditionComponent implements OnInit {
 						this.taskDescription = doc.get('description');
 					});
 				} else {
-					console.log('Task not found in Firestore. Switching to local database');
-					const localTask = await this._databaseService.getTask(taskId, this.famillyGroupName);
+					console.log(
+						'Task not found in Firestore. Switching to local database',
+					);
+					const localTask = await this._databaseService.getTask(
+						taskId,
+						this.famillyGroupName,
+					);
 					if (localTask) {
 						this.task = localTask;
 						this.taskDescription = localTask.description;

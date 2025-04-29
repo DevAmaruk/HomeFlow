@@ -1,0 +1,28 @@
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-toolbar {
+	&.headerToolbar {
+		--background: #e76f51;
+	}
+}
+
+ion-text {
+	&.headerTitle {
+		color: #264653;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 700;
+		font-size: 1.3rem;
+	}
+}
+
+div {
+	&.editionContainer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+}
