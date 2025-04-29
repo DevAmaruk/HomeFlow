@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+	FormControl,
+	FormGroup,
+	ReactiveFormsModule,
+	Validators,
+} from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
@@ -21,7 +26,10 @@ export class SignInPageComponent implements OnInit {
 
 	public user: User | null = null;
 
-	constructor(private readonly _authService: AuthService, private readonly _route: Router) {}
+	constructor(
+		private readonly _authService: AuthService,
+		private readonly _route: Router,
+	) {}
 
 	ngOnInit() {
 		this.createSignInForm();
