@@ -1,7 +1,30 @@
-<input
-	type="text"
-	name="familyGroupName"
-	#famillyInput
-	placeholder="Create a family" />
-
-<button (click)="createFamilly(famillyInput.value)">Create Familly</button>
+<ion-content>
+	<div class="famillyContainer ion-padding">
+		<ion-grid class="ion-padding">
+			<ion-row class="ion-justify-content-center ion-align-items-center">
+				<ion-col sizexS="4">
+					<ion-input
+						fill="outline"
+						shape="round"
+						type="text"
+						name="famillyGroupName"
+						#famillyInput
+						[clearInput]="true"
+						labelPlacement="floating"
+						class="input"
+						><div slot="label">
+							Famille <ion-text color="danger">(Requis)</ion-text>
+						</div></ion-input
+					>
+				</ion-col>
+			</ion-row>
+			<ion-row class="ion-justify-content-center ion-align-items-center">
+				<ion-col sizeXs="6">
+					<ion-button (click)="createFamilly(famillyInput)"
+						>Créer une famille</ion-button
+					>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>

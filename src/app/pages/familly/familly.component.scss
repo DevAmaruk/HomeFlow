@@ -1,0 +1,32 @@
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-input {
+	&.input-fill-outline {
+		&.input-shape-round {
+			--border-radius: 10px;
+		}
+	}
+	&.input {
+		--background: #ffffff;
+	}
+}
+
+ion-button {
+	--background: #264653;
+	--color: #fcf8ed;
+	--border-radius: 12px;
+	width: 182px;
+	height: 58.9px;
+	font-size: 0.8rem;
+}
+
+div {
+	&.famillyContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
+}
