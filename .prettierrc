@@ -1,7 +1,7 @@
 {
 	"experimentalTernaries": true,
 	"experimentalOperatorPosition": "end",
-	"printWidth": 130,
+	"printWidth": 80,
 	"tabWidth": 2,
 	"useTabs": true,
 	"semi": true,
@@ -10,5 +10,5 @@
 	"bracketSpacing": true,
 	"bracketSameLine": true,
 	"arrowParens": "avoid",
-	"singleAttributePerLine": true
+	"singleAttributePerLine": false
 }
