@@ -35,7 +35,10 @@ export class FamillyService {
 	//Observable for the userId of the user currently connected.
 	public userObs: Observable<User | null>;
 
-	constructor(private readonly _firestore: Firestore, private readonly _authService: AuthService) {
+	constructor(
+		private readonly _firestore: Firestore,
+		private readonly _authService: AuthService,
+	) {
 		this.userObs = this._authService.user$;
 	}
 
@@ -46,7 +49,10 @@ export class FamillyService {
 		});
 	}
 
-	private async clearTasksSubcollection(tasksColRef: CollectionReference, batch: any) {
+	private async clearTasksSubcollection(
+		tasksColRef: CollectionReference,
+		batch: any,
+	) {
 		const tasksSnapshot = await getDocs(tasksColRef);
 		tasksSnapshot.docs.forEach(doc => {
 			batch.delete(doc.ref); // Delete each task document in the sub-collection
@@ -63,7 +69,10 @@ export class FamillyService {
 		}
 
 		const famillyColRef = collection(this._firestore, 'Familly');
-		const famillyQuery = query(famillyColRef, where('members', 'array-contains', this.user.uid));
+		const famillyQuery = query(
+			famillyColRef,
+			where('members', 'array-contains', this.user.uid),
+		);
 		const famillyQuerySnapshot = await getDocs(famillyQuery);
 
 		if (famillyQuerySnapshot.empty) {
@@ -96,13 +105,20 @@ export class FamillyService {
 		const memberId = usersQuerySnapshot.docs[0].get('uid'); // Get the document ID of the user with the provided email
 		console.log('Member ID:', memberId);
 
-		const famillyDocRef = doc(this._firestore, 'Familly', this.famillyGroupName);
+		const famillyDocRef = doc(
+			this._firestore,
+			'Familly',
+			this.famillyGroupName,
+		);
 
 		// We update the document to add the new member to the members array
 		await updateDoc(famillyDocRef, { members: arrayUnion(memberId) });
 
 		const famillyColRef = collection(this._firestore, 'Familly');
-		const addedMemberQuery = query(famillyColRef, where('members', 'array-contains', memberId));
+		const addedMemberQuery = query(
+			famillyColRef,
+			where('members', 'array-contains', memberId),
+		);
 		const addedMemberQuerySnapshot = await getDocs(addedMemberQuery);
 
 		const batch = writeBatch(this._firestore);
@@ -113,7 +129,9 @@ export class FamillyService {
 
 				const remainingMembers = doc.get('members') as string[];
 				if (remainingMembers.length > 1) {
-					console.log(`Skipping task deletion for familly group ${doc.id} as it still has other members.`);
+					console.log(
+						`Skipping task deletion for familly group ${doc.id} as it still has other members.`,
+					);
 					continue;
 				}
 
@@ -145,7 +163,9 @@ export class FamillyService {
 		const famillyQuerySnapshot = await getDocs(famillyQuery);
 
 		if (!famillyQuerySnapshot.empty) {
-			throw new Error('A family group with this name already exists. Please choose a different name.');
+			throw new Error(
+				'A family group with this name already exists. Please choose a different name.',
+			);
 		}
 
 		const famillyDocRef = doc(famillyColRef);
@@ -162,6 +182,9 @@ export class FamillyService {
 
 		const userDatabaseRef = collection(famillyDocRef, 'UserDatabase');
 		await this.addDefaultTask(userDatabaseRef);
+
+		const customCategoriesRef = collection(famillyDocRef, 'Categories');
+		await this.addDefaultTask(customCategoriesRef);
 
 		console.log('Default task added to the new family group.');
 	}
