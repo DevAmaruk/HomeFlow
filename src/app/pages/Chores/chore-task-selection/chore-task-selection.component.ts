@@ -8,6 +8,19 @@ import { User } from '@angular/fire/auth';
 import { Categories, Tasks } from '../../../interfaces/category';
 import { FamillyService } from '../../../services/famillyService/familly.service';
 import { DatabaseService } from '../../../services/databaseService/database.service';
+import {
+	IonCard,
+	IonCardContent,
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonHeader,
+	IonImg,
+	IonList,
+	IonRow,
+	IonText,
+	IonToolbar,
+} from '@ionic/angular/standalone';
 
 /*
 This component is responsible for selecting a chore task based on the selected category.
@@ -16,9 +29,22 @@ Upon selecting a task, the chore-list array is updated with the selected task.
 So we need to push the selected task to the chore-list array, which will be displayed on the Chore-List Homepage component.
 */
 
+const ionicElements = [
+	IonContent,
+	IonGrid,
+	IonCol,
+	IonRow,
+	IonCard,
+	IonCardContent,
+	IonHeader,
+	IonToolbar,
+	IonText,
+	IonImg,
+	IonList,
+];
 @Component({
 	selector: 'app-chore-task-selection',
-	imports: [ReactiveFormsModule, RouterLink],
+	imports: [RouterLink, ...ionicElements],
 	templateUrl: './chore-task-selection.component.html',
 	styleUrl: './chore-task-selection.component.scss',
 })
@@ -63,7 +89,8 @@ export class ChoreTaskSelectionComponent implements OnInit {
 	// We display it on the HTML page using a loop @for
 	async getTasks() {
 		try {
-			const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
+			const categoryId: string | null =
+				this._activeRoute.snapshot.paramMap.get('categoryId');
 			if (!categoryId) {
 				throw new Error('Category ID is not provided.');
 			}
@@ -73,7 +100,10 @@ export class ChoreTaskSelectionComponent implements OnInit {
 				throw new Error('Familly group name is not set.');
 			}
 
-			this.tasks = await this._databaseService.getAllTasksByCategory(categoryId, famillyGroupName);
+			this.tasks = await this._databaseService.getAllTasksByCategory(
+				categoryId,
+				famillyGroupName,
+			);
 			console.log('Combined tasks:', this.tasks); // Debugging
 		} catch (error) {
 			console.error('Error fetching tasks:', error);
@@ -81,9 +111,12 @@ export class ChoreTaskSelectionComponent implements OnInit {
 	}
 
 	async getCategory() {
-		const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
+		const categoryId: string | null =
+			this._activeRoute.snapshot.paramMap.get('categoryId');
 		if (categoryId) {
-			this.selectedCategory = await this._choreCatService.getCategoryById(categoryId);
+			this.selectedCategory = await this._choreCatService.getCategoryById(
+				categoryId,
+			);
 		}
 	}
 

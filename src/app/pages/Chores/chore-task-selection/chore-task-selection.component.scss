@@ -1,0 +1,71 @@
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-toolbar {
+	&.headerToolbar {
+		--background: #e76f51;
+	}
+}
+
+ion-card-content {
+	&.taskCard {
+		text-align: center;
+		font-size: 0.85rem;
+		font-weight: 400;
+		font-family: 'Roboto', sans-serif;
+		width: 150px;
+		height: 150px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+}
+
+ion-text {
+	&.taskTitle {
+		color: #fcf8ed;
+	}
+	&.headerTitle {
+		color: #264653;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 700;
+		font-size: 1.3rem;
+	}
+}
+
+ion-card {
+	width: 150px;
+	height: 150px;
+	display: flex;
+	border-radius: 20px;
+	--background: #2a9d8f;
+	// justify-content: center;
+	// align-items: center;
+}
+
+ion-list {
+	&.taskCardList {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background: #2a9d8f;
+	}
+}
+
+ion-img {
+	&.taskIcon {
+		width: 70px;
+		height: 70px;
+		margin-bottom: 12px;
+	}
+}
+
+div {
+	&.catCardContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
