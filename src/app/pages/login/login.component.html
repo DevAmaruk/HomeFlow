@@ -1,4 +1,57 @@
-<div [formGroup]="signUpForm">
+<ion-content class="linear-gradient-background">
+	<div
+		[formGroup]="signUpForm"
+		class="signUpContainer ion-padding">
+		<ion-grid class="ion-padding contentGrid">
+			<ion-row class="ion-justify-content-center illustrationRow">
+				<ion-col class="ion-no-padding">
+					<ion-img
+						src="./Illustrations/Clouds/clouds_login_illustration.png"
+						alt="clouds_sun"></ion-img>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-input
+						fill="solid"
+						placeholder="Email"
+						type="email"
+						id="signUpEmail"
+						formControlName="email"></ion-input>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-input
+						fill="solid"
+						type="password"
+						id="signUpPassword"
+						placeholder="Mot de passe"
+						formControlName="password"></ion-input>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-button expand="full">Créer un compte</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+	<ion-grid>
+		<div class="illustrationContainer">
+			<ion-row>
+				<ion-col class="ion-no-padding">
+					<ion-img
+						class="houseIllustration"
+						src="/Illustrations/House/house_login_illustration_no_clouds.png"
+						alt="house_illustration"></ion-img>
+				</ion-col>
+			</ion-row>
+		</div>
+	</ion-grid>
+</ion-content>
+
+<!-- <div [formGroup]="signUpForm">
 	<label for="signUpEmail">Email</label>
 	<input
 		type="email"
@@ -21,4 +74,4 @@
 <button (click)="onSignUp()">Sign up</button>
 
 <p>Have already an account?</p>
-<a [routerLink]="['/sign-in']">Go to login page</a>
+<a [routerLink]="['/sign-in']">Go to login page</a> -->

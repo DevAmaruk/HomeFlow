@@ -6,10 +6,13 @@ import { User } from '@angular/fire/auth';
 import { Router, RouterLink } from '@angular/router';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { passwordStrengthValidator } from '../../validators/passwordStrengthValidators';
+import { IonButton, IonCol, IonContent, IonGrid, IonImg, IonInput, IonRow, IonText } from '@ionic/angular/standalone';
+
+const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonText, IonInput];
 
 @Component({
 	selector: 'app-login',
-	imports: [CommonModule, ReactiveFormsModule, RouterLink],
+	imports: [CommonModule, ReactiveFormsModule, RouterLink, ...ionicElements],
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.scss',
 })

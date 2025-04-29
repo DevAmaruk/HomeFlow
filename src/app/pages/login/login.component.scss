@@ -1,0 +1,34 @@
+ion-content {
+	--background: linear-gradient(#8cc3ec 0%, #fdfbf4 100%);
+}
+
+ion-row {
+	&.illustrationRow {
+		padding-bottom: 100px;
+	}
+}
+
+ion-img {
+	&.houseIllustration {
+		width: 249.4px;
+		height: 199.5px;
+	}
+}
+
+ion-grid {
+	&.contentGrid {
+		height: 100%;
+	}
+}
+
+div {
+	&.signUpContainer {
+		display: flex;
+		justify-content: center;
+		height: 50%;
+	}
+	&.illustrationContainer {
+		display: flex;
+		justify-content: center;
+	}
+}
