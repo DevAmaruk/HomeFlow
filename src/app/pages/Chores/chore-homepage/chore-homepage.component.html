@@ -1,13 +1,74 @@
-<a [routerLink]="['/category']">Go to Chore Category</a><br /><br />
-<input
-	type="text"
-	#memberId
-	placeholder="Enter member email" />
-<button (click)="addMemberToFamilly(memberId.value)">Add Member</button>
+<ion-header>
+	<ion-toolbar>
+		<ion-grid class="ion-padding">
+			<ion-row class="ion-justify-content-center ion-align-items-center">
+				<ion-col class="salutationTextCol">
+					<ion-text>Salutation</ion-text>
+				</ion-col>
+				<ion-col class="avatarCol">
+					<ion-avatar class="avatarIcon">
+						<ion-img src="https://ionicframework.com/docs/img/demos/avatar.svg">
+						</ion-img>
+					</ion-avatar>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-toolbar>
+</ion-header>
 
-<!-- @if(taskDescription$ | async; as taskDescription){ @for(task of taskDescription; track $index){
-<p>{{ task }}</p>
-} } -->
+<ion-content>
+	<ion-grid class="ion-padding">
+		<ion-row class="ion-justify-content-center ion-align-items-center">
+			<ion-col size="auto">
+				<ion-icon
+					(click)="previousDay()"
+					name="chevron-back-circle-outline"
+					size="large"
+					class="chevronIcon"></ion-icon>
+			</ion-col>
+			<ion-col size="8">
+				<ion-text class="ion-text-center"
+					><p class="fullDateText">
+						{{ selectedDate | date : 'fullDate' : '' : 'fr-FR' }}
+					</p></ion-text
+				>
+			</ion-col>
+			<ion-col size="auto">
+				<ion-icon
+					(click)="nextDay()"
+					name="chevron-forward-circle-outline"
+					size="large"
+					class="chevronIcon"></ion-icon>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				@for(task of todayTasks; track task.uuid){
+				<ion-card>
+					<ion-card-content>
+						<ion-text>
+							<p>
+								{{ task.description }}
+							</p>
+						</ion-text>
+					</ion-card-content>
+				</ion-card>
+				}
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-fab vertical="bottom" horizontal="end">
+				<ion-fab-button (click)="goToCategoryPage()">
+					<ion-icon name="add"></ion-icon>
+				</ion-fab-button>
+			</ion-fab>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+
+<!-- <a [routerLink]="['/category']">Go to Chore Category</a><br /><br />
+<input type="text" #memberId placeholder="Enter member email" />
+<button (click)="addMemberToFamilly(memberId.value)">Add Member</button>
 
 <div class="date-selector">
 	<button (click)="previousDay()">&#8249;</button>
@@ -18,10 +79,12 @@
 @if(todayTasks.length > 0){ @for(task of todayTasks; track task.uuid){
 <ul>
 	<li (click)="validateTask(task)">
-		<p [ngStyle]="{ color: task.validated ? 'green' : 'black' }">{{ task.description }}</p>
+		<p [ngStyle]="{ color: task.validated ? 'green' : 'black' }">
+			{{ task.description }}
+		</p>
 	</li>
 </ul>
 } }
 
 <button (click)="goToCalendar()">Go to Calendar</button>
-<button (click)="onSignOut()">Sign out</button>
+<button (click)="onSignOut()">Sign out</button> -->

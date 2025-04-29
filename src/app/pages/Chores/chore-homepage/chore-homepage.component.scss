@@ -1,0 +1,43 @@
+ion-toolbar {
+	--background: #e76f51;
+}
+
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-col {
+	&.avatarCol {
+		display: flex;
+		justify-content: end;
+	}
+	&.salutationTextCol {
+		display: flex;
+		justify-content: start;
+	}
+}
+
+ion-icon {
+	&.chevronIcon {
+		color: #264653;
+	}
+}
+
+ion-fab {
+	margin-bottom: var(--ion-safe-area-bottom, 0);
+}
+
+ion-avatar {
+	&.avatarIcon {
+		width: 35px;
+		height: 35px;
+	}
+}
+
+p {
+	&.fullDateText {
+		font-family: 'Roboto', sans-serif;
+		font-weight: 500;
+		font-size: 1.1rem;
+	}
+}
