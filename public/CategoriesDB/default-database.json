@@ -3,47 +3,47 @@
 		{
 			"uuid": "9d894682-ee61-4ed5-bf64-a825b806debc",
 			"title": "Maison",
-			"icon": ""
+			"icon": "./Illustrations/Menu/chore_home_menu_icon.webp"
 		},
 		{
 			"uuid": "c33f7604-87a9-4ce2-b632-cb2abb2eded7",
 			"title": "Cuisine",
-			"icon": ""
+			"icon": "./Illustrations/Categories/kitchen_icon_cat.webp"
 		},
 		{
 			"uuid": "d059952f-3125-4d98-ba87-52a9abfbf622",
 			"title": "Salle de bain",
-			"icon": ""
+			"icon": "./Illustrations/Categories/bathroom_icon_cat.webp"
 		},
 		{
 			"uuid": "979a0c5f-9bb4-485c-9038-5c714545bb94",
 			"title": "Chambre à coucher",
-			"icon": ""
+			"icon": "./Illustrations/Categories/sleeping_room_icon_cat.webp"
 		},
 		{
 			"uuid": "16a851e0-244b-4f33-9cb8-e08f5b2eafbb",
 			"title": "Salon",
-			"icon": ""
+			"icon": "./Illustrations/Categories/living_room_icon_cat.webp"
 		},
 		{
 			"uuid": "840f6ff2-5c36-47d4-8a21-6e142e395071",
 			"title": "Animaux",
-			"icon": ""
+			"icon": "./Illustrations/Categories/pets_icon_cat.webp"
 		},
 		{
 			"uuid": "e46f1d28-a09c-4b31-a4f5-4efd64075edd",
 			"title": "Bureau",
-			"icon": ""
+			"icon": "./Illustrations/Categories/desk_icon_cat.webp"
 		},
 		{
 			"uuid": "6cb04cab-0e00-439c-872a-0094737453c6",
 			"title": "Plantes",
-			"icon": ""
+			"icon": "./Illustrations/Categories/plants_icon_cat.webp"
 		},
 		{
 			"uuid": "620306fe-ddb9-4bcc-b190-1ded3bb83c22",
 			"title": "Terrasse",
-			"icon": ""
+			"icon": "./Illustrations/Categories/outside_icon_cat.webp"
 		}
 	],
 	"tasks": [
@@ -292,7 +292,7 @@
 		{
 			"uuid": "d300f40e-bc13-4e52-9b88-f233bff6b18f",
 			"icon": "",
-			"description": "Nettoyer le micro-ondes",
+			"description": "Nettoyer le micro-onde",
 			"score": 0,
 			"dueDate": "",
 			"frequency": "",
