@@ -3,12 +3,11 @@
 		<ion-grid class="ion-padding">
 			<ion-row class="ion-justify-content-center ion-align-items-center">
 				<ion-col class="salutationTextCol">
-					<ion-text>Salutation</ion-text>
+					<ion-text>Salutation {{ username }}</ion-text>
 				</ion-col>
 				<ion-col class="avatarCol">
 					<ion-avatar class="avatarIcon">
-						<ion-img src="https://ionicframework.com/docs/img/demos/avatar.svg">
-						</ion-img>
+						<ion-img src="https://ionicframework.com/docs/img/demos/avatar.svg"> </ion-img>
 					</ion-avatar>
 				</ion-col>
 			</ion-row>
@@ -20,11 +19,7 @@
 	<ion-grid class="ion-padding">
 		<ion-row class="ion-justify-content-center ion-align-items-center">
 			<ion-col size="auto">
-				<ion-icon
-					(click)="previousDay()"
-					name="chevron-back-circle-outline"
-					size="large"
-					class="chevronIcon"></ion-icon>
+				<ion-icon (click)="previousDay()" name="chevron-back-circle-outline" size="large" class="chevronIcon"></ion-icon>
 			</ion-col>
 			<ion-col size="8">
 				<ion-text class="ion-text-center"
@@ -34,27 +29,28 @@
 				>
 			</ion-col>
 			<ion-col size="auto">
-				<ion-icon
-					(click)="nextDay()"
-					name="chevron-forward-circle-outline"
-					size="large"
-					class="chevronIcon"></ion-icon>
+				<ion-icon (click)="nextDay()" name="chevron-forward-circle-outline" size="large" class="chevronIcon"></ion-icon>
 			</ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col>
-				@for(task of todayTasks; track task.uuid){
-				<ion-card>
-					<ion-card-content>
-						<ion-text>
-							<p>
-								{{ task.description }}
-							</p>
-						</ion-text>
-					</ion-card-content>
-				</ion-card>
-				}
+			@if(todayTasks.length > 0){ @for(task of todayTasks; track task.uuid){
+			<ion-col sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="3">
+				<div class="todayTaskCardContainer">
+					<ion-card
+						(click)="validateTask(task)"
+						[ngClass]="{ 'task-validated': task.validated, 'task-not-validated': !task.validated }">
+						<ion-card-content class="taskCard">
+							<ion-list
+								class="taskCardList"
+								[ngClass]="{ 'task-validated': task.validated, 'task-not-validated': !task.validated }">
+								<ion-img src="{{ task.icon }}" class="taskIcon"></ion-img>
+								<ion-text class="taskTitle">{{ task.description }}</ion-text>
+							</ion-list>
+						</ion-card-content>
+					</ion-card>
+				</div>
 			</ion-col>
+			} }
 		</ion-row>
 		<ion-row>
 			<ion-fab vertical="bottom" horizontal="end">
