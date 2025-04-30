@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {
-	collection,
-	Firestore,
-	getDocs,
-	query,
-	where,
-} from '@angular/fire/firestore';
+import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 import { FamillyService } from '../../../services/famillyService/familly.service';
 import { CommonModule } from '@angular/common';
 import { DatabaseService } from '../../../services/databaseService/database.service';
@@ -90,12 +84,7 @@ export class ChoreEditionComponent implements OnInit {
 					throw new Error('Familly group not found');
 				}
 
-				const taskColRef = collection(
-					this._firestore,
-					'Familly',
-					this.famillyGroupName,
-					'Tasks',
-				);
+				const taskColRef = collection(this._firestore, 'Familly', this.famillyGroupName, 'Tasks');
 				const taskQuery = query(taskColRef, where('uuid', '==', taskId));
 				const taskSnapshot = await getDocs(taskQuery);
 
@@ -105,13 +94,8 @@ export class ChoreEditionComponent implements OnInit {
 						this.taskDescription = doc.get('description');
 					});
 				} else {
-					console.log(
-						'Task not found in Firestore. Switching to local database',
-					);
-					const localTask = await this._databaseService.getTask(
-						taskId,
-						this.famillyGroupName,
-					);
+					console.log('Task not found in Firestore. Switching to local database');
+					const localTask = await this._databaseService.getTask(taskId, this.famillyGroupName);
 					if (localTask) {
 						this.task = localTask;
 						this.taskDescription = localTask.description;
