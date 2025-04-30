@@ -1,37 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormControl,
-	FormGroup,
-	ReactiveFormsModule,
-	Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import {
-	IonButton,
-	IonCol,
-	IonContent,
-	IonGrid,
-	IonImg,
-	IonInput,
-	IonRow,
-} from '@ionic/angular/standalone';
+import { IonButton, IonCol, IonContent, IonGrid, IonImg, IonInput, IonRow } from '@ionic/angular/standalone';
 
 /*
 This page is used to sign in the user. It is a simple page that contains a form with two fields: email and password. 
 It will check if the user is already signed in with Firebase Auth
 */
 
-const ionicElements = [
-	IonContent,
-	IonGrid,
-	IonRow,
-	IonCol,
-	IonImg,
-	IonButton,
-	IonInput,
-];
+const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonInput];
 
 @Component({
 	selector: 'app-sign-in-page',
@@ -45,10 +24,7 @@ export class SignInPageComponent implements OnInit {
 
 	public user: User | null = null;
 
-	constructor(
-		private readonly _authService: AuthService,
-		private readonly _route: Router,
-	) {}
+	constructor(private readonly _authService: AuthService, private readonly _route: Router) {}
 
 	ngOnInit() {
 		this.createSignInForm();
