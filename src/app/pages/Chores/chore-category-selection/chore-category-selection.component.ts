@@ -12,7 +12,7 @@ import {
 	IonContent,
 	IonFab,
 	IonFabButton,
-	IonFooter,
+	IonFabList,
 	IonGrid,
 	IonHeader,
 	IonIcon,
@@ -49,6 +49,8 @@ const ionicElements = [
 	IonList,
 	IonFab,
 	IonFabButton,
+	IonFabList,
+	IonIcon,
 ];
 
 @Component({
@@ -90,9 +92,7 @@ export class ChoreCategorySelectionComponent implements OnInit {
 				throw new Error('Familly group name not found');
 			}
 
-			this.categories = await this._databaseService.getAllCategories(
-				famillyGroupName,
-			);
+			this.categories = await this._databaseService.getAllCategories(famillyGroupName);
 			console.log('Combined categories:', this.categories); // Debugging
 		} catch (error) {
 			console.error('Error fetching categories:', error);

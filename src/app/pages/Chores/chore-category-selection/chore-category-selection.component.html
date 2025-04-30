@@ -26,9 +26,17 @@
 	</ion-grid>
 	}
 	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
-		<ion-fab-button (click)="backToHome()">
+		<ion-fab-button>
 			<ion-img src="./Illustrations/Menu/chore_home_menu_icon.webp"></ion-img>
 		</ion-fab-button>
+		<ion-fab-list side="top">
+			<ion-fab-button (click)="backToHome()">
+				<ion-icon name="chevron-back"></ion-icon>
+			</ion-fab-button>
+			<ion-fab-button (click)="goToCustomTask()">
+				<ion-icon name="add"></ion-icon>
+			</ion-fab-button>
+		</ion-fab-list>
 	</ion-fab>
 </ion-content>
 
