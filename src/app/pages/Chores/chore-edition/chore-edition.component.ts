@@ -23,6 +23,8 @@ import {
 	IonFab,
 	IonFabButton,
 	IonImg,
+	IonToast,
+	IonButtons,
 } from '@ionic/angular/standalone';
 
 /*
@@ -46,6 +48,7 @@ const ionicElements = [
 	IonFab,
 	IonFabButton,
 	IonImg,
+	IonToast,
 ];
 
 @Component({
@@ -60,6 +63,21 @@ export class ChoreEditionComponent implements OnInit {
 	public taskDescription: string | null = null;
 
 	public famillyGroupName: string | null = null;
+
+	public toastButtons = [
+		{
+			text: 'Retirer',
+			role: 'cancel',
+			handler: () => {
+				console.log('Dismiss clicked');
+			},
+		},
+	];
+
+	setRoleMessage(event: CustomEvent) {
+		const { role } = event.detail;
+		console.log(`Dismissed with role: ${role}`);
+	}
 
 	constructor(
 		private readonly _activeRoute: ActivatedRoute,

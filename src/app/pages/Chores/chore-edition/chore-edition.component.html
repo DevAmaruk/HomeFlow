@@ -46,7 +46,13 @@
 			</ion-row>
 			<ion-row class="ion-justify-content-center ion-align-items-center">
 				@if(task){
-				<ion-button (click)="addTask(task)">Ajouter la tâche</ion-button>
+				<ion-button id="open-toast" (click)="addTask(task)">Ajouter la tâche</ion-button>
+				<ion-toast
+					trigger="open-toast"
+					[buttons]="toastButtons"
+					(didDismiss)="setRoleMessage($event)"
+					message="La tâche a bien été ajouté"
+					[duration]="2000"></ion-toast>
 				}
 			</ion-row>
 		</ion-grid>
