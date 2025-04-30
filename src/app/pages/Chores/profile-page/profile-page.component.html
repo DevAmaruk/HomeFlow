@@ -1,0 +1,18 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="end">
+			<ion-button (click)="closeModal()"> Close </ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<form [formGroup]="userNameForm">
+		<ion-item>
+			<ion-label position="floating">Username</ion-label>
+			<ion-input type="text" formControlName="username"></ion-input>
+		</ion-item>
+		<ion-button expand="full" type="submit" (click)="updateUsername()">Update</ion-button>
+	</form>
+	<ion-button (click)="onSignOut()">Se déconnecter</ion-button>
+</ion-content>
