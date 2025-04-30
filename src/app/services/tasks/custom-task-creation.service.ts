@@ -77,7 +77,9 @@ export class CustomTaskCreationService {
 
 			const categoriesColRef = collection(this._firestore, 'Familly', famillyGroupName, 'Categories');
 			const customCategoriesSnapshot = await getDocs(categoriesColRef);
-			const customCategories: Categories[] = customCategoriesSnapshot.docs.map(doc => doc.data() as Categories);
+			const customCategories: Categories[] = customCategoriesSnapshot.docs
+				.map(doc => doc.data() as Categories)
+				.filter(category => 'title' in category && 'uuid' in category);
 
 			const defaultCategories = await this._databaseService.getCategoriesDatabase();
 
