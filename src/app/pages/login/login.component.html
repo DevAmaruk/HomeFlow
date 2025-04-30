@@ -22,9 +22,7 @@
 							[clearInput]="true"
 							formControlName="email"
 							class="input">
-							<div slot="label">
-								Email <ion-text color="danger">(Requis)</ion-text>
-							</div></ion-input
+							<div slot="label">Email <ion-text color="danger">(Requis)</ion-text></div></ion-input
 						>
 					</ion-col>
 				</ion-row>
@@ -39,36 +37,37 @@
 							[clearInput]="true"
 							formControlName="password"
 							class="input"
-							><div slot="label">
-								Mot de passe <ion-text color="danger">(Requis)</ion-text>
-							</div></ion-input
+							><div slot="label">Mot de passe <ion-text color="danger">(Requis)</ion-text></div></ion-input
+						>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col class="ion-padding" sizeLg="5">
+						<ion-input
+							fill="outline"
+							shape="round"
+							type="username"
+							id="signUpUsername"
+							labelPlacement="floating"
+							[clearInput]="true"
+							formControlName="username"
+							class="input"
+							><div slot="label">Username<ion-text color="danger">(Requis)</ion-text></div></ion-input
 						>
 					</ion-col>
 				</ion-row>
 				<ion-row class="ion-justify-content-center ion-align-items-center">
 					<ion-col size="auto" class="ion-text-center">
-						<ion-button (click)="onSignUp()" expand="block"
-							>Créer un compte</ion-button
-						>
+						<ion-button (click)="onSignUp()" expand="block">Créer un compte</ion-button>
 					</ion-col>
 				</ion-row>
 			</ion-grid>
 		</div>
 		<div class="bottomContainer ion-padding">
 			<ion-grid class="illustrationHouseGrid ion-no-padding">
-				<ion-row
-					class="ion-justify-content-center ion-align-items-center illustrationRow">
-					<ion-col
-						sizeXs="9"
-						sizeSm="5"
-						sizeMd="5"
-						sizeLg="5"
-						sizeXl="5"
-						class="illustrationCol">
-						<ion-img
-							src="./Illustrations/House/house.webp"
-							alt="house_illustration"
-							class="houseIllustration"></ion-img>
+				<ion-row class="ion-justify-content-center ion-align-items-center illustrationRow">
+					<ion-col sizeXs="9" sizeSm="5" sizeMd="5" sizeLg="5" sizeXl="5" class="illustrationCol">
+						<ion-img src="./Illustrations/House/house.webp" alt="house_illustration" class="houseIllustration"></ion-img>
 					</ion-col>
 				</ion-row>
 			</ion-grid>

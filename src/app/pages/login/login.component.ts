@@ -1,37 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
-import {
-	FormControl,
-	FormGroup,
-	ReactiveFormsModule,
-	Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { passwordStrengthValidator } from '../../validators/passwordStrengthValidators';
-import {
-	IonButton,
-	IonCol,
-	IonContent,
-	IonGrid,
-	IonImg,
-	IonInput,
-	IonRow,
-	IonText,
-} from '@ionic/angular/standalone';
+import { IonButton, IonCol, IonContent, IonGrid, IonImg, IonInput, IonRow, IonText } from '@ionic/angular/standalone';
 
-const ionicElements = [
-	IonContent,
-	IonGrid,
-	IonRow,
-	IonCol,
-	IonImg,
-	IonButton,
-	IonInput,
-	IonText,
-];
+const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonInput, IonText];
 
 @Component({
 	selector: 'app-login',
@@ -56,24 +33,15 @@ export class LoginComponent implements OnInit {
 
 	public createSignUpForm() {
 		this.signUpForm = new FormGroup({
-			email: new FormControl(
-				'',
-				Validators.compose([Validators.required, Validators.email]),
-			),
-			password: new FormControl(
-				'',
-				Validators.compose([
-					Validators.required,
-					Validators.min(6),
-					passwordStrengthValidator(),
-				]),
-			),
+			email: new FormControl('', Validators.compose([Validators.required, Validators.email])),
+			password: new FormControl('', Validators.compose([Validators.required, Validators.min(6), passwordStrengthValidator()])),
+			username: new FormControl(''),
 		});
 	}
 
 	public async onSignUp() {
 		try {
-			const { email, password } = this.signUpForm.value;
+			const { email, password, username } = this.signUpForm.value;
 
 			// We get the user from the AuthService
 			this.user = await this._authService.signUp(email, password);
@@ -90,6 +58,8 @@ export class LoginComponent implements OnInit {
 			await setDoc(userDocRef, {
 				email: this.user.email,
 				uid: this.user.uid,
+				username: username,
+				createdAt: new Date(),
 			});
 
 			// To prevent any theft, we reset the form.
