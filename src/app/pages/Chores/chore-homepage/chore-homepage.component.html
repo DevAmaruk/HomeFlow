@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-safe-area-top">
 	<ion-toolbar>
 		<ion-grid class="ion-padding">
 			<ion-row class="ion-justify-content-center ion-align-items-center">
@@ -35,7 +35,7 @@
 				<ion-icon (click)="nextDay()" name="chevron-forward-circle-outline" size="large" class="chevronIcon"></ion-icon>
 			</ion-col>
 		</ion-row>
-		<ion-row>
+		<ion-row class="ion-justify-content-center ion-align-items-center">
 			@if(todayTasks.length > 0){ @for(task of todayTasks; track task.uuid){
 			<ion-col sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="3">
 				<div class="todayTaskCardContainer">
@@ -57,7 +57,7 @@
 		</ion-row>
 		<ion-row>
 			<ion-fab vertical="bottom" horizontal="end">
-				<ion-fab-button (click)="goToCategoryPage()">
+				<ion-fab-button class="addCatFab" (click)="goToCategoryPage()">
 					<ion-icon name="add"></ion-icon>
 				</ion-fab-button>
 			</ion-fab>

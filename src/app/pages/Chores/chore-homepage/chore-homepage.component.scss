@@ -24,7 +24,7 @@ ion-icon {
 }
 
 ion-fab {
-	margin-bottom: var(--ion-safe-area-bottom, 0);
+	--ion-safe-area-bottom: 0;
 }
 
 ion-avatar {
@@ -45,6 +45,9 @@ ion-list {
 ion-text {
 	&.taskTitle {
 		color: #fcf8ed;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 300;
+		font-size: 0.8rem;
 	}
 }
 
@@ -68,6 +71,13 @@ ion-card {
 	color: white; /* Optional: Adjust text color for better contrast */
 }
 
+ion-img {
+	&.taskIcon {
+		width: 60px;
+		height: 60px;
+	}
+}
+
 ion-card-content {
 	&.taskCard {
 		text-align: center;
@@ -80,6 +90,12 @@ ion-card-content {
 		justify-content: center;
 		align-items: center;
 		text-align: center;
+	}
+}
+
+ion-fab-button {
+	&.addCatFab {
+		--background: #264653;
 	}
 }
 

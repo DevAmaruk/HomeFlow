@@ -3,7 +3,7 @@ import { FamillyService } from '../../../services/famillyService/familly.service
 import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 import { AuthService } from '../../../services/auth/auth.service';
 import { firstValueFrom, Observable } from 'rxjs';
-import { User } from '@angular/fire/auth';
+import { Auth, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
@@ -67,7 +67,7 @@ export class ChoreHomepageComponent {
 	public taskDescriptions: Tasks[] = [];
 
 	public userObs: Observable<User | null>;
-	public user?: User | null;
+	// public user?: User | null;
 	public username: string = '';
 
 	public todayTasks: Tasks[] = [];
@@ -82,6 +82,7 @@ export class ChoreHomepageComponent {
 		private readonly _router: Router,
 		private readonly _firestore: Firestore,
 		private readonly _modalCtrl: ModalController,
+		private readonly _auth: Auth,
 	) {
 		registerLocaleData(localeFr);
 		this.userObs = this._authService.user$;
@@ -90,6 +91,8 @@ export class ChoreHomepageComponent {
 	}
 
 	async ionViewWillEnter() {
+		const user = this._auth.currentUser;
+		console.log('User:', user);
 		await this.getData();
 	}
 
