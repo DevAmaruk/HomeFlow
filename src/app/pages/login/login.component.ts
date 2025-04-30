@@ -6,7 +6,18 @@ import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { passwordStrengthValidator } from '../../validators/passwordStrengthValidators';
-import { IonButton, IonCol, IonContent, IonGrid, IonImg, IonInput, IonRow, IonText } from '@ionic/angular/standalone';
+import {
+	IonButton,
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonImg,
+	IonInput,
+	IonRow,
+	IonText,
+	ModalController,
+} from '@ionic/angular/standalone';
+import { EmailVerificationModalComponent } from '../../modals/email-verification-modal/email-verification-modal.component';
 
 const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonInput, IonText];
 
@@ -25,6 +36,7 @@ export class LoginComponent implements OnInit {
 		private readonly _authService: AuthService,
 		private readonly _route: Router,
 		private readonly _firestore: Firestore,
+		private readonly _modalCtrl: ModalController,
 	) {}
 
 	async ngOnInit() {
@@ -67,7 +79,24 @@ export class LoginComponent implements OnInit {
 			// To prevent any theft, we reset the form.
 			this.signUpForm.reset();
 
-			this._route.navigate(['/familly']);
+			// Open the email verification modal
+			const modal = await this._modalCtrl.create({
+				component: EmailVerificationModalComponent,
+			});
+
+			modal.onDidDismiss().then(async () => {
+				const isVerified = await this._authService.isEmailVerified();
+				if (isVerified) {
+					console.log('Email verified. Navigating to family page.');
+					this._route.navigate(['/familly']);
+				} else {
+					console.log('Email not verified. Staying on the current page.');
+				}
+			});
+
+			await modal.present();
+
+			// this._route.navigate(['/familly']);
 			console.log('User signed up successfully:', this.user.email);
 		} catch (error) {
 			console.error('Error signing up:', error);
