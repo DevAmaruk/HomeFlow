@@ -13,6 +13,8 @@ import {
 	IonCardContent,
 	IonCol,
 	IonContent,
+	IonFab,
+	IonFabButton,
 	IonGrid,
 	IonHeader,
 	IonImg,
@@ -41,10 +43,12 @@ const ionicElements = [
 	IonText,
 	IonImg,
 	IonList,
+	IonFab,
+	IonFabButton,
 ];
 @Component({
 	selector: 'app-chore-task-selection',
-	imports: [RouterLink, ...ionicElements],
+	imports: [...ionicElements],
 	templateUrl: './chore-task-selection.component.html',
 	styleUrl: './chore-task-selection.component.scss',
 })
@@ -89,8 +93,7 @@ export class ChoreTaskSelectionComponent implements OnInit {
 	// We display it on the HTML page using a loop @for
 	async getTasks() {
 		try {
-			const categoryId: string | null =
-				this._activeRoute.snapshot.paramMap.get('categoryId');
+			const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
 			if (!categoryId) {
 				throw new Error('Category ID is not provided.');
 			}
@@ -100,10 +103,7 @@ export class ChoreTaskSelectionComponent implements OnInit {
 				throw new Error('Familly group name is not set.');
 			}
 
-			this.tasks = await this._databaseService.getAllTasksByCategory(
-				categoryId,
-				famillyGroupName,
-			);
+			this.tasks = await this._databaseService.getAllTasksByCategory(categoryId, famillyGroupName);
 			console.log('Combined tasks:', this.tasks); // Debugging
 		} catch (error) {
 			console.error('Error fetching tasks:', error);
@@ -111,12 +111,9 @@ export class ChoreTaskSelectionComponent implements OnInit {
 	}
 
 	async getCategory() {
-		const categoryId: string | null =
-			this._activeRoute.snapshot.paramMap.get('categoryId');
+		const categoryId: string | null = this._activeRoute.snapshot.paramMap.get('categoryId');
 		if (categoryId) {
-			this.selectedCategory = await this._choreCatService.getCategoryById(
-				categoryId,
-			);
+			this.selectedCategory = await this._choreCatService.getCategoryById(categoryId);
 		}
 	}
 
@@ -124,5 +121,9 @@ export class ChoreTaskSelectionComponent implements OnInit {
 		if (task) {
 			this._router.navigate(['/chore-edition', task.uuid]);
 		}
+	}
+
+	public backToCat() {
+		this._router.navigate(['category']);
 	}
 }
