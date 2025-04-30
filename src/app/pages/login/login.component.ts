@@ -51,6 +51,8 @@ export class LoginComponent implements OnInit {
 				throw new Error('User is null or undefined after sign up.');
 			}
 
+			await this._authService.updateUserProfile({ displayName: username });
+
 			// We create a ref to the document in the Users collection using the user uid.
 			const userDocRef = doc(this._firestore, 'Users', this.user.uid);
 

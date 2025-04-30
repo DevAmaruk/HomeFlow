@@ -10,6 +10,7 @@ import {
 	User,
 	sendPasswordResetEmail,
 	authState,
+	updateProfile,
 } from '@angular/fire/auth';
 import { doc, Firestore, getDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
@@ -25,6 +26,7 @@ It will use the firebase authentication module to authenticate the user.
 })
 export class AuthService {
 	public user?: User | null;
+	public username?: string;
 
 	public _user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 	public user$;
@@ -94,6 +96,14 @@ export class AuthService {
 
 	public sendPasswordResetEmail(email: string) {
 		return sendPasswordResetEmail(this._auth, email);
+	}
+
+	public async updateUserProfile(profile: { displayName?: string }) {
+		if (this._auth.currentUser) {
+			await updateProfile(this._auth.currentUser, profile);
+		} else {
+			throw new Error('No authenticated user to update profile.');
+		}
 	}
 
 	public async getUserData(): Promise<{ username: string } | null> {
