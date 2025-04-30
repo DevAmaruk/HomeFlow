@@ -11,6 +11,8 @@ import {
 	sendPasswordResetEmail,
 	authState,
 	updateProfile,
+	updateEmail,
+	sendEmailVerification,
 } from '@angular/fire/auth';
 import { doc, Firestore, getDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
@@ -42,6 +44,12 @@ export class AuthService {
 		try {
 			const userCredential = await createUserWithEmailAndPassword(this._auth, email, password);
 			this.user = userCredential.user;
+
+			if (this.user) {
+				await sendEmailVerification(this.user);
+				console.log('Verification email sent to:', this.user.email);
+			}
+
 			this._user$.next(this.user);
 			return this.user;
 		} catch (error) {
@@ -59,6 +67,23 @@ export class AuthService {
 			}
 			throw error;
 		}
+	}
+
+	public async resendVerificationEmail(): Promise<void> {
+		if (this.user) {
+			await sendEmailVerification(this.user);
+			console.log('Verification email resent to:', this.user.email);
+		} else {
+			throw new Error('No authenticated user to resend verification email.');
+		}
+	}
+
+	public async isEmailVerified(): Promise<boolean> {
+		if (this.user) {
+			await this.user.reload(); // Refresh user data
+			return this.user.emailVerified || false;
+		}
+		throw new Error('No authenticated user to check email verification status.');
 	}
 
 	public async signIn(email: string, password: string): Promise<User> {
@@ -87,6 +112,15 @@ export class AuthService {
 		}
 	}
 
+	public async sendEmailVerification() {
+		if (this.user) {
+			await sendEmailVerification(this.user);
+			console.log('Verification email sent to:', this.user.email);
+		} else {
+			throw new Error('No authenticated user to send verification email.');
+		}
+	}
+
 	public async signOut() {
 		await signOut(this._auth);
 		this.user = null;
@@ -103,6 +137,14 @@ export class AuthService {
 			await updateProfile(this._auth.currentUser, profile);
 		} else {
 			throw new Error('No authenticated user to update profile.');
+		}
+	}
+
+	public async updateUserEmail(email: string) {
+		if (this._auth.currentUser) {
+			await updateEmail(this._auth.currentUser, email);
+		} else {
+			throw new Error('No authenticated user to update email.');
 		}
 	}
 
