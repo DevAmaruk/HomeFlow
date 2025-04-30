@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { User } from '@angular/fire/auth';
+import { Auth, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { passwordStrengthValidator } from '../../validators/passwordStrengthValidators';
@@ -11,15 +11,17 @@ import {
 	IonCol,
 	IonContent,
 	IonGrid,
+	IonHeader,
 	IonImg,
 	IonInput,
 	IonRow,
 	IonText,
+	IonToolbar,
 	ModalController,
 } from '@ionic/angular/standalone';
 import { EmailVerificationModalComponent } from '../../modals/email-verification-modal/email-verification-modal.component';
 
-const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonInput, IonText];
+const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonInput, IonText, IonHeader, IonToolbar];
 
 @Component({
 	selector: 'app-login',

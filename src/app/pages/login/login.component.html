@@ -12,7 +12,7 @@
 		<div class="emailInputContainer ion-padding" [formGroup]="signUpForm">
 			<ion-grid>
 				<ion-row class="ion-justify-content-center ion-align-items-center">
-					<ion-col class="ion-padding" sizeLg="5">
+					<ion-col sizeLg="5">
 						<ion-input
 							fill="outline"
 							shape="round"
@@ -21,13 +21,13 @@
 							labelPlacement="floating"
 							[clearInput]="true"
 							formControlName="email"
-							class="input">
+							class="input ion-padding">
 							<div slot="label">Email <ion-text color="danger">(Requis)</ion-text></div></ion-input
 						>
 					</ion-col>
 				</ion-row>
 				<ion-row class="ion-justify-content-center ion-align-items-center">
-					<ion-col class="ion-padding" sizeLg="5">
+					<ion-col sizeLg="5">
 						<ion-input
 							fill="outline"
 							shape="round"
@@ -36,13 +36,13 @@
 							labelPlacement="floating"
 							[clearInput]="true"
 							formControlName="password"
-							class="input"
+							class="input ion-padding"
 							><div slot="label">Mot de passe <ion-text color="danger">(Requis)</ion-text></div></ion-input
 						>
 					</ion-col>
 				</ion-row>
 				<ion-row>
-					<ion-col class="ion-padding" sizeLg="5">
+					<ion-col sizeLg="5">
 						<ion-input
 							fill="outline"
 							shape="round"
@@ -51,7 +51,7 @@
 							labelPlacement="floating"
 							[clearInput]="true"
 							formControlName="username"
-							class="input"
+							class="input ion-padding"
 							><div slot="label">Username<ion-text color="danger">(Requis)</ion-text></div></ion-input
 						>
 					</ion-col>

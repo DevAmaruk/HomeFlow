@@ -1,8 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonText, IonRouterLink } from '@ionic/angular/standalone';
+import {
+	IonContent,
+	IonGrid,
+	IonRow,
+	IonCol,
+	IonImg,
+	IonButton,
+	IonText,
+	IonRouterLink,
+	IonHeader,
+	IonFooter,
+} from '@ionic/angular/standalone';
 
-const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonText, IonRouterLink];
+const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonText, IonRouterLink, IonHeader, IonFooter];
 
 @Component({
 	selector: 'app-login-homepage',
