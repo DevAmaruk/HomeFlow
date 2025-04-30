@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FamillyService } from '../../../services/famillyService/familly.service';
 import { TaskSelectionService } from '../../../services/tasks/task-selection.service';
 import { AuthService } from '../../../services/auth/auth.service';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { CommonModule, registerLocaleData } from '@angular/common';
@@ -24,8 +24,10 @@ import {
 	IonHeader,
 	IonToolbar,
 	IonList,
+	ModalController,
 } from '@ionic/angular/standalone';
 import { collection, Firestore, getDocs, QuerySnapshot } from '@angular/fire/firestore';
+import { ProfilePageComponent } from '../profile-page/profile-page.component';
 /*
 This component is used to display the hompage of the chores section.
 It will list all the chores that are added to the familly group as active chores.
@@ -75,9 +77,11 @@ export class ChoreHomepageComponent {
 		private readonly _authService: AuthService,
 		private readonly _router: Router,
 		private readonly _firestore: Firestore,
+		private readonly _modalCtrl: ModalController,
 	) {
 		registerLocaleData(localeFr);
 		this.userObs = this._authService.user$;
+
 		// this.taskDescription$ = this._taskSelectionService.taskDescription$;
 	}
 
@@ -93,6 +97,16 @@ export class ChoreHomepageComponent {
 		} catch (error) {
 			console.error('Error fetching tasks on page load:', error);
 		}
+	}
+
+	public async openProfileModal() {
+		const modal = await this._modalCtrl.create({
+			component: ProfilePageComponent,
+			componentProps: {
+				user: await firstValueFrom(this.userObs),
+			},
+		});
+		await modal.present();
 	}
 
 	// Update tasks based on the selected date

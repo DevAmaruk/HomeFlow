@@ -3,10 +3,10 @@
 		<ion-grid class="ion-padding">
 			<ion-row class="ion-justify-content-center ion-align-items-center">
 				<ion-col class="salutationTextCol">
-					<ion-text>Salutation {{ username }}</ion-text>
+					<ion-text>Salutation {{ (userObs | async)?.displayName }}!</ion-text>
 				</ion-col>
 				<ion-col class="avatarCol">
-					<ion-avatar class="avatarIcon">
+					<ion-avatar class="avatarIcon" (click)="openProfileModal()">
 						<ion-img src="https://ionicframework.com/docs/img/demos/avatar.svg"> </ion-img>
 					</ion-avatar>
 				</ion-col>
