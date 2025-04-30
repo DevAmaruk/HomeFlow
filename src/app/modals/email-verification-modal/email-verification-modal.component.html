@@ -4,7 +4,23 @@
 	</ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-	<p>Nous avons envoyé un email de vérification, veuillez suivre les instructions avant de poursuivre. Merci !</p>
-	<ion-button expand="block" (click)="resendVerificationEmail()">Renvoyer l'email de vérification</ion-button>
-	<ion-button expand="block" color="primary" (click)="closeModal()">Fermer</ion-button>
+	<ion-grid>
+		<ion-row class="ion-justify-content-center ion-align-items-center">
+			<ion-col>
+				<ion-text
+					>Nous avons envoyé un email de vérification, veuillez suivre les instructions avant de poursuivre. Merci !
+				</ion-text>
+			</ion-col>
+		</ion-row>
+		<ion-row class="ion-justify-content-center ion-align-items-center">
+			<ion-col sizeXs="12" sizeSm="8" sizeMd="6" sizeLg="4">
+				<ion-button expand="block" (click)="resendVerificationEmail()"> Renvoyer l'email de vérification </ion-button>
+			</ion-col>
+		</ion-row>
+		<ion-row class="ion-justify-content-center ion-align-items-center">
+			<ion-col sizeXs="12" sizeSm="8" sizeMd="6" sizeLg="4">
+				<ion-button expand="block" (click)="closeModal()">Fermer</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
