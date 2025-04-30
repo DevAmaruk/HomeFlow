@@ -8,15 +8,34 @@ import {
 import { AuthService } from '../../services/auth/auth.service';
 import { User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import {
+	IonButton,
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonImg,
+	IonInput,
+	IonRow,
+} from '@ionic/angular/standalone';
 
 /*
 This page is used to sign in the user. It is a simple page that contains a form with two fields: email and password. 
 It will check if the user is already signed in with Firebase Auth
 */
 
+const ionicElements = [
+	IonContent,
+	IonGrid,
+	IonRow,
+	IonCol,
+	IonImg,
+	IonButton,
+	IonInput,
+];
+
 @Component({
 	selector: 'app-sign-in-page',
-	imports: [ReactiveFormsModule],
+	imports: [ReactiveFormsModule, ...ionicElements],
 	templateUrl: './sign-in-page.component.html',
 	styleUrl: './sign-in-page.component.scss',
 })
@@ -66,7 +85,7 @@ export class SignInPageComponent implements OnInit {
 			// To prevent any theft, we reset the form.
 			this.signInForm.reset();
 
-			this._route.navigate(['/chore-homepage']);
+			this._route.navigate(['/chore-menu-homepage/chore-homepage']);
 		} catch (error) {
 			console.error('Error signing in:', error);
 		}

@@ -1,4 +1,81 @@
-<div [formGroup]="signInForm">
+<ion-content>
+	<div>
+		<div class="topContainer ion-padding">
+			<ion-grid class="loginHomepageGrid ion-no-padding">
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col sizeLg="5">
+						<ion-img src="./Illustrations/Clouds/sky_clouds.webp"></ion-img>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+		<div class="emailInputContainer ion-padding" [formGroup]="signInForm">
+			<ion-grid>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col class="ion-padding" sizeLg="5">
+						<ion-input
+							fill="outline"
+							shape="round"
+							type="email"
+							id="signInEmail"
+							[clearInput]="true"
+							formControlName="email"
+							placeholder="Email"
+							class="input">
+						</ion-input>
+					</ion-col>
+				</ion-row>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col class="ion-padding" sizeLg="5">
+						<ion-input
+							fill="outline"
+							shape="round"
+							type="password"
+							id="signUpPassword"
+							[clearInput]="true"
+							formControlName="password"
+							placeholder="Mot de passe"
+							class="input"></ion-input>
+					</ion-col>
+				</ion-row>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col size="auto" class="ion-text-center">
+						<ion-button (click)="onSignIn()" expand="block"
+							>Se connecter
+						</ion-button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+		<div class="bottomContainer ion-padding">
+			<ion-grid class="illustrationHouseGrid ion-no-padding">
+				<ion-row
+					class="ion-justify-content-center ion-align-items-center illustrationRow">
+					<ion-col
+						sizeXs="9"
+						sizeSm="5"
+						sizeMd="5"
+						sizeLg="5"
+						sizeXl="5"
+						class="illustrationCol">
+						<ion-img
+							src="./Illustrations/House/house.webp"
+							alt="house_illustration"
+							class="houseIllustration"></ion-img>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+	</div>
+</ion-content>
+
+<!-- @if(signUpForm.get('password')?.hasError('passwordStrength') && signUpForm.get('password')?.touched) {
+<div>
+	<p class="error">Password must contain letters, numbers and symbols</p>
+</div>
+} -->
+
+<!-- <div [formGroup]="signInForm">
 	<label for="signInEmail">Email</label>
 	<input
 		type="email"
@@ -28,4 +105,4 @@
 		type="email"
 		placeholder="Email" />
 	<button type="submit">Send Reset Email</button>
-</form>
+</form> -->
