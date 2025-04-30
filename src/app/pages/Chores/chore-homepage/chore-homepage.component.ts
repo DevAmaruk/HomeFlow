@@ -25,6 +25,8 @@ import {
 	IonToolbar,
 	IonList,
 	ModalController,
+	IonRefresher,
+	IonRefresherContent,
 } from '@ionic/angular/standalone';
 import { collection, Firestore, getDocs, QuerySnapshot } from '@angular/fire/firestore';
 import { ProfilePageComponent } from '../profile-page/profile-page.component';
@@ -50,6 +52,8 @@ const ionicElements = [
 	IonHeader,
 	IonToolbar,
 	IonList,
+	IonRefresher,
+	IonRefresherContent,
 ];
 
 @Component({
@@ -86,17 +90,7 @@ export class ChoreHomepageComponent {
 	}
 
 	async ionViewWillEnter() {
-		try {
-			const userData = await this._authService.getUserData();
-			if (userData) {
-				this.username = userData.username;
-			}
-			this.taskDescriptions = await this._taskSelectionService.getTasksFromFamillyGroup();
-
-			this.updateTasksForSelectedDate();
-		} catch (error) {
-			console.error('Error fetching tasks on page load:', error);
-		}
+		await this.getData();
 	}
 
 	public async openProfileModal() {
@@ -167,5 +161,26 @@ export class ChoreHomepageComponent {
 
 	public goToCategoryPage() {
 		this._router.navigate(['/category']);
+	}
+
+	public async getData() {
+		try {
+			const userData = await this._authService.getUserData();
+			if (userData) {
+				this.username = userData.username;
+			}
+			this.taskDescriptions = await this._taskSelectionService.getTasksFromFamillyGroup();
+
+			this.updateTasksForSelectedDate();
+		} catch (error) {
+			console.error('Error fetching tasks on page load:', error);
+		}
+	}
+
+	handleRefresh(event: CustomEvent) {
+		setTimeout(() => {
+			this.getData();
+			(event.target as HTMLIonRefresherElement).complete();
+		}, 2000);
 	}
 }
