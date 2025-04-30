@@ -4,14 +4,47 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Categories, Tasks } from '../../../interfaces/category';
 import { Router } from '@angular/router';
+import {
+	IonButton,
+	IonCard,
+	IonCardContent,
+	IonCol,
+	IonContent,
+	IonGrid,
+	IonImg,
+	IonInput,
+	IonLabel,
+	IonList,
+	IonRow,
+	IonSelect,
+	IonSelectOption,
+	IonText,
+} from '@ionic/angular/standalone';
 
 /*
 This component is used to create a custom task that will be sent to Firestore as new custom task.
 */
 
+const ionicElements = [
+	IonContent,
+	IonGrid,
+	IonRow,
+	IonCol,
+	IonText,
+	IonInput,
+	IonLabel,
+	IonSelect,
+	IonSelectOption,
+	IonButton,
+	IonCard,
+	IonCardContent,
+	IonList,
+	IonImg,
+];
+
 @Component({
 	selector: 'app-custom-task-creation',
-	imports: [FormsModule, CommonModule, ReactiveFormsModule],
+	imports: [FormsModule, CommonModule, ReactiveFormsModule, ...ionicElements],
 	templateUrl: './custom-task-creation.component.html',
 	styleUrl: './custom-task-creation.component.scss',
 })
