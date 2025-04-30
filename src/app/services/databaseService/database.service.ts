@@ -2,13 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { Categories, Tasks } from '../../interfaces/category';
-import {
-	collection,
-	Firestore,
-	getDocs,
-	query,
-	where,
-} from '@angular/fire/firestore';
+import { collection, Firestore, getDocs, query, where } from '@angular/fire/firestore';
 
 /*
 This service is responsible for fetching the data from the default database JSON file and Firestore user database.
@@ -18,10 +12,7 @@ This service is responsible for fetching the data from the default database JSON
 	providedIn: 'root',
 })
 export class DatabaseService {
-	constructor(
-		private readonly _http: HttpClient,
-		private readonly _firestore: Firestore,
-	) {
+	constructor(private readonly _http: HttpClient, private readonly _firestore: Firestore) {
 		this.getTasksDatabase();
 	}
 
@@ -39,10 +30,7 @@ export class DatabaseService {
 		return RESPONSE.tasks;
 	}
 
-	public async getTask(
-		taskId: string,
-		famillyGroupName: string,
-	): Promise<Tasks> {
+	public async getTask(taskId: string, famillyGroupName: string): Promise<Tasks> {
 		// const categories = await this.getCategoriesDatabase();
 		// console.log('Fetched categories:', categories);
 		// console.log('Looking for task with ID:', taskId);
@@ -55,12 +43,7 @@ export class DatabaseService {
 				return task;
 			}
 
-			const tasksColRef = collection(
-				this._firestore,
-				'Familly',
-				famillyGroupName,
-				'UserDatabase',
-			);
+			const tasksColRef = collection(this._firestore, 'Familly', famillyGroupName, 'UserDatabase');
 			const tasksQuery = query(tasksColRef, where('uuid', '==', taskId));
 			const taskSnapshot = await getDocs(tasksQuery);
 
@@ -89,22 +72,16 @@ export class DatabaseService {
 		// throw new Error('Task not found in local database');
 	}
 
-	public async getAllCategories(
-		famillyGroupName: string,
-	): Promise<Categories[]> {
+	public async getAllCategories(famillyGroupName: string): Promise<Categories[]> {
 		try {
 			const defaultCategories = await this.getCategoriesDatabase();
 
-			const categoriesColRef = collection(
-				this._firestore,
-				'Familly',
-				famillyGroupName,
-				'Categories',
-			);
+			const categoriesColRef = collection(this._firestore, 'Familly', famillyGroupName, 'Categories');
 			const categoriesSnapshot = await getDocs(categoriesColRef);
-			const customCategories: Categories[] = categoriesSnapshot.docs.map(
-				doc => doc.data() as Categories,
-			);
+
+			const customCategories: Categories[] = categoriesSnapshot.docs
+				.map(doc => doc.data() as Categories)
+				.filter(category => 'title' in category && 'uuid' in category);
 
 			return [...defaultCategories, ...customCategories];
 		} catch (error) {
@@ -113,30 +90,15 @@ export class DatabaseService {
 		}
 	}
 
-	public async getAllTasksByCategory(
-		categoryUuid: string,
-		famillyGroupName: string,
-	) {
+	public async getAllTasksByCategory(categoryUuid: string, famillyGroupName: string) {
 		try {
 			const defaultTasks = await this.getTasksDatabase();
-			const filteredDefaultTasks = defaultTasks.filter(
-				task => task.categoryUuid === categoryUuid,
-			);
+			const filteredDefaultTasks = defaultTasks.filter(task => task.categoryUuid === categoryUuid);
 
-			const tasksColRef = collection(
-				this._firestore,
-				'Familly',
-				famillyGroupName,
-				'UserDatabase',
-			);
-			const tasksQuery = query(
-				tasksColRef,
-				where('categoryUuid', '==', categoryUuid),
-			);
+			const tasksColRef = collection(this._firestore, 'Familly', famillyGroupName, 'UserDatabase');
+			const tasksQuery = query(tasksColRef, where('categoryUuid', '==', categoryUuid));
 			const customTasksSnapshot = await getDocs(tasksQuery);
-			const customTasks: Tasks[] = customTasksSnapshot.docs.map(
-				doc => doc.data() as Tasks,
-			);
+			const customTasks: Tasks[] = customTasksSnapshot.docs.map(doc => doc.data() as Tasks);
 
 			return [...filteredDefaultTasks, ...customTasks];
 		} catch (error) {
