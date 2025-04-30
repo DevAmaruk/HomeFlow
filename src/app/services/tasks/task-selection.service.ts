@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { addDoc, collection, deleteDoc, Firestore, getDocs, query, updateDoc, where, writeBatch } from '@angular/fire/firestore';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { FamillyService } from '../famillyService/familly.service';
 import { Tasks } from '../../interfaces/category';
 
@@ -13,10 +13,6 @@ It retrieves the tasks from the Tasks subcollection of the familly group to be d
 	providedIn: 'root',
 })
 export class TaskSelectionService {
-	public _taskDescription$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-
-	public taskDescription$: Observable<string[]> = this._taskDescription$.asObservable();
-
 	constructor(private readonly _firestore: Firestore, private readonly _famillyService: FamillyService) {}
 
 	//This method is used to add a task to the familly group.
@@ -97,19 +93,15 @@ export class TaskSelectionService {
 	public async getTasksFromFamillyGroup(): Promise<Tasks[]> {
 		try {
 			const famillyGroupName = await this._famillyService.getFamillyGroupName();
-
 			if (!famillyGroupName) {
 				throw new Error('Familly group name is not set. Please set it before getting tasks.');
 			}
-
 			const taskColRef = collection(this._firestore, 'Familly', famillyGroupName, 'Tasks');
 			const taskSnapshot = await getDocs(taskColRef);
-
 			const tasks: Tasks[] = taskSnapshot.docs.map(doc => ({
 				...doc.data(),
 				dueDate: doc.get('dueDate') || null,
 			})) as Tasks[];
-
 			return tasks;
 		} catch (error) {
 			console.error('Error fetching tasks:', error);

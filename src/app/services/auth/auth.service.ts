@@ -10,8 +10,8 @@ import {
 	User,
 	sendPasswordResetEmail,
 	authState,
-	sendEmailVerification,
 } from '@angular/fire/auth';
+import { doc, Firestore, getDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 
 /*
@@ -28,7 +28,7 @@ export class AuthService {
 
 	public _user$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
 	public user$;
-	constructor(private readonly _auth: Auth) {
+	constructor(private readonly _auth: Auth, private readonly _firestore: Firestore) {
 		this.user$ = authState(this._auth);
 	}
 
@@ -94,5 +94,22 @@ export class AuthService {
 
 	public sendPasswordResetEmail(email: string) {
 		return sendPasswordResetEmail(this._auth, email);
+	}
+
+	public async getUserData(): Promise<{ username: string } | null> {
+		const currentUser = this._auth.currentUser;
+		if (!currentUser) {
+			return null;
+		}
+
+		const userDocRef = doc(this._firestore, 'Users', currentUser.uid);
+		const userDoc = await getDoc(userDocRef);
+
+		if (userDoc.exists()) {
+			return userDoc.data() as { username: string };
+		} else {
+			console.error('User document does not exist in Firestore');
+			return null;
+		}
 	}
 }
