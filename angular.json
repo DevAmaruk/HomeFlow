@@ -81,8 +81,8 @@
 									"maximumError": "8kB"
 								}
 							],
-              "outputHashing": "all",
-              "serviceWorker": "ngsw-config.json"
+							"outputHashing": "all",
+							"serviceWorker": "ngsw-config.json"
 						},
 						"development": {
 							"optimization": false,
@@ -166,6 +166,9 @@
 							"browserTarget": "homeflow:build:production"
 						}
 					}
+				},
+				"deploy": {
+					"builder": "angular-cli-ghpages:deploy"
 				}
 			}
 		}
