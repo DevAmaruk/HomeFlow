@@ -11,18 +11,14 @@
 						#famillyInput
 						[clearInput]="true"
 						labelPlacement="floating"
-						class="input"
-						><div slot="label">
-							Famille <ion-text color="danger">(Requis)</ion-text>
-						</div></ion-input
+						class="input ion-padding"
+						><div slot="label">Famille <ion-text color="danger">(Requis)</ion-text></div></ion-input
 					>
 				</ion-col>
 			</ion-row>
 			<ion-row class="ion-justify-content-center ion-align-items-center">
 				<ion-col sizeXs="6">
-					<ion-button (click)="createFamilly(famillyInput)"
-						>Créer une famille</ion-button
-					>
+					<ion-button (click)="createFamilly(famillyInput)">Créer une famille</ion-button>
 				</ion-col>
 			</ion-row>
 		</ion-grid>
