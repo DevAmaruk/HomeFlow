@@ -131,15 +131,6 @@ export class ChoreHomepageComponent {
 		this.updateTasksForSelectedDate();
 	}
 
-	public async addMemberToFamilly(memberId: string) {
-		try {
-			await this._famillyService.addMemberToFamillyGroup(memberId);
-			// console.log('Member added to family group successfully!');
-		} catch (error) {
-			console.error('Error adding member to family group:', error);
-		}
-	}
-
 	public goToCalendar() {
 		this._router.navigate(['calendar']);
 	}

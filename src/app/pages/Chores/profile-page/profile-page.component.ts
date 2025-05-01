@@ -19,6 +19,7 @@ import {
 import { AuthService } from '../../../services/auth/auth.service';
 import { doc, Firestore, updateDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { FamillyService } from '../../../services/famillyService/familly.service';
 
 /*
 This page serves as profile page where the user can log out, change its username, profile picture, etc. 
@@ -62,6 +63,7 @@ export class ProfilePageComponent {
 		private readonly _authService: AuthService,
 		private readonly _firestore: Firestore,
 		private readonly _router: Router,
+		private readonly _famillyService: FamillyService,
 	) {}
 
 	async ionViewWillEnter() {
@@ -95,6 +97,18 @@ export class ProfilePageComponent {
 			console.log('Username updated successfully:', username);
 		} catch (error) {
 			console.error('Error updating username:', error);
+		}
+	}
+
+	public async addMemberToFamilly(memberId: IonInput) {
+		try {
+			const memberIdentifier = memberId.value as string;
+			if (memberIdentifier) {
+				await this._famillyService.addMemberToFamillyGroup(memberIdentifier);
+			}
+			// console.log('Member added to family group successfully!');
+		} catch (error) {
+			console.error('Error adding member to family group:', error);
 		}
 	}
 

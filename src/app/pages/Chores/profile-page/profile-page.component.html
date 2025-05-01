@@ -52,6 +52,27 @@
 			</ion-row>
 		</ion-grid>
 	</div>
+	<div class="ion-padding">
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-label>Ajouter un nouveau membre</ion-label>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col sizeXs="12" sizeSm="10">
+					<ion-input type="text" placeholder="Email" #memberId class="input" fill="outline" shape="round"></ion-input>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-button expand="block" (click)="addMemberToFamilly(memberId)" class="updateUsernameButton"
+						>Ajouter Membre
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
 	<div>
 		<ion-grid>
 			<ion-row>
