@@ -11,17 +11,15 @@ import {
 	IonCol,
 	IonContent,
 	IonGrid,
-	IonHeader,
 	IonImg,
 	IonInput,
 	IonRow,
 	IonText,
-	IonToolbar,
 	ModalController,
 } from '@ionic/angular/standalone';
 import { EmailVerificationModalComponent } from '../../modals/email-verification-modal/email-verification-modal.component';
 
-const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonInput, IonText, IonHeader, IonToolbar];
+const ionicElements = [IonContent, IonGrid, IonRow, IonCol, IonImg, IonButton, IonInput, IonText];
 
 @Component({
 	selector: 'app-login',

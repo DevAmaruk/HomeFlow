@@ -38,6 +38,13 @@
 							class="input ion-padding"></ion-input>
 					</ion-col>
 				</ion-row>
+				<ion-row>
+					@if(errorMessage){
+					<ion-col class="error-message" sizeXs="12" sizeLg="5">
+						{{ errorMessage }}
+					</ion-col>
+					}
+				</ion-row>
 				<ion-row class="ion-justify-content-center ion-align-items-center">
 					<ion-col size="auto" class="ion-text-center">
 						<ion-button (click)="onSignIn()" expand="block">Se connecter </ion-button>
