@@ -1,0 +1,83 @@
+ion-toolbar {
+	&.headerToolbar {
+		--background: #e76f51;
+		--color: #264653;
+	}
+}
+
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-avatar {
+	width: 100px;
+	height: 100px;
+}
+
+ion-input {
+	&.input-fill-outline {
+		&.input-shape-round {
+			--border-radius: 10px;
+		}
+	}
+	&.input {
+		--background: #ffffff;
+	}
+}
+
+ion-button {
+	&.updateUsernameButton {
+		--background: #264653;
+		--color: #fcf8ed;
+		--border-radius: 12px;
+		height: 5px;
+		font-size: 0.8rem;
+	}
+}
+
+ion-text {
+	&.usernameTitle {
+		font-family: 'Roboto', sans-serif;
+		font-weight: 800;
+		font-size: 1.5rem;
+	}
+	&.helloTitle {
+		font-family: 'Roboto', sans-serif;
+		font-weight: 300;
+		font-size: 1rem;
+	}
+}
+
+ion-label {
+	&.accountLabel {
+		font-family: 'Roboto', sans-serif;
+		font-weight: 700;
+		font-size: 1.2rem;
+	}
+}
+
+div {
+	&.avatarContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 25vh;
+	}
+	&.accountLabelContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&.usernameContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 25vh;
+	}
+	&.userEmailContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 25vh;
+	}
+}

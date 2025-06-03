@@ -1,0 +1,116 @@
+ion-toolbar {
+	--background: #e76f51;
+}
+
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-col {
+	&.avatarCol {
+		display: flex;
+		justify-content: end;
+	}
+	&.salutationTextCol {
+		display: flex;
+		justify-content: start;
+	}
+}
+
+ion-icon {
+	&.chevronIcon {
+		color: #264653;
+	}
+}
+
+ion-fab {
+	--ion-safe-area-bottom: 0;
+}
+
+ion-avatar {
+	&.avatarIcon {
+		width: 35px;
+		height: 35px;
+	}
+}
+
+ion-list {
+	&.taskCardList {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+ion-text {
+	&.taskTitle {
+		color: #fcf8ed;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 300;
+		font-size: 0.8rem;
+	}
+}
+
+ion-card {
+	width: 150px;
+	height: 150px;
+	display: flex;
+	border-radius: 20px;
+	--background: #9d2a2a;
+	// justify-content: center;
+	// align-items: center;
+}
+
+.task-validated {
+	background-color: #4caf50; /* Green for validated tasks */
+	color: white; /* Optional: Adjust text color for better contrast */
+}
+
+.task-not-validated {
+	background-color: #9d2a2a; /* Red for not validated tasks */
+	color: white; /* Optional: Adjust text color for better contrast */
+}
+
+ion-img {
+	&.taskIcon {
+		width: 60px;
+		height: 60px;
+	}
+}
+
+ion-card-content {
+	&.taskCard {
+		text-align: center;
+		font-size: 0.85rem;
+		font-weight: 400;
+		font-family: 'Roboto', sans-serif;
+		width: 150px;
+		height: 150px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+	}
+}
+
+ion-fab-button {
+	&.addCatFab {
+		--background: #264653;
+	}
+}
+
+div {
+	&.todayTaskCardContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+p {
+	&.fullDateText {
+		font-family: 'Roboto', sans-serif;
+		font-weight: 500;
+		font-size: 1.1rem;
+	}
+}

@@ -1,0 +1,37 @@
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-toolbar {
+	&.headerToolbar {
+		--background: #e76f51;
+	}
+}
+
+ion-text {
+	&.headerTitle {
+		color: #264653;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 700;
+		font-size: 1.3rem;
+	}
+}
+
+ion-button {
+	--background: #264653;
+	--color: #fcf8ed;
+	--border-radius: 12px;
+	width: 182px;
+	height: 58.9px;
+	font-size: 0.8rem;
+}
+
+div {
+	&.editionContainer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+	}
+}

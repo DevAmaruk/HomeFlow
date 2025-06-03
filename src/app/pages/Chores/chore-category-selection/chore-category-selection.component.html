@@ -1,0 +1,53 @@
+<ion-header>
+	<ion-toolbar class="ion-text-center headerToolbar">
+		<ion-text class="headerTitle">Catégories</ion-text>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	@if(categories){
+	<ion-grid class="ion-padding">
+		<ion-row>
+			@for(cat of categories; track cat.uuid){
+			<ion-col sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="3">
+				<div class="catCardContainer">
+					<ion-card (click)="onCategorySelected(cat.uuid)">
+						<ion-card-content class="catCard">
+							<ion-list class="catCardList">
+								<ion-img src="{{ cat.icon }}" class="catIcon"></ion-img>
+								<ion-text class="catTitle">{{ cat.title }}</ion-text>
+							</ion-list>
+						</ion-card-content>
+					</ion-card>
+				</div>
+			</ion-col>
+			}
+		</ion-row>
+	</ion-grid>
+	}
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button>
+			<ion-img src="./Illustrations/Menu/chore_home_menu_icon.webp"></ion-img>
+		</ion-fab-button>
+		<ion-fab-list side="top">
+			<ion-fab-button (click)="backToHome()">
+				<ion-icon name="chevron-back"></ion-icon>
+			</ion-fab-button>
+			<ion-fab-button (click)="goToCustomTask()">
+				<ion-icon name="add"></ion-icon>
+			</ion-fab-button>
+		</ion-fab-list>
+	</ion-fab>
+</ion-content>
+
+<!-- @if(categories){ @for(cat of categories; track cat.uuid){
+<h1 (click)="onCategorySelected(cat.uuid)">{{ cat.title }}</h1>
+} }
+
+<div>
+	<button (click)="goToCustomTask()">Create Task</button>
+</div>
+
+<div>
+	<button (click)="backToHome()">Back to Home</button>
+</div> -->

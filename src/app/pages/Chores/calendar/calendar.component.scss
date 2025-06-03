@@ -1,0 +1,9 @@
+ion-content {
+	--background: #fcf8ed;
+}
+
+div {
+	&.calendar-container {
+		display: flex;
+	}
+}

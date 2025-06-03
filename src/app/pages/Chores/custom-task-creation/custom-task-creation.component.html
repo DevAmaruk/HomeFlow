@@ -1,0 +1,111 @@
+<ion-content class="ion-padding">
+	<div class="taskDescriptionContainer">
+		<ion-grid class="ion-padding">
+			<ion-row>
+				<ion-col>
+					<ion-label>Description de la tâche</ion-label>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-input class="input ion-padding" id="description" type="text" [(ngModel)]="newTask.description"></ion-input>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-label>Score de la tâche</ion-label>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-input class="input ion-padding" id="score" type="number" [(ngModel)]="newTask.score"></ion-input>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-label>Catégories</ion-label>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				@for(cat of categories; track cat.uuid){
+				<ion-col sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="3">
+					<div class="catCardContainer">
+						<ion-card>
+							<ion-card-content class="catCard">
+								<ion-list class="catCardList">
+									<ion-img src="{{ cat.icon }}" class="catIcon"></ion-img>
+									<ion-text class="catTitle">{{ cat.title }}</ion-text>
+								</ion-list>
+							</ion-card-content>
+						</ion-card>
+					</div>
+				</ion-col>
+				}
+			</ion-row>
+			<ion-row>
+				<ion-col>
+					<ion-button>Créer la tâche</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</div>
+</ion-content>
+
+<!-- <div>
+	<label for="category">Select Category:</label>
+	<select id="category" [(ngModel)]="newTask.categoryUuid">
+		<option *ngFor="let category of categories" [value]="category.uuid">
+			{{ category.title }}
+		</option>
+	</select>
+</div> -->
+
+<!-- <div> -->
+<!-- <label for="description">Task Description:</label>
+	<input id="description" type="text" [(ngModel)]="newTask.description" /> -->
+
+<!-- <label for="icon">Task Icon:</label>
+	<input id="icon" type="text" [(ngModel)]="newTask.icon" />
+
+	<label for="score">Task Score:</label>
+	<input id="score" type="number" [(ngModel)]="newTask.score" /> -->
+
+<!-- <button (click)="addCustomTask()">Create Task</button>
+</div> -->
+
+<!-- <div>
+	<button (click)="backToCat()">Go to Categories</button>
+</div> -->
+
+<!-- <h2>Create a Custom Task</h2>
+
+<form (ngSubmit)="addCustomTask()">
+	<label for="description">Task Description:</label>
+	<input
+		id="description"
+		type="text"
+		[(ngModel)]="newTask.description"
+		name="description"
+		placeholder="Enter task description"
+		required />
+
+	<label for="icon">Task Icon:</label>
+	<input id="icon" type="text" [(ngModel)]="newTask.icon" name="icon" placeholder="Enter icon URL or name" />
+
+	<label for="score">Task Score:</label>
+	<input id="score" type="number" [(ngModel)]="newTask.score" name="score" placeholder="Enter task score" min="0" />
+
+	<button type="submit">Create Task</button>
+</form>
+
+<h2>Create a New Category</h2>
+
+<form (ngSubmit)="addCustomCategory()">
+	<label for="title">Category Title:</label>
+	<input id="title" type="text" [(ngModel)]="newCategory.title" name="title" placeholder="Enter category title" required />
+
+	<label for="icon">Category Icon:</label>
+	<input id="icon" type="text" [(ngModel)]="newCategory.icon" name="icon" placeholder="Enter icon URL or name" />
+
+	<button type="submit">Create Category</button>
+</form> -->

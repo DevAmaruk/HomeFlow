@@ -1,0 +1,54 @@
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-grid {
+	&.loginHomepageGrid {
+		height: 100%;
+	}
+}
+
+ion-col {
+	&.illustrationCol {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+ion-img {
+	&.houseIllustration {
+		width: 310.2px;
+		height: 231.5px;
+	}
+}
+
+ion-text {
+	&.appTitle {
+		font-family: 'Roboto', sans-serif;
+		font-weight: 900;
+		font-size: 2.5rem;
+	}
+}
+
+ion-button {
+	--background: #264653;
+	--color: #fcf8ed;
+	--border-radius: 12px;
+	width: 182px;
+	height: 58.9px;
+	font-size: 0.8rem;
+}
+
+div {
+	&.topContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 50vh;
+	}
+	&.bottomContainer {
+		display: flex;
+		justify-content: center;
+	}
+}

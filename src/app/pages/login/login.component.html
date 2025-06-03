@@ -1,0 +1,82 @@
+<ion-content>
+	<div>
+		<div class="topContainer ion-padding">
+			<ion-grid class="loginHomepageGrid ion-no-padding">
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col sizeLg="5">
+						<ion-img src="./Illustrations/Clouds/sky_clouds.webp"></ion-img>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+		<div class="emailInputContainer ion-padding" [formGroup]="signUpForm">
+			<ion-grid>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col sizeLg="5">
+						<ion-input
+							fill="outline"
+							shape="round"
+							type="email"
+							id="signUpEmail"
+							labelPlacement="floating"
+							[clearInput]="true"
+							formControlName="email"
+							class="input ion-padding">
+							<div slot="label">Email <ion-text color="danger">(Requis)</ion-text></div></ion-input
+						>
+					</ion-col>
+				</ion-row>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col sizeLg="5">
+						<ion-input
+							fill="outline"
+							shape="round"
+							type="password"
+							id="signUpPassword"
+							labelPlacement="floating"
+							[clearInput]="true"
+							formControlName="password"
+							class="input ion-padding"
+							><div slot="label">Mot de passe <ion-text color="danger">(Requis)</ion-text></div></ion-input
+						>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col sizeLg="5">
+						<ion-input
+							fill="outline"
+							shape="round"
+							type="username"
+							id="signUpUsername"
+							labelPlacement="floating"
+							[clearInput]="true"
+							formControlName="username"
+							class="input ion-padding"
+							><div slot="label">Username<ion-text color="danger">(Requis)</ion-text></div></ion-input
+						>
+					</ion-col>
+				</ion-row>
+				<ion-row class="ion-justify-content-center ion-align-items-center">
+					<ion-col size="auto" class="ion-text-center">
+						<ion-button (click)="onSignUp()" expand="block">Créer un compte</ion-button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+		<div class="bottomContainer ion-padding">
+			<ion-grid class="illustrationHouseGrid ion-no-padding">
+				<ion-row class="ion-justify-content-center ion-align-items-center illustrationRow">
+					<ion-col sizeXs="9" sizeSm="5" sizeMd="5" sizeLg="5" sizeXl="5" class="illustrationCol">
+						<ion-img src="./Illustrations/House/house.webp" alt="house_illustration" class="houseIllustration"></ion-img>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</div>
+	</div>
+</ion-content>
+
+<!-- @if(signUpForm.get('password')?.hasError('passwordStrength') && signUpForm.get('password')?.touched) {
+<div>
+	<p class="error">Password must contain letters, numbers and symbols</p>
+</div>
+} -->

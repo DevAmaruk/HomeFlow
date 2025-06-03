@@ -1,0 +1,70 @@
+ion-content {
+	--background: #fcf8ed;
+}
+
+ion-grid {
+	&.illustrationHouseGrid {
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+	}
+}
+
+ion-col {
+	&.illustrationCol {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	&.error-message {
+		color: red;
+		font-size: 0.9rem;
+		margin-top: 5px;
+	}
+}
+
+ion-img {
+	&.houseIllustration {
+		width: auto;
+		height: auto;
+	}
+}
+
+ion-input {
+	&.input-fill-outline {
+		&.input-shape-round {
+			--border-radius: 10px;
+		}
+	}
+	&.input {
+		--background: #ffffff;
+		--color: #264653;
+	}
+}
+
+ion-button {
+	--background: #264653;
+	--color: #fcf8ed;
+	--border-radius: 12px;
+	width: 182px;
+	height: 58.9px;
+	font-size: 0.8rem;
+}
+
+div {
+	&.topContainer {
+		display: flex;
+		justify-content: center;
+		height: 33vh;
+	}
+	&.emailInputContainer {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 33vh;
+	}
+	&.bottomContainer {
+		display: flex;
+		height: 33vh;
+	}
+}

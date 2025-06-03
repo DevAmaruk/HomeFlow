@@ -1,0 +1,54 @@
+<ion-header>
+	<ion-toolbar class="ion-text-center headerToolbar">
+		<ion-text class="headerTitle">Tâches</ion-text>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	@if(tasks){
+	<ion-grid class="ion-padding">
+		<ion-row>
+			@for(task of tasks; track task.uuid){
+			<ion-col sizeXs="6" sizeSm="6" sizeMd="6" sizeLg="3">
+				<div class="catCardContainer">
+					<ion-card (click)="onTaskSelected(task)">
+						<ion-card-content class="taskCard">
+							<ion-list class="taskCardList">
+								<ion-img src="{{ task.icon }}" class="taskIcon"></ion-img>
+								<ion-text class="taskTitle">{{ task.description }}</ion-text>
+							</ion-list>
+						</ion-card-content>
+					</ion-card>
+				</div>
+			</ion-col>
+			}
+		</ion-row>
+	</ion-grid>
+	}
+	<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+		<ion-fab-button (click)="backToCat()">
+			<ion-img src="./Illustrations/Menu/chore_home_menu_icon.webp"></ion-img>
+		</ion-fab-button>
+	</ion-fab>
+</ion-content>
+
+<!-- @if(tasks){
+<div>
+	@for(task of tasks; track task.uuid){
+	<h3 (click)="onTaskSelected(task)">{{ task.description }}</h3>
+
+	}
+</div>
+} -->
+
+<!-- <div>
+	@if(selectedCategory){
+	<h1>{{ selectedCategory.title }}</h1>
+	} @if(tasks){ @for(task of tasks; track task.uuid){
+	<h3 (click)="onTaskSelected(task)">
+		{{ task.description }}
+	</h3>
+	}}
+</div> -->
+
+<!-- <a [routerLink]="['/chore-menu-homepage/chore-homepage']">Go to Homepage</a> -->

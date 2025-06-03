@@ -1,0 +1,38 @@
+<ion-grid>
+	<ion-row class="ion-justify-content-center ion-align-items-center">
+		<ion-col class="ion-padding" sizeLg="5">
+			<ion-input
+				fill="outline"
+				shape="round"
+				type="email"
+				id="signUpEmail"
+				labelPlacement="floating"
+				[clearInput]="true"
+				formControlName="formControlName"
+				class="input">
+				<div slot="label">
+					Email <ion-text color="danger">(Requis)</ion-text>
+				</div></ion-input
+			>
+		</ion-col>
+	</ion-row>
+</ion-grid>
+<ion-grid>
+	<ion-row class="ion-justify-content-center ion-align-items-center">
+		<ion-col class="ion-padding" sizeLg="5">
+			<ion-input
+				fill="outline"
+				shape="round"
+				type="password"
+				id="signUpPassword"
+				labelPlacement="floating"
+				[clearInput]="true"
+				formControlName="formControlName"
+				class="input"
+				><div slot="label">
+					Mot de passe <ion-text color="danger">(Requis)</ion-text>
+				</div></ion-input
+			>
+		</ion-col>
+	</ion-row>
+</ion-grid>
