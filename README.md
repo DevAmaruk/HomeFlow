@@ -21,6 +21,9 @@ The app contains the following features:
 - As long as the members complete their tasks, the family garden is maintained alive.
 </p>
 
+<h2>Media</h2>
+<img src="">
+
 ## Contact
 
 If you have any questions, you can reach me via email at [j.guthauser@ik.me](mailto:j.guthauser@ik.me). If you have suggestions, remarks or issues for the app, please use GitHub directly.
