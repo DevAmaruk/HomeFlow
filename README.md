@@ -22,7 +22,14 @@ The app contains the following features:
 </p>
 
 <h2>Media</h2>
-<img src="">
+<div align="center">
+<img src="https://i.imghippo.com/files/yDh2691Nm.png" alt="landing page" width="auto" height="600px" border="0">
+<img src="https://i.imghippo.com/files/mov5663hEM.png" alt="home page" width="auto" height="600px" border="0">
+<img src="https://i.imghippo.com/files/SRnI9925uKk.png" alt="category page" width="auto" height="600px" border="0">
+<img src="https://i.imghippo.com/files/cqk8547OE.png" alt="task page" width="auto" height="600px" border="0">
+<img src="https://i.imghippo.com/files/Nl8162VE.png" alt="calendar page" width="auto" height="600px" border="0">
+<img src="https://i.imghippo.com/files/JhMT2056acE.png" alt="profile page" width="auto" height="600px" border="0">
+</div>
 
 ## Contact
 
