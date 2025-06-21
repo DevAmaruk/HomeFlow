@@ -1,5 +1,7 @@
 <h1 align="center">HomeFlow</h1>
 
+![Info](https://img.shields.io/badge/Info-%20-blue?labelColor=blue) The current version is not complete and lacks a few features. A **version 2.0** is under production.
+
 <h2 align="center">Description</h2>
 <p align="justify">
 <b>HomeFlow</b> is a friendly and collaborative Chore Task Manager. You create your own **family** and starts adding chores to do. Every member of a family contribute to the effort and generate a lovely garden that everyone needs to maintain by doing their tasks.
