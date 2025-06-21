@@ -1,9 +1,7 @@
 <h1 align="center">HomeFlow</h1>
 
-![Info](https://img.shields.io/badge/Info-%20-blue?labelColor=blue) The current version is not complete and lacks a few features. A **version 2.0** is under production.
-
-
-![Info](https://img.shields.io/badge/Info-%20-blue?labelColor=blue) This project is my first Angular project. It was made during the course in one month.
+![Info](https://img.shields.io/badge/Info-%20-blue?labelColor=blue) <br/>
+This project is my first Angular project. It was made during the course in one month. The current version is not complete and lacks a few features. A **version 2.0** is under production. 
 
 <h2 align="center">Description</h2>
 <p align="justify">
