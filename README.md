@@ -5,7 +5,7 @@ This project is my first Angular project. It was made during the course in one m
 
 <h2 align="center">Description</h2>
 <p align="justify">
-<b>HomeFlow</b> is a friendly and collaborative Chore Task Manager made. You create your own **family** and starts adding chores to do. Every member of a family contribute to the effort and generate a lovely garden that everyone needs to maintain by doing their tasks.
+<b>HomeFlow</b> is a friendly and collaborative Chore Task Manager made. You create your own <b>family</b> and starts adding chores to do. Every member of a family contribute to the effort and generate a lovely garden that everyone needs to maintain by doing their tasks.
 </p>
 
 <h2 align="center">UI</h2>
